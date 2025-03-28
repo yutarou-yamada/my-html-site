@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社に好きな服を着るようになったらやる気が爆上がりした</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-1: #2E578C;
+            --color-2: #182D40;
+            --color-3: #BF807A;
+            --color-4: #592A2A;
+            --color-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-5);
+            color: var(--color-2);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ヘッダースタイル */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--color-1);
+            position: relative;
+        }
+
+        .header-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--color-1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(90deg, var(--color-1), var(--color-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-info {
+            font-size: 14px;
+            text-align: right;
+            color: var(--color-2);
+        }
+
+        /* メインコンテンツのグリッドレイアウト */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* カードコンポーネント */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 200px;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--color-1);
+            opacity: 0.8;
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--color-1);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            font-size: 24px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: var(--color-2);
+        }
+
+        /* テキスト装飾 */
+        .highlight {
+            background: linear-gradient(transparent 60%, #BF807A50 40%);
+            font-weight: bold;
+            padding: 0 2px;
+        }
+
+        .keyword {
+            color: var(--color-4);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .keyword i {
+            font-size: 16px;
+        }
+
+        /* 手書き風の矢印とコネクタ */
+        .arrow-container {
+            position: relative;
+            height: 50px;
+            margin: 20px 0;
+        }
+
+        .handdrawn-arrow {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-3);
+            transform: translateY(-50%);
+        }
+
+        .handdrawn-arrow::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -8px;
+            width: 16px;
+            height: 16px;
+            border-top: 2px solid var(--color-3);
+            border-right: 2px solid var(--color-3);
+            transform: rotate(45deg);
+        }
+
+        .handdrawn-arrow i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-3);
+            font-size: 24px;
+        }
+
+        /* 横幅全体のセクション */
+        .full-width-section {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 40px 0;
+            background-color: rgba(46, 87, 140, 0.05);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .full-width-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%232E578C' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E") repeat;
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 24px;
+            color: var(--color-1);
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 手書き風の囲み */
+        .handdrawn-box {
+            border: 2px solid var(--color-3);
+            border-radius: 15px;
+            padding: 15px;
+            position: relative;
+            margin: 20px 0;
+            background-color: white;
+        }
+
+        .handdrawn-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px dashed var(--color-1);
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        /* 吹き出し */
+        .speech-bubble {
+            position: relative;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--color-1);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 29px;
+            border-width: 11px 11px 0;
+            border-style: solid;
+            border-color: var(--color-1) transparent;
+        }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 2px dashed var(--color-1);
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* アイコン用のカスタムアニメーション */
+        .icon-highlight {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .icon-float {
+            display: inline-block;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        /* 背景グラデーションアニメーション */
+        .gradient-bg {
+            background: linear-gradient(90deg, var(--color-5), rgba(191, 128, 122, 0.1), var(--color-5));
+            background-size: 200% 200%;
+            animation: gradientFlow 5s infinite linear;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .header-title {
+                font-size: 24px;
+            }
+        }
+
+        /* アイコンホバーエフェクト */
+        .hover-effect:hover {
+            color: var(--color-3);
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+
+        /* 補足情報用スタイル */
+        .note {
+            font-size: 12px;
+            color: var(--color-2);
+            opacity: 0.8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* 5つの変化用のカスタムスタイル */
+        .changes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .change-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .change-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .change-icon {
+            font-size: 36px;
+            color: var(--color-1);
+        }
+
+        .change-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--color-4);
+        }
+
+        .change-description {
+            font-size: 14px;
+        }
+
+        /* 実践的アプローチ用のスタイル */
+        .approach-list {
+            counter-reset: approach-counter;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .approach-item {
+            counter-increment: approach-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .approach-item::before {
+            content: counter(approach-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Kaisei Decol', serif;
+            font-weight: bold;
+        }
+
+        /* グラスモーフィズム効果 */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* アクション・リスト用のスタイル */
+        .action-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--color-3);
+        }
+
+        .action-item:last-child {
+            border-bottom: none;
+        }
+
+        .action-icon {
+            font-size: 24px;
+            color: var(--color-1);
+            flex-shrink: 0;
+        }
+
+        .action-text {
+            flex-grow: 1;
+        }
+
+        /* スクロールアニメーション */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-fade.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header-title">
+                <i class="fas fa-tshirt fa-2x fa-bounce"></i>
+                会社に好きな服を着るようになったらやる気が爆上がりした話
+                <i class="fas fa-arrow-trend-up fa-2x fa-beat"></i>
+            </h1>
+            <div class="header-info">
+                <i class="fas fa-calendar-alt"></i> 2025年3月
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="content-grid">
+            <!-- はじめに -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-door-open fa-spin"></i></div>
+                <h2 class="card-title"><i class="fas fa-flag fa-beat"></i> はじめに</h2>
+                <div class="card-content">
+                    <p>皆さんは毎朝、会社に行く準備をするとき、どんな気持ちで服を選んでいますか？</p>
+                    <div class="speech-bubble">
+                        <p><i class="fas fa-quote-left"></i> 「今日は取引先との会議があるから、<span class="keyword"><i class="fas fa-business-time"></i>無難なスーツ</span>にしておこう」</p>
+                        <p><i class="fas fa-quote-left"></i> 「同僚からの視線が気になるから、<span class="keyword"><i class="fas fa-user-tie"></i>いつもの制服</span>で安全策を取ろう」</p>
+                    </div>
+                    <p>私もかつては同じでした。毎朝、自分の好みや気分よりも「会社での見られ方」を優先して服を選び、次第に<span class="highlight">自分らしさを失っていました</span>。</p>
+                </div>
+            </div>
+
+            <!-- 服装と「本当の自分」の乖離 -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-mask fa-flip"></i></div>
+                <h2 class="card-title"><i class="fas fa-person-walking-arrow-right fa-fade"></i> 失われていく自分らしさ</h2>
+                <div class="card-content">
+                    <p>新卒で入社した商社では、<span class="keyword"><i class="fas fa-ruler"></i>厳格な服装規定</span>がありました。</p>
+                    <ul>
+                        <li><i class="fas fa-male"></i> 男性：濃紺か黒のスーツ＋ネクタイ</li>
+                        <li><i class="fas fa-female"></i> 女性：スーツかワンピース</li>
+                    </ul>
+                    <p>私は元々、<span class="keyword"><i class="fas fa-palette"></i>カジュアル</span>ながらも<span class="keyword"><i class="fas fa-fill-drip"></i>色使い</span>や<span class="keyword"><i class="fas fa-hand-sparkles"></i>素材感</span>にこだわるファッションが好きでした。</p>
+                    <p>朝、クローゼットの前に立つたび、休日用の好きな服と仕事用の「制服」の間には、<span class="highlight">目に見えない壁があるように感じていました</span>。</p>
+                </div>
+            </div>
+
+            <!-- 自己一致の概念 -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-puzzle-piece fa-flip"></i></div>
+                <h2 class="card-title"><i class="fas fa-brain fa-beat"></i> 「会社の自分」と「プライベートの自分」の分断</h2>
+                <div class="card-content">
+                    <p>心理学では<span class="keyword"><i class="fas fa-equals"></i>自己一致</span>という概念があります。</p>
+                    <div class="handdrawn-box">
+                        <p><i class="fas fa-quote-left"></i> 自分の内面的な価値観や好みと、外面的な行動や表現が一致している状態</p>
+                    </div>
+                    <p>自己一致が高い人ほど、<span class="highlight">精神的健康度が高く、ストレスが少ない</span>とされています。</p>
+                    <p>多くのビジネスパーソンは「会社の自分」と「プライベートの自分」を明確に分けています。服装はその最たる例でしょう。</p>
+                </div>
+            </div>
+
+            <!-- 転機 -->
+            <div class="card scroll-fade" style="grid-column: span 2;">
+                <div class="card-icon"><i class="fas fa-lightbulb fa-bounce"></i></div>
+                <h2 class="card-title"><i class="fas fa-road fa-fade"></i> 転機 - 服装が変われば仕事も変わる</h2>
+                <div class="card-content">
+                    <p>3年目のある日、取引先のIT企業を訪問する機会がありました。その会社では、<span class="highlight">CEOから新入社員まで、皆が思い思いの服装で働いていました</span>。</p>
+                    <div class="handdrawn-box">
+                        <ul>
+                            <li><i class="fas fa-user-tie"></i> カラフルなシャツにジーンズ、スニーカー姿の役員</li>
+                            <li><i class="fas fa-laptop-code"></i> パーカーにチノパンのエンジニア</li>
+                            <li><i class="fas fa-user-check"></i> 個性的なワンピース姿の営業担当者</li>
+                        </ul>
+                    </div>
+                    <p>彼らの働き方を観察するうち、ある事実に気づかされました。<span class="keyword"><i class="fas fa-tshirt"></i>自由な服装</span>の彼らは、<span class="keyword"><i class="fas fa-comments"></i>議論も自由</span>で、<span class="keyword"><i class="fas fa-lightbulb"></i>発想も柔軟</span>。</p>
+                    <p>その日の帰り道、私は考え込みました。<span class="highlight">「彼らの創造性や活力は、単なる社風の違いなのか、それとも服装の自由さと関係があるのか？」</span></p>
+                </div>
+            </div>
+
+            <!-- 小さな実験 -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-flask fa-shake"></i></div>
+                <h2 class="card-title"><i class="fas fa-vial fa-beat"></i> 小さな実験の始まり</h2>
+                <div class="card-content">
+                    <p>翌週、私は小さな実験を始めました。</p>
+                    <p><span class="keyword"><i class="fas fa-calendar-week"></i>カジュアルフライデー</span>を利用して、少しだけ自分らしい服装を取り入れてみたのです。</p>
+                    <p>決して奇抜なものではなく、ネイビースーツに<span class="highlight">好きな色のニット</span>を合わせるという程度の変化でした。</p>
+                    <div class="speech-bubble">
+                        <p><i class="fas fa-quote-left"></i> 同僚：「今日の服、いいね！」</p>
+                        <p><i class="fas fa-quote-left"></i> 上司：「なんか今日は元気そうだね」</p>
+                    </div>
+                    <p>少しだけ「好きな服」を着ただけで、<span class="highlight">朝の準備が楽しくなり、出社への気持ちが軽くなりました</span>。</p>
+                </div>
+            </div>
+
+            <!-- 5つの変化 -->
+            <div class="full-width-section scroll-fade gradient-bg">
+                <h2 class="section-title"><i class="fas fa-exchange-alt fa-2x fa-spin"></i> 服装の自由がもたらした5つの変化</h2>
+                
+                <div class="changes-container">
+                    <div class="change-item">
+                        <div class="change-icon"><i class="fas fa-rocket fa-beat"></i></div>
+                        <h3 class="change-title">モチベーションの向上</h3>
+                        <p class="change-description">服を選ぶ時間が楽しみになり、出社すること自体へのハードルが下がりました。</p>
+                    </div>
+                    
+                    <div class="change-item">
+                        <div class="change-icon"><i class="fas fa-bulb fa-bounce"></i></div>
+                        <h3 class="change-title">創造性と発想力の拡大</h3>
+                        <p class="change-description">服装の自由度が増すにつれ、思考の自由度も広がりました。</p>
+                    </div>
+                    
+                    <div class="change-item">
+                        <div class="change-icon"><i class="fas fa-comments fa-fade"></i></div>
+                        <h3 class="change-title">コミュニケーションの変化</h3>
+                        <p class="change-description">個性的な服装により、同僚との会話も業務以外に広がりました。</p>
+                    </div>
+                    
+                    <div class="change-item">
+                        <div class="change-icon"><i class="fas fa-crown fa-flip"></i></div>
+                        <h3 class="change-title">自信とプレゼンス</h3>
+                        <p class="change-description">「好きな服」を着ることで、自分らしさを表現でき、自信がつきました。</p>
+                    </div>
+                    
+                    <div class="change-item">
+                        <div class="change-icon"><i class="fas fa-balance-scale fa-shake"></i></div>
+                        <h3 class="change-title">境界線の健全化</h3>
+                        <p class="change-description">プライベートと仕事の境界線が健全になりました。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 実践的アプローチ -->
+            <div class="card scroll-fade" style="grid-column: span 2;">
+                <div class="card-icon"><i class="fas fa-hammer fa-shake"></i></div>
+                <h2 class="card-title"><i class="fas fa-toolbox fa-beat"></i> 会社での服装の自由度を高める実践的アプローチ</h2>
+                <div class="card-content">
+                    <ul class="approach-list">
+                        <li class="approach-item">
+                            <strong><i class="fas fa-baby-carriage"></i> 小さな変化から始める</strong>
+                            <p>いきなり大きく変えようとせず、小さな部分から自分らしさを取り入れましょう。</p>
+                            <div class="handdrawn-box">
+                                <ul>
+                                    <li><i class="fas fa-tshirt"></i> スーツの色や素材を少し変えてみる</li>
+                                    <li><i class="fas fa-scarf"></i> ネクタイやスカーフで差し色を入れる</li>
+                                    <li><i class="fas fa-shoe-prints"></i> 靴やバッグなど小物から変えてみる</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="approach-item">
+                            <strong><i class="fas fa-clock"></i> TPOを意識する</strong>
+                            <p>服装の自由度を高めたいからといって、TPOをないがしろにするのは逆効果です。</p>
+                            <p>状況に応じた適切な「自分らしさ」を考えましょう。</p>
+                        </li>
+                        <li class="approach-item">
+                            <strong><i class="fas fa-eye"></i> 同僚や上司の反応を観察する</strong>
+                            <p>服装を少し変えたときの周囲の反応を注意深く観察しましょう。</p>
+                            <p>好意的な反応があれば、それを自信にさらに一歩踏み出せます。</p>
+                        </li>
+                        <li class="approach-item">
+                            <strong><i class="fas fa-building"></i> 会社の文化を少しずつ変える</strong>
+                            <p>もし可能であれば、「カジュアルデー」の導入や服装規定の緩和を提案してみるのも一つの方法です。</p>
+                        </li>
+                        <li class="approach-item">
+                            <strong><i class="fas fa-user-tie"></i> ロールモデルを見つける</strong>
+                            <p>社内で少し服装に個性がある人や、自分らしさを表現しながらも高い評価を得ている人を観察してみましょう。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 効果を最大化するヒント -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-magic fa-bounce"></i></div>
+                <h2 class="card-title"><i class="fas fa-star fa-beat"></i> 「好きな服」の効果を最大化するヒント</h2>
+                <div class="card-content">
+                    <div class="handdrawn-box">
+                        <p><i class="fas fa-search fa-fade"></i> <strong>自分にとっての「好きな服」を深く理解する</strong></p>
+                        <p>単に「カジュアル」が好きなのか、「色使い」が重要なのか、「素材感」にこだわりがあるのか、自分自身の好みを分析してみましょう。</p>
+                    </div>
+                    
+                    <div class="arrow-container">
+                        <div class="handdrawn-arrow">
+                            <i class="fas fa-arrow-down fa-beat"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="handdrawn-box">
+                        <p><i class="fas fa-brain fa-fade"></i> <strong>心理的効果を意識する</strong></p>
+                        <p>「好きな服」の効果は心理的なものが大きいです。着替える時に「今日はこの服で頑張ろう」と意識することで、実際のパフォーマンスにつながります。</p>
+                    </div>
+                    
+                    <div class="arrow-container">
+                        <div class="handdrawn-arrow">
+                            <i class="fas fa-arrow-down fa-beat"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="handdrawn-box">
+                        <p><i class="fas fa-id-card fa-fade"></i> <strong>自己ブランディングとしての服装</strong></p>
+                        <p>服装は自分自身のブランディングでもあります。「あの人はいつもシャープな印象」など、服装を通じて周囲に与える印象は、長期的には仕事上の評価にも影響します。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 注意点 -->
+            <div class="card scroll-fade">
+                <div class="card-icon"><i class="fas fa-exclamation-triangle fa-shake"></i></div>
+                <h2 class="card-title"><i class="fas fa-shield-alt fa-beat"></i> 「好きな服」がもたらす落とし穴</h2>
+                <div class="card-content">
+                    <div class="speech-bubble">
+                        <p><i class="fas fa-balance-scale fa-flip"></i> <strong>TPOとのバランス</strong></p>
+                        <p>何度も強調していますが、TPOとのバランスは非常に重要です。重要な顧客との初対面にカジュアル過ぎる服装で臨めば、せっかくの機会を台無しにしかねません。</p>
+                    </div>
+                    
+                    <div class="speech-bubble">
+                        <p><i class="fas fa-sync-alt fa-spin"></i> <strong>一貫性の重要性</strong></p>
+                        <p>服装の変化が激しすぎると、周囲に「この人は一体何者なのか」という混乱を与えかねません。基本的なスタイルを確立した上で、その範囲内でバリエーションを楽しむのがおすすめです。</p>
+                    </div>
+                    
+                    <div class="speech-bubble">
+                        <p><i class="fas fa-coins fa-flip"></i> <strong>費用対効果を考える</strong></p>
+                        <p>「好きな服」といっても、高価なブランド品である必要はありません。むしろ重要なのは、自分が心地よく感じる服装かどうかです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- まとめ -->
+            <div class="full-width-section scroll-fade glassmorphism" style="background-color: rgba(46, 87, 140, 0.1);">
+                <h2 class="section-title"><i class="fas fa-check-circle fa-2x fa-beat"></i> まとめ - 服装から始まる仕事の変革</h2>
+                
+                <p class="highlight" style="font-size: 18px; margin-bottom: 20px;">「会社に好きな服を着る」という小さな変化から始まった私の体験は、結果的に仕事への姿勢や成果、そして何より生き方そのものを変えることになりました。</p>
+                
+                <h3 style="color: var(--color-4); margin-top: 30px;"><i class="fas fa-lightbulb fa-bounce"></i> 具体的なアクション</h3>
+                
+                <ul class="action-list">
+                    <li class="action-item">
+                        <div class="action-icon"><i class="fas fa-calendar-check fa-beat"></i></div>
+                        <div class="action-text">毎週1日、「自分らしさを表現する日」を設定する</div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-icon"><i class="fas fa-clock fa-fade"></i></div>
+                        <div class="action-text">朝の服選びの時間を少し増やし、その日の予定と気分に合わせたコーディネートを考える</div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-icon"><i class="fas fa-gem fa-flip"></i></div>
+                        <div class="action-text">小物やアクセサリーから始めて、徐々に変化の範囲を広げる</div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-icon"><i class="fas fa-comments fa-shake"></i></div>
+                        <div class="action-text">服装を変えた日は、思考や行動も少し変えてみる（普段より積極的に発言するなど）</div>
+                    </li>
+                    <li class="action-item">
+                        <div class="action-icon"><i class="fas fa-trophy fa-bounce"></i></div>
+                        <div class="action-text">「この服を着ると調子が良い」という経験を意識的に作り、自分だけの「勝負服」を見つける</div>
+                    </li>
+                </ul>
+                
+                <p style="margin-top: 30px; font-size: 16px;"><i class="fas fa-quote-left"></i> 服装という「見える自分」を変えることで、「見えない自分」も変わっていく—そんな小さな冒険の一歩を、この記事が後押しできれば幸いです。</p>
+            </div>
+            
+            <!-- フッター -->
+            <footer class="footer">
+                <i class="fas fa-book fa-2x"></i>
+                <p>出典：個人の体験に基づく記事</p>
+                <i class="fas fa-heart fa-beat"></i>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // スクロールアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-fade');
+            
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('active');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('active');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            // アイコンホバーエフェクト
+            const icons = document.querySelectorAll('i');
+            icons.forEach(icon => {
+                icon.classList.add('hover-effect');
+            });
+            
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            
+            // 初期表示時にも実行
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
