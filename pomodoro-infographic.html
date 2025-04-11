@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポモドーロテクニックを使って生産性が爆上がりした話</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-primary: #2E578C;
+            --color-secondary: #182D40;
+            --color-accent: #BF807A;
+            --color-dark: #592A2A;
+            --color-light: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-secondary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-accent);
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin: 0;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .date-source {
+            font-size: 14px;
+            color: var(--color-secondary);
+            text-align: right;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 30%;
+            position: relative;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-title {
+            font-size: 18px;
+            color: #1e40af;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--color-accent);
+            padding-bottom: 5px;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+
+        .text {
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: underline wavy var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 40%);
+            padding: 0 4px;
+        }
+
+        .arrow {
+            position: absolute;
+            color: var(--color-primary);
+            font-size: 24px;
+            transform: rotate(30deg);
+        }
+
+        .note {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid var(--color-accent);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .step-number {
+            background-color: var(--color-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .icon-lg {
+            font-size: 2em;
+            color: var(--color-primary);
+            margin: 10px;
+        }
+
+        .icon-xl {
+            font-size: 3em;
+            color: var(--color-accent);
+        }
+
+        .background-icon {
+            position: absolute;
+            font-size: 8em;
+            color: rgba(46, 87, 140, 0.05);
+            z-index: -1;
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--color-primary);
+            border-radius: 20px;
+            padding: 15px;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .hand-drawn-box::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            width: 40px;
+            height: 10px;
+            background-color: var(--color-light);
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .benefit i {
+            color: var(--color-primary);
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+
+        .tip {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .tip i.tip-icon {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: var(--color-primary);
+            background-color: white;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--color-accent);
+            font-size: 14px;
+            color: var(--color-secondary);
+        }
+
+        .connector {
+            position: absolute;
+            border-left: 3px dashed var(--color-primary);
+            height: 50px;
+            left: 50%;
+            top: 100%;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes flowLine {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+
+        .title {
+            background-size: 200% 200%;
+            animation: gradientShift 5s infinite;
+        }
+
+        .icon-hover:hover {
+            transform: scale(1.2);
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .column {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-container">
+                <i class="fa-solid fa-rocket fa-2x icon-hover" style="margin-right: 20px; color: var(--color-primary);"></i>
+                <h1 class="title">ポモドーロテクニックを使って生産性が爆上がりした話</h1>
+                <i class="fa-solid fa-arrow-trend-up fa-2x icon-hover" style="margin-left: 20px; color: var(--color-accent);"></i>
+            </div>
+            <div class="date-source">
+                <i class="fa-solid fa-calendar-days"></i> 2025年4月12日
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 左カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-face-tired fa-beat"></i> 生産性の沼にはまった日々
+                    </h2>
+                    <p class="text">
+                        <span class="highlight">「今日も仕事が終わらなかった…」</span><br>
+                        <span class="highlight">「集中力が続かず、気づけばネットサーフィンばかり…」</span><br>
+                        <span class="highlight">「タスクが山積みで、何から手をつければいいのか分からない…」</span>
+                    </p>
+                    <i class="fa-solid fa-hourglass-end background-icon" style="bottom: 10px; right: 10px;"></i>
+
+                    <div class="hand-drawn-box">
+                        <p class="text">毎日の悩み：</p>
+                        <div class="benefit">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                            <span>未読メールの山</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fa-solid fa-comment-dots"></i>
+                            <span>次々と来るチャット通知</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>マルチタスク状態の頭</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>いつも足りない時間</span>
+                        </div>
+                    </div>
+
+                    <p class="text">
+                        忙しく働いている<span class="keyword">「つもり」<i class="fa-solid fa-quote-right"></i></span>なのに、成果は上がらない。
+                        時間だけが過ぎていく。このままではいけない、何とかしなければ…
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-lightbulb fa-shake"></i> ポモドーロテクニックとの出会い
+                    </h2>
+                    <p class="text">
+                        藁にもすがる思いで出会った<span class="keyword">ポモドーロテクニック<i class="fa-solid fa-tomato"></i></span>。
+                        シンプルなのに、驚くほど効果的な時間管理術でした。
+                    </p>
+
+                    <div class="note">
+                        <p style="font-weight: bold; color: var(--color-primary);">
+                            <i class="fa-solid fa-circle-info"></i> ポモドーロテクニックとは？
+                        </p>
+                        <p class="text">
+                            イタリア語で「トマト」を意味する言葉から来た時間管理法。
+                            <span class="keyword">25分集中<i class="fa-solid fa-brain"></i></span>して、
+                            <span class="keyword">5分休憩<i class="fa-solid fa-mug-hot"></i></span>するサイクルを繰り返します。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-list-check fa-bounce"></i> 基本ルール
+                    </h2>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <p class="text"><strong>実行するタスクを決める</strong></p>
+                            <p class="text">今日やるべきタスクの中から、一つを選びます</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <p class="text"><strong>タイマーを25分にセット</strong></p>
+                            <p class="text">キッチンタイマーやスマホのアプリなどで</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <p class="text"><strong>タイマーが鳴るまでタスクに集中</strong></p>
+                            <p class="text">他のことは一切考えず、決めたタスクだけに集中</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <p class="text"><strong>5分間の短い休憩をとる</strong></p>
+                            <p class="text">仕事のことは忘れ、リフレッシュ</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <p class="text"><strong>4回繰り返したら長めの休憩</strong></p>
+                            <p class="text">15分～30分しっかり休息</p>
+                        </div>
+                    </div>
+
+                    <i class="fa-solid fa-rotate fa-spin background-icon" style="bottom: 20px; right: 20px;"></i>
+                </div>
+            </div>
+
+            <!-- 中央カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-bolt fa-flip"></i> 「たった25分」がもたらした驚くべき変化
+                    </h2>
+
+                    <div class="benefit">
+                        <i class="fa-solid fa-bullseye fa-beat"></i>
+                        <div>
+                            <p class="text"><strong>驚くほどの集中力</strong></p>
+                            <p class="text">「25分だけなら頑張れる」という気持ちが、<span class="keyword">100%の集中力<i class="fa-solid fa-gauge-high"></i></span>を引き出してくれました</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa-solid fa-person-running"></i>
+                        <div>
+                            <p class="text"><strong>先延ばし癖の改善</strong></p>
+                            <p class="text">「とりあえず25分だけやってみよう」と思えるようになり、<span class="keyword">着手のハードル<i class="fa-solid fa-mountain"></i></span>が格段に下がりました</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div>
+                            <p class="text"><strong>タスク管理能力の向上</strong></p>
+                            <p class="text">「どのタスクに何ポモドーロ必要か」を見積もる習慣がつき、<span class="keyword">現実的なスケジュール<i class="fa-solid fa-calendar-check"></i></span>を立てられるようになりました</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <p class="text"><strong>邪魔に対する耐性</strong></p>
+                            <p class="text">「今から25分間集中します」と周囲に伝え、<span class="keyword">自分の集中時間<i class="fa-solid fa-user-lock"></i></span>を守る意識を持つことができました</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div>
+                            <p class="text"><strong>達成感とモチベーション維持</strong></p>
+                            <p class="text">1ポモドーロ終了ごとの<span class="keyword">小さな達成感<i class="fa-solid fa-face-smile"></i></span>が、モチベーションを維持してくれました</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-wand-magic-sparkles fa-bounce"></i> 実践のコツと注意点
+                    </h2>
+
+                    <div class="tip">
+                        <i class="fa-solid fa-puzzle-piece tip-icon"></i>
+                        <p class="text" style="margin-top: 10px;"><strong>タスクの細分化を意識する</strong></p>
+                        <p class="text">大きなタスクは、必ず25分以内で完了できるレベルまで細分化しましょう</p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fa-solid fa-stopwatch tip-icon"></i>
+                        <p class="text" style="margin-top: 10px;"><strong>タイマーは必ず使う</strong></p>
+                        <p class="text">物理的なキッチンタイマーもおすすめ。カチカチという音が適度な緊張感を生み出します</p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fa-solid fa-focus tip-icon"></i>
+                        <p class="text" style="margin-top: 10px;"><strong>25分間は「シングルタスク」を徹底する</strong></p>
+                        <p class="text">決めたタスク以外は絶対にやらないと固く誓いましょう</p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fa-solid fa-mug-hot tip-icon"></i>
+                        <p class="text" style="margin-top: 10px;"><strong>5分休憩は必ず取る</strong></p>
+                        <p class="text">PC画面から離れ、意識的に脳を休ませることが重要です</p>
+                    </div>
+
+                    <div class="tip">
+                        <i class="fa-solid fa-hand tip-icon"></i>
+                        <p class="text" style="margin-top: 10px;"><strong>割り込みへの対処法を決めておく</strong></p>
+                        <p class="text">「今、集中タイムなので後でもいいですか？」など、丁寧かつ毅然と対応しましょう</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-rocket fa-beat"></i> 生産性爆上がり！実際の変化
+                    </h2>
+
+                    <div class="hand-drawn-box">
+                        <p class="text" style="text-align: center; font-weight: bold; color: var(--color-primary);">ビフォー → アフター</p>
+
+                        <div class="benefit">
+                            <i class="fa-solid fa-business-time"></i>
+                            <div>
+                                <p class="text"><strong>仕事のスピードと質</strong></p>
+                                <p class="text">ダラダラ作業 → <span class="highlight">集中して質の高い成果</span></p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <i class="fa-solid fa-hourglass"></i>
+                            <div>
+                                <p class="text"><strong>残業時間</strong></p>
+                                <p class="text">常態化した残業 → <span class="highlight">定時内に終了</span></p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <i class="fa-solid fa-house-heart"></i>
+                            <div>
+                                <p class="text"><strong>プライベート時間</strong></p>
+                                <p class="text">疲れで休日も台無し → <span class="highlight">趣味や家族との時間</span></p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <i class="fa-solid fa-face-smile"></i>
+                            <div>
+                                <p class="text"><strong>仕事への姿勢</strong></p>
+                                <p class="text">受け身の対応 → <span class="highlight">主体的な時間管理</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <p class="text" style="font-weight: bold;">
+                            <i class="fa-solid fa-quote-left"></i> ポモドーロテクニックは、単なる時間管理術ではありません。それは、自分の時間を取り戻し、より豊かに生きるための強力な武器なのです <i class="fa-solid fa-quote-right"></i>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-people-group fa-shake"></i> こんな方におすすめ
+                    </h2>
+
+                    <ul class="text" style="list-style-type: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px;">
+                            <i class="fa-solid fa-person-digging" style="color: var(--color-primary); margin-right: 10px;"></i>
+                            集中力が続かず、すぐに他のことに気を取られてしまう方
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <i class="fa-solid fa-calendar-xmark" style="color: var(--color-primary); margin-right: 10px;"></i>
+                            タスクを先延ばしにしがちな方
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <i class="fa-solid fa-arrows-spin" style="color: var(--color-primary); margin-right: 10px;"></i>
+                            仕事の段取りが苦手で、何から手をつければいいか分からない方
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <i class="fa-solid fa-business-time" style="color: var(--color-primary); margin-right: 10px;"></i>
+                            残業を減らし、プライベートの時間を確保したい方
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-rocket-launch" style="color: var(--color-primary); margin-right: 10px;"></i>
+                            より効率的に仕事を進め、成果を出したい方
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fa-solid fa-flag-checkered fa-bounce"></i> さあ、あなたも始めよう！
+                    </h2>
+
+                    <p class="text">
+                        必要なのは、<span class="keyword">ほんの少しの勇気<i class="fa-solid fa-heart"></i></span>と、
+                        <span class="keyword">タイマー<i class="fa-solid fa-stopwatch"></i></span>だけです。
+                    </p>
+
+                    <div class="hand-drawn-box" style="text-align: center; background-color: rgba(191, 128, 122, 0.1);">
+                        <i class="fa-solid fa-play fa-3x icon-hover" style="color: var(--color-primary);"></i>
+                        <p class="text" style="font-weight: bold; font-size: 18px; margin-top: 10px;">
+                            あなたの最初のポモドーロを今すぐ始めましょう！
+                        </p>
+                    </div>
+
+                    <p class="text">
+                        <i class="fa-solid fa-circle-exclamation fa-shake" style="color: var(--color-accent);"></i>
+                        最初はうまくいかなくても大丈夫。大切なのは、諦めずに続けることです。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                <i class="fa-solid fa-book"></i> 出典：ポモドーロテクニックを使って生産性が爆上がりした話 | 2025年4月
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // アイコンのホバーエフェクト
+        document.querySelectorAll('.icon-hover').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.2)';
+                icon.style.color = '#BF807A';
+                icon.style.transition = 'all 0.3s ease';
+            });
+            
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = 'scale(1)';
+                icon.style.color = '';
+                icon.style.transition = 'all 0.3s ease';
+            });
+        });
+        
+        // スクロールアニメーション
+        const fadeElements = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
