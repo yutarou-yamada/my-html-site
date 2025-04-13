@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テレワークで手に入れた、人生が変わるほどのワークライフバランス向上</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
+    :root {
+      --color-primary: #2E578C;
+      --color-secondary: #182D40;
+      --color-accent: #BF807A;
+      --color-dark: #592A2A;
+      --color-light: #F2F2F2;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    .background-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.03;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+    .background-pattern i {
+      margin: 2rem;
+      font-size: 3rem;
+      color: var(--color-primary);
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px dashed var(--color-accent);
+    }
+    
+    .title-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    h1 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--color-primary);
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 1rem;
+      position: relative;
+    }
+    
+    .date {
+      font-family: 'Yomogi', cursive;
+      color: var(--color-secondary);
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    h2 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 18px;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    h2 i {
+      margin-right: 0.5rem;
+      color: var(--color-primary);
+    }
+    
+    p {
+      font-size: 14px;
+      color: var(--color-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    
+    .keyword {
+      font-weight: bold;
+      color: var(--color-dark);
+      background: linear-gradient(transparent 70%, var(--color-accent) 70%);
+      padding: 0 0.2rem;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .keyword i {
+      font-size: 0.8rem;
+      margin-left: 0.2rem;
+      color: var(--color-primary);
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: relative;
+      margin-bottom: 2rem;
+      border: 2px solid var(--color-light);
+      overflow: hidden;
+    }
+    
+    .card-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+      opacity: 0.2;
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.2);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    
+    .arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+      color: var(--color-accent);
+    }
+    
+    .arrow i {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    .highlight-box {
+      border: 2px dashed var(--color-accent);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: rgba(191, 128, 122, 0.05);
+      position: relative;
+    }
+    
+    .highlight-box-title {
+      position: absolute;
+      top: -0.8rem;
+      left: 1rem;
+      background-color: white;
+      padding: 0 0.5rem;
+      font-family: 'Yomogi', cursive;
+      color: var(--color-dark);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .highlight-box-title i {
+      margin-right: 0.3rem;
+      color: var(--color-primary);
+    }
+    
+    .point-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    
+    .point-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+    
+    .point-list li i {
+      color: var(--color-primary);
+      margin-right: 0.5rem;
+      margin-top: 0.2rem;
+    }
+    
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 3px dashed var(--color-accent);
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-secondary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    footer i {
+      margin: 0 0.5rem;
+      color: var(--color-primary);
+    }
+    
+    .hand-drawn {
+      position: relative;
+    }
+    
+    .hand-drawn::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0" stroke="%23BF807A" stroke-width="5" fill="none" /></svg>');
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 100% auto;
+    }
+    
+    .icon-xl {
+      font-size: 3rem;
+    }
+    
+    .icon-lg {
+      font-size: 2rem;
+    }
+    
+    .icon-md {
+      font-size: 1.5rem;
+    }
+    
+    .glassmorphism {
+      position: relative;
+    }
+    
+    .glassmorphism::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      z-index: -1;
+    }
+    
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: var(--color-primary);
+      transform: translateX(-50%);
+    }
+    
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      text-align: right;
+      padding-right: 3rem;
+    }
+    
+    .timeline-item:nth-child(even) {
+      text-align: left;
+      padding-left: 3rem;
+      margin-left: auto;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--color-accent);
+      border-radius: 50%;
+      top: 0;
+    }
+    
+    .timeline-item:nth-child(odd)::before {
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even)::before {
+      left: -10px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* アニメーション効果 */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+    
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .highlight-animation {
+      animation: highlight 2s infinite;
+    }
+    
+    @keyframes highlight {
+      0% {
+        background-position: -100% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+    
+    .connection-line {
+      position: absolute;
+      border-top: 2px dashed var(--color-primary);
+      z-index: -1;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景パターン -->
+  <div class="background-pattern">
+    <i class="fa-solid fa-shapes"></i>
+    <i class="fa-solid fa-home-office"></i>
+    <i class="fa-solid fa-laptop-house"></i>
+    <i class="fa-solid fa-family"></i>
+    <i class="fa-solid fa-clock"></i>
+    <i class="fa-solid fa-balance-scale"></i>
+    <i class="fa-solid fa-heart"></i>
+  </div>
+
+  <div class="container">
+    <!-- ヘッダー -->
+    <header>
+      <div class="title-container">
+        <i class="fa-solid fa-house-laptop icon-xl fa-beat" style="color: var(--color-primary);"></i>
+        <h1>通勤地獄よさらば！テレワークで手に入れた、人生が変わるほどのワークライフバランス向上</h1>
+        <i class="fa-solid fa-heart-pulse icon-xl fa-beat" style="color: var(--color-accent);"></i>
+      </div>
+      <div class="date">
+        <i class="fa-solid fa-calendar-days"></i> 2025年4月14日
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+      <!-- 左カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-hourglass-start fa-beat"></i> はじめに：あの頃、私は「時間」に支配されていた</h2>
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-person-circle-exclamation card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-train fa-2x fa-shake" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-arrow-right"></i>
+              <i class="fa-solid fa-building fa-2x" style="color: var(--color-primary);"></i>
+            </div>
+            <p>かつての私は、いわゆる<span class="keyword">「社畜」<i class="fa-solid fa-user-tie"></i></span>寸前のサラリーマンでした。毎朝、<span class="keyword">身をすり潰されるような満員電車<i class="fa-solid fa-people-group"></i></span>に揺られ、<span class="keyword">1時間半<i class="fa-solid fa-hourglass-half"></i></span>かけてオフィスへ。</p>
+            <p>日中は会議や雑務に追われ、気づけば<span class="keyword">終電間際<i class="fa-solid fa-moon"></i></span>。家に帰れば、<span class="keyword">疲労困憊<i class="fa-solid fa-face-tired"></i></span>で食事とシャワーを済ませるのがやっと。</p>
+            <p><span class="keyword">「ワークライフバランス」<i class="fa-solid fa-scale-balanced"></i></span>という言葉は、どこか遠い国の理想論のように聞こえていました。</p>
+          </div>
+          
+          <div class="arrow">
+            <i class="fa-solid fa-arrow-down fa-2x"></i>
+          </div>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-virus-covid card-icon"></i>
+            <p>そんな私の日常が一変したのは、数年前のこと。<span class="keyword">世界中を襲ったパンデミック<i class="fa-solid fa-virus"></i></span>がきっかけとなり、半ば強制的に<span class="keyword">テレワーク<i class="fa-solid fa-laptop-house"></i></span>が導入されたのです。</p>
+            <p>最初は戸惑いしかありませんでした。「家で仕事なんてできるのか？」「サボってしまうのではないか？」「コミュニケーションはどう取るんだ？」<span class="keyword">不安<i class="fa-solid fa-face-concerned"></i></span>は尽きません。</p>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-clock-rotate-left fa-spin"></i> テレワーク導入前夜：失われていた「自分」の時間</h2>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-train fa-bounce"></i> 通勤という名の「時間泥棒」
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-person-walking fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-train fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-building fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <p><span class="keyword">片道1時間半、往復で3時間<i class="fa-solid fa-hourglass-end"></i></span>。これが、私が毎日通勤に費やしていた時間です。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-calendar-week"></i> 1週間で15時間</li>
+              <li><i class="fa-solid fa-calendar-days"></i> 1ヶ月で約60時間</li>
+              <li><i class="fa-solid fa-calendar"></i> 1年で720時間…</li>
+            </ul>
+            <p>この通勤時間、もし自由に使える時間だったら、何ができただろう？</p>
+          </div>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-building-user fa-flip"></i> オフィスという名の「集中阻害空間」
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-volume-high fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-phone fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-people-arrows fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <p>オフィスに着いても、必ずしも効率的に仕事ができたわけではありません。<span class="keyword">周りの話し声<i class="fa-solid fa-comments"></i></span>、<span class="keyword">電話の音<i class="fa-solid fa-phone-volume"></i></span>、<span class="keyword">頻繁にかかってくる内線<i class="fa-solid fa-bell"></i></span>、<span class="keyword">突然の呼び出し<i class="fa-solid fa-bullhorn"></i></span>…</p>
+            <p>また、<span class="keyword">「とりあえず会議」<i class="fa-solid fa-users-rectangle"></i></span>のような、目的が曖昧な打ち合わせも多く、その準備や移動にも時間が取られました。</p>
+          </div>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-house-chimney fa-shake"></i> 帰宅後の「抜け殻」状態
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-face-tired fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-bowl-food fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-bed fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <p>へとへとになって家に帰り着くのは、<span class="keyword">夜も更けた頃<i class="fa-solid fa-moon"></i></span>。夕食は簡単に済ませるか、<span class="keyword">コンビニ弁当<i class="fa-solid fa-store"></i></span>。</p>
+            <p>自己啓発のための勉強や、趣味に打ち込む気力なんて、残っているはずもありません。<span class="keyword">平日は仕事のために生き、週末は平日の疲れを癒すために寝て過ごす<i class="fa-solid fa-repeat"></i></span>。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中央カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-rocket fa-fade"></i> テレワーク革命：人生の主導権を取り戻した瞬間</h2>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-clock-rotate-left card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-bed fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-plus fa-beat"></i>
+              <i class="fa-solid fa-1 fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-hour-glass fa-2x" style="color: var(--color-accent);"></i>
+              <i class="fa-solid fa-plus fa-beat"></i>
+              <i class="fa-solid fa-clock fa-2x" style="color: var(--color-dark);"></i>
+            </div>
+            <h3 class="hand-drawn">1. 通勤時間ゼロの衝撃：1日3時間の「ボーナスタイム」</h3>
+            <p>最も大きな変化は、<span class="keyword">通勤時間が完全にゼロ<i class="fa-solid fa-circle-xmark"></i></span>になったことです。往復<span class="keyword">3時間<i class="fa-solid fa-hourglass-end"></i></span>。これが、まるごと自分の自由な時間になったのです。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-bed"></i> 睡眠時間の確保</li>
+              <li><i class="fa-solid fa-utensils"></i> 家族と朝食</li>
+              <li><i class="fa-solid fa-book"></i> 読書の時間</li>
+              <li><i class="fa-solid fa-dumbbell"></i> 軽い運動</li>
+            </ul>
+          </div>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-laptop-code card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-house-laptop fa-2x fa-bounce" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-equals"></i>
+              <i class="fa-solid fa-chart-line fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <h3 class="hand-drawn">2. 自分だけの「集中空間」：生産性の向上</h3>
+            <p>自宅での作業環境構築には、少し工夫が必要でした。最初はリビングの片隅で仕事をしていましたが、<span class="keyword">家族の生活音<i class="fa-solid fa-volume-high"></i></span>などが気になり、なかなか集中できませんでした。</p>
+            <p>そこで、<span class="keyword">使っていなかった小さな部屋を仕事専用スペース<i class="fa-solid fa-door-closed"></i></span>とし、デスクや椅子、モニターなどを揃え、集中できる環境を整えました。</p>
+            <p>この「自分だけの仕事空間」を手に入れたことで、<span class="keyword">驚くほど仕事が捗る<i class="fa-solid fa-chart-simple"></i></span>ようになりました。</p>
+          </div>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-sliders card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-calendar-day fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-arrow-right-arrow-left fa-fade"></i>
+              <i class="fa-solid fa-person-walking fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <h3 class="hand-drawn">3. 時間管理の自由度：仕事と生活の調和</h3>
+            <p>テレワークは、<span class="keyword">時間の使い方に圧倒的な自由度<i class="fa-solid fa-unlock"></i></span>をもたらしてくれました。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-person-walking"></i> 集中力が落ちてきたら散歩</li>
+              <li><i class="fa-solid fa-bed"></i> 昼休みに仮眠</li>
+              <li><i class="fa-solid fa-building-columns"></i> 平日の昼間にしかできない用事</li>
+              <li><i class="fa-solid fa-child"></i> 子供の発熱や学校行事への対応</li>
+            </ul>
+            <p>ただし、この自由度は<span class="keyword">「自己管理能力」<i class="fa-solid fa-brain"></i></span>が求められることの裏返しでもあります。</p>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-people-roof card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-children fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-plus fa-beat"></i>
+              <i class="fa-solid fa-heart fa-2x" style="color: var(--color-dark);"></i>
+            </div>
+            <h3 class="hand-drawn">4. 家族との時間：かけがえのない宝物</h3>
+            <p>テレワークによって、<span class="keyword">家族と過ごす時間が劇的に増えました<i class="fa-solid fa-arrow-trend-up"></i></span>。特に、子供たちとの関わりは大きく変化しました。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-utensils"></i> 一緒に朝食・昼食・夕食</li>
+              <li><i class="fa-solid fa-school"></i> 「今日学校どうだった？」と他愛ない会話</li>
+              <li><i class="fa-solid fa-book-open"></i> 宿題を見てあげる時間</li>
+              <li><i class="fa-solid fa-gamepad"></i> 一緒に遊ぶ時間</li>
+            </ul>
+            <p>妻（または夫）とのコミュニケーションも増え、<span class="keyword">家事や育児の分担<i class="fa-solid fa-hands-holding-child"></i></span>もよりスムーズになりました。</p>
+          </div>
+
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-seedling card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-book fa-2x fa-flip" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-certificate fa-2x" style="color: var(--color-accent);"></i>
+              <i class="fa-solid fa-graduation-cap fa-2x" style="color: var(--color-dark);"></i>
+            </div>
+            <h3 class="hand-drawn">5. 自己投資の時間確保：未来への種まき</h3>
+            <p>通勤時間がなくなり、<span class="keyword">仕事の生産性が向上<i class="fa-solid fa-arrow-trend-up"></i></span>したことで、自己投資に充てる時間も確保できるようになりました。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-book"></i> 毎晩、寝る前に読書する習慣</li>
+              <li><i class="fa-solid fa-laptop"></i> オンラインセミナーへの参加</li>
+              <li><i class="fa-solid fa-certificate"></i> 資格取得のための勉強</li>
+              <li><i class="fa-solid fa-lightbulb"></i> キャリアについて考える時間</li>
+            </ul>
+            <p>自分自身に投資する時間を持てるようになったことは、<span class="keyword">精神的な充実感<i class="fa-solid fa-brain"></i></span>にも繋がっています。</p>
+          </div>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-heart-pulse card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-bed fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-plus fa-beat"></i>
+              <i class="fa-solid fa-person-running fa-2x" style="color: var(--color-accent);"></i>
+              <i class="fa-solid fa-equals"></i>
+              <i class="fa-solid fa-heart fa-2x fa-beat" style="color: var(--color-dark);"></i>
+            </div>
+            <h3 class="hand-drawn">6. 心身の健康改善：健やかな自分を取り戻す</h3>
+            <p>心身の健康状態が明らかに改善されたことも、大きなメリットです。<span class="keyword">十分な睡眠時間<i class="fa-solid fa-moon"></i></span>を確保できるようになったことで、日中の眠気や倦怠感がなくなりました。</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-person-walking"></i> 朝の散歩</li>
+              <li><i class="fa-solid fa-person-running"></i> 仕事終わりのジョギング</li>
+              <li><i class="fa-solid fa-dumbbell"></i> 自宅での筋トレ</li>
+            </ul>
+            <p>体を動かすことで、<span class="keyword">気分転換<i class="fa-solid fa-arrows-rotate"></i></span>にもなり、体力も向上しました。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-scale-balanced fa-flip"></i> テレワークの光と影：課題とその乗り越え方</h2>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-people-arrows fa-fade"></i> コミュニケーション不足と孤独感
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-user-slash fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-face-sad fa-2x" style="color: var(--color-primary);"></i>
+            </div>
+            <p>テレワークでは、<span class="keyword">偶発的なコミュニケーション<i class="fa-solid fa-comments"></i></span>が激減します。一人で黙々と作業する時間が長いため、<span class="keyword">孤独感<i class="fa-solid fa-user-large-slash"></i></span>を感じることもありました。</p>
+            <p class="hand-drawn">【対策】</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-comments"></i> <span class="keyword">意識的なコミュニケーション<i class="fa-solid fa-video"></i></span>: チャットツールでの雑談、定期的なオンラインミーティング</li>
+              <li><i class="fa-solid fa-building-user"></i> <span class="keyword">ハイブリッドワークの活用<i class="fa-solid fa-calendar-check"></i></span>: 週に1〜2回は出社する日を設ける</li>
+              <li><i class="fa-solid fa-users"></i> <span class="keyword">オンライン交流<i class="fa-solid fa-mug-hot"></i></span>: オンライン懇親会や趣味のコミュニティ</li>
+            </ul>
+          </div>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-arrows-left-right-to-line fa-shake"></i> オンオフの切り替えの難しさ
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-house fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-equals"></i>
+              <i class="fa-solid fa-briefcase fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-question fa-beat"></i>
+            </div>
+            <p>自宅が職場になるため、<span class="keyword">仕事とプライベートの境界線が曖昧<i class="fa-solid fa-border-none"></i></span>になりがちです。「いつでも仕事ができてしまう」環境は、<span class="keyword">長時間労働<i class="fa-solid fa-business-time"></i></span>を招く危険性も孕んでいます。</p>
+            <p class="hand-drawn">【対策】</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-door-closed"></i> <span class="keyword">仕事スペースの明確化<i class="fa-solid fa-map-pin"></i></span>: 生活空間と仕事空間を物理的に分ける</li>
+              <li><i class="fa-solid fa-mug-hot"></i> <span class="keyword">始業・終業ルーティン<i class="fa-solid fa-list-check"></i></span>: 意識的にオンオフを切り替える儀式</li>
+              <li><i class="fa-solid fa-stopwatch"></i> <span class="keyword">意識的な休憩<i class="fa-solid fa-couch"></i></span>: ポモドーロテクニックなどの活用</li>
+              <li><i class="fa-solid fa-bell-slash"></i> <span class="keyword">時間外の通知オフ<i class="fa-solid fa-power-off"></i></span>: デジタルデトックス</li>
+            </ul>
+          </div>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-person-walking-arrow-loop-left fa-fade"></i> 運動不足
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-couch fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-weight-scale fa-2x" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-arrow-trend-up fa-bounce"></i>
+            </div>
+            <p>通勤がなくなることで、<span class="keyword">日常的な運動量が大幅に減少<i class="fa-solid fa-arrow-trend-down"></i></span>します。意識しないと、1日中座りっぱなしということにもなりかねません。</p>
+            <p class="hand-drawn">【対策】</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-person-running"></i> <span class="keyword">運動習慣の確立<i class="fa-solid fa-calendar-check"></i></span>: 朝の散歩、昼休憩の軽い筋トレ</li>
+              <li><i class="fa-solid fa-desktop"></i> <span class="keyword">スタンディングデスク<i class="fa-solid fa-arrow-up-long"></i></span>: 座りっぱなしを防ぐ</li>
+              <li><i class="fa-solid fa-child-reaching"></i> <span class="keyword">こまめなストレッチ<i class="fa-solid fa-clock"></i></span>: 仕事の合間のリフレッシュ</li>
+            </ul>
+          </div>
+          
+          <div class="highlight-box animate-on-scroll">
+            <div class="highlight-box-title">
+              <i class="fa-solid fa-brain fa-bounce"></i> 自己管理能力の重要性
+            </div>
+            <div class="icon-container">
+              <i class="fa-solid fa-user-gear fa-2x" style="color: var(--color-dark);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-chart-line fa-2x" style="color: var(--color-primary);"></i>
+            </div>
+            <p>テレワークは、良くも悪くも<span class="keyword">「自由」<i class="fa-solid fa-unlock"></i></span>です。上司や同僚の目がない環境で、いかに自分を律し、計画的に仕事を進められるかが問われます。</p>
+            <p class="hand-drawn">【対策】</p>
+            <ul class="point-list">
+              <li><i class="fa-solid fa-list-check"></i> <span class="keyword">タスク管理<i class="fa-solid fa-clipboard-list"></i></span>: ToDoリストやタスク管理ツールの活用</li>
+              <li><i class="fa-solid fa-hourglass"></i> <span class="keyword">時間管理<i class="fa-solid fa-clock"></i></span>: タイムトラッキングツールの活用</li>
+              <li><i class="fa-solid fa-bullseye"></i> <span class="keyword">目標設定<i class="fa-solid fa-flag-checkered"></i></span>: 達成可能な目標の設定</li>
+              <li><i class="fa-solid fa-gift"></i> <span class="keyword">自分へのご褒美<i class="fa-solid fa-cake-candles"></i></span>: ポジティブな動機付け</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-rocket fa-shake"></i> ワークライフバランス「爆上がり」の本当の意味</h2>
+          
+          <div class="card animate-on-scroll glassmorphism">
+            <i class="fa-solid fa-crown card-icon"></i>
+            <div class="icon-container">
+              <i class="fa-solid fa-crown fa-2x fa-beat" style="color: var(--color-primary);"></i>
+              <i class="fa-solid fa-right-long"></i>
+              <i class="fa-solid fa-user-check fa-2x" style="color: var(--color-accent);"></i>
+            </div>
+            <p>私がテレワークによって「ワークライフバランスが爆上がりした」と感じているのは、単に「楽になった」「自由な時間が増えた」ということだけではありません。</p>
+            <p>それは、<span class="keyword">「自分の人生の主導権を取り戻せた」<i class="fa-solid fa-crown"></i></span>という感覚です。</p>
+            <p>時間に追われ、場所に縛られ、ただただ日々のタスクをこなすだけだった生活から、<span class="keyword">自分で時間をデザイン<i class="fa-solid fa-palette"></i></span>し、<span class="keyword">働く場所を選び<i class="fa-solid fa-location-dot"></i></span>、<span class="keyword">仕事とプライベートを主体的にコントロール<i class="fa-solid fa-sliders"></i></span>できるようになった。</p>
+            <p>この<span class="keyword">「自己決定感」<i class="fa-solid fa-user-check"></i></span>こそが、私のワークライフバランスを本質的に向上させてくれた最大の要因だと感じています。</p>
+          </div>
+          
+          <div class="card animate-on-scroll">
+            <i class="fa-solid fa-scale-balanced card-icon"></i>
+            <p>「ワークライフバランス」とは、単に仕事と私生活の時間を均等に分けることではありません。<span class="keyword">自分にとって何が大切<i class="fa-solid fa-heart"></i></span>で、<span class="keyword">どのように時間を使いたいのか<i class="fa-solid fa-clock"></i></span>を考え、仕事もプライベートも、どちらも諦めることなく、<span class="keyword">自分らしいバランス<i class="fa-solid fa-scale-balanced"></i></span>で充実させられること。</p>
+            <p>テレワークは、私にその「自分なりのバランス」を見つける機会を与えてくれました。</p>
+          </div>
+          
+          <div class="section fade-in">
+            <h2><i class="fa-solid fa-flag-checkered fa-bounce"></i> まとめ：テレワークは、より人間らしい働き方への扉</h2>
+            
+            <div class="card animate-on-scroll">
+              <i class="fa-solid fa-lightbulb card-icon fa-fade"></i>
+              <div class="icon-container">
+                <i class="fa-solid fa-door-open fa-2x" style="color: var(--color-primary);"></i>
+                <i class="fa-solid fa-right-long"></i>
+                <i class="fa-solid fa-person-rays fa-2x" style="color: var(--color-accent);"></i>
+              </div>
+              <p>テレワークは、決して万能な働き方ではありません。職種や個人の性格、家庭環境によっては、向き不向きがあるでしょう。課題も存在します。</p>
+              <p>しかし、私自身の経験を通して断言できるのは、テレワークは多くの人にとって、<span class="keyword">ワークライフバランスを劇的に改善<i class="fa-solid fa-arrow-trend-up"></i></span>し、<span class="keyword">より豊かで人間らしい生活<i class="fa-solid fa-heart"></i></span>を送るための、強力な選択肢となり得るということです。</p>
+              <ul class="point-list">
+                <li><i class="fa-solid fa-clock"></i> 失われた時間を取り戻す</li>
+                <li><i class="fa-solid fa-chart-line"></i> 生産性を高める</li>
+                <li><i class="fa-solid fa-people-roof"></i> 家族との絆を深める</li>
+                <li><i class="fa-solid fa-user-check"></i> 自分自身と向き合う時間を持つ</li>
+              </ul>
+              <p>これらは、<span class="keyword">お金では買えない、人生におけるかけがえのない価値<i class="fa-solid fa-gem"></i></span>です。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+      <i class="fa-solid fa-book"></i> 
+      出典：体験談より | 
+      <i class="fa-solid fa-calendar"></i> 
+      作成日：2025年4月14日 | 
+      <i class="fa-solid fa-copyright"></i> 
+      すべての権利はそれぞれの所有者に帰属します
+    </footer>
+  </div>
+
+  <script>
+    // スクロールアニメーション
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      
+      function checkInView() {
+        animatedElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight - 100) {
+            element.classList.add('visible');
+          }
+        });
+      }
+      
+      // 初期チェック
+      checkInView();
+      
+      // スクロール時チェック
+      window.addEventListener('scroll', checkInView);
+      
+      // アイコンがクリックされたときのエフェクト
+      const icons = document.querySelectorAll('i.fa-solid');
+      icons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          this.classList.add('fa-shake');
+          setTimeout(() => {
+            this.classList.remove('fa-shake');
+          }, 1000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
