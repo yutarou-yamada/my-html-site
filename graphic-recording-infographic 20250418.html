@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暮らしを変えた３つのアイテム</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
+    :root {
+      --color-primary: #2E578C;
+      --color-secondary: #182D40;
+      --color-accent: #BF807A;
+      --color-dark: #592A2A;
+      --color-light: #F2F2F2;
+    }
+    
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-secondary);
+      margin: 0;
+      padding: 0;
+      line-height: 1.4;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px dashed var(--color-primary);
+      position: relative;
+    }
+    
+    .title-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    h1 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding-right: 10px;
+    }
+    
+    .date {
+      font-family: 'Yomogi', cursive;
+      font-size: 14px;
+      color: var(--color-dark);
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    
+    .intro-card {
+      grid-column: 1 / -1;
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .intro-card::before {
+      content: '\f0a3';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: -10px;
+      top: -20px;
+      font-size: 100px;
+      color: rgba(191, 128, 122, 0.1);
+      z-index: 0;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      height: fit-content;
+    }
+    
+    .card-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: var(--color-primary);
+    }
+    
+    .section-title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 24px;
+      color: var(--color-primary);
+      margin-top: 0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      padding-bottom: 5px;
+      border-bottom: 2px dotted var(--color-accent);
+    }
+    
+    .section-title i {
+      margin-right: 10px;
+      color: var(--color-accent);
+    }
+    
+    .highlight {
+      background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 40%);
+      font-weight: bold;
+    }
+    
+    .keyword {
+      position: relative;
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+    
+    .keyword i {
+      font-size: 16px;
+      vertical-align: middle;
+      margin-right: 3px;
+      color: var(--color-accent);
+    }
+    
+    .benefit-list {
+      list-style: none;
+      padding-left: 5px;
+    }
+    
+    .benefit-list li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    .benefit-list li::before {
+      content: '\f058';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+    }
+    
+    .arrow {
+      text-align: center;
+      margin: 15px 0;
+      position: relative;
+    }
+    
+    .arrow i {
+      font-size: 24px;
+      color: var(--color-accent);
+    }
+    
+    .conclusion {
+      grid-column: 1 / -1;
+      margin-top: 20px;
+    }
+    
+    .note-card {
+      background-color: rgba(46, 87, 140, 0.1);
+      border-left: 4px solid var(--color-primary);
+      padding: 15px;
+      margin: 20px 0;
+      position: relative;
+    }
+    
+    .note-card::before {
+      content: '\f0eb';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: var(--color-primary);
+      margin-right: 10px;
+      font-size: 18px;
+    }
+    
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 3px dashed var(--color-primary);
+      text-align: center;
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+    
+    /* アニメーション効果 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    
+    .card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    
+    .card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    
+    .heartbeat {
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.1); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+      70% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* ホバー効果 */
+    .fa-bounce:hover, .fa-beat:hover, .fa-shake:hover {
+      color: var(--color-accent);
+      transform: scale(1.2);
+    }
+    
+    /* 手書き風の効果 */
+    .handdrawn-box {
+      border: 2px solid var(--color-primary);
+      border-radius: 15px;
+      padding: 15px;
+      position: relative;
+      margin: 15px 0;
+      background-color: white;
+    }
+    
+    .handdrawn-box::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 20px;
+      width: 100px;
+      height: 10px;
+      background-color: white;
+    }
+    
+    .handdrawn-box h4 {
+      position: absolute;
+      top: -15px;
+      left: 30px;
+      background-color: white;
+      padding: 0 10px;
+      margin: 0;
+      font-size: 16px;
+      color: var(--color-primary);
+    }
+    
+    .bubble {
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--color-accent);
+    }
+    
+    .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 30px;
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: var(--color-accent) transparent;
+    }
+    
+    .bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 32px;
+      border-width: 13px 13px 0;
+      border-style: solid;
+      border-color: white transparent;
+      z-index: 1;
+    }
+    
+    .bg-shape {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.05;
+      font-size: 400px;
+      color: var(--color-accent);
+    }
+    
+    .bg-shape-1 {
+      top: 10%;
+      left: 5%;
+    }
+    
+    .bg-shape-2 {
+      bottom: 5%;
+      right: 5%;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shape bg-shape-1"><i class="fa-solid fa-shapes"></i></div>
+  <div class="bg-shape bg-shape-2"><i class="fa-solid fa-puzzle-piece"></i></div>
+  
+  <div class="container">
+    <header>
+      <div class="title-container">
+        <i class="fa-solid fa-sparkles fa-2x fa-beat" style="color: var(--color-primary); margin-right: 15px;"></i>
+        <h1>暮らしを変えた３つのアイテム</h1>
+        <i class="fa-solid fa-wand-magic-sparkles fa-2x fa-beat" style="color: var(--color-accent); margin-left: 15px;"></i>
+      </div>
+      <div class="date">
+        <i class="fa-solid fa-calendar-days"></i> 2025年4月
+      </div>
+    </header>
+    
+    <div class="intro-card fade-in">
+      <h3 class="section-title"><i class="fa-solid fa-house-user fa-bounce"></i>家事に追われる日々からの解放</h3>
+      <p>
+        <span class="bubble">
+          「ああ、今日も山盛りの洗い物…」「掃除機かける時間ないな…」「溜まった段ボール、縛るの面倒くさい…」
+        </span>
+      </p>
+      <p>
+        かつての私は、<span class="keyword"><i class="fa-solid fa-wave-square"></i>日々押し寄せる家事の波</span>に、正直、溺れかけていました。
+        仕事から疲れて帰ってきても、待っているのは<span class="highlight">終わりなき家事、家事、家事</span>。
+        自分の時間なんて、夢のまた夢。
+      </p>
+      <p>
+        そんな私が、今では<span class="keyword"><i class="fa-solid fa-heart"></i>心穏やかに</span>、そして自分の時間を楽しめるようになったんです。
+        その秘密は、我が家に導入した<span class="highlight">「頼れる３本柱」</span>とも呼べる家電たち、そして、まさかの「あのアイテム」のおかげ。
+      </p>
+      <div class="arrow">
+        <i class="fa-solid fa-arrow-down-long fa-bounce"></i>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <!-- 第一のアイテム -->
+      <div class="card fade-in">
+        <div class="card-icon">
+          <i class="fa-solid fa-ranking-star fa-2x"></i>
+        </div>
+        <h3 class="section-title"><i class="fa-solid fa-kitchen-set fa-beat"></i>第一のアイテム</h3>
+        <h4><span class="highlight">食後の救世主！工事不要の食洗機「AINX」</span></h4>
+        
+        <p><span class="keyword"><i class="fa-solid fa-utensils"></i>食後の憂鬱</span>から全ては始まりました。美味しいご飯を食べた後の、シンクに積み重なった食器の山。</p>
+        
+        <div class="handdrawn-box">
+          <h4><i class="fa-solid fa-lightbulb fa-shake"></i> 導入ポイント</h4>
+          <ul>
+            <li><span class="keyword"><i class="fa-solid fa-screwdriver-wrench"></i>工事不要</span>：上から水を注ぐだけ！</li>
+            <li><span class="keyword"><i class="fa-solid fa-maximize"></i>コンパクト</span>：狭いキッチンにも置ける</li>
+            <li><span class="keyword"><i class="fa-solid fa-temperature-high"></i>高温洗浄</span>：手洗いでは落としきれない汚れも</li>
+          </ul>
+        </div>
+        
+        <h4><i class="fa-solid fa-circle-check fa-bounce"></i> 得られた効果</h4>
+        <ul class="benefit-list">
+          <li><span class="keyword"><i class="fa-regular fa-clock"></i>時間的余裕</span>：1日30分～1時間の節約</li>
+          <li><span class="keyword"><i class="fa-solid fa-brain"></i>精神的余裕</span>：「洗わなきゃ…」のプレッシャーから解放</li>
+          <li><span class="keyword"><i class="fa-solid fa-hand"></i>手荒れ解消</span>：冬場の辛い手荒れともサヨナラ</li>
+          <li><span class="keyword"><i class="fa-solid fa-droplet"></i>節水効果</span>：手洗いより使用水量が少ない</li>
+        </ul>
+      </div>
+      
+      <!-- 第二のアイテム -->
+      <div class="card fade-in">
+        <div class="card-icon">
+          <i class="fa-solid fa-award fa-2x"></i>
+        </div>
+        <h3 class="section-title"><i class="fa-solid fa-robot fa-shake"></i>第二のアイテム</h3>
+        <h4><span class="highlight">床掃除はお任せ！頼れる相棒、ロボット掃除機「Anker Eufy」</span></h4>
+        
+        <p>週に１～２回、休日にまとめて掃除機をかけるのがやっと。平日は、床に落ちている髪の毛やホコリを<span class="keyword"><i class="fa-solid fa-eye-slash"></i>見て見ぬふり</span>…</p>
+        
+        <div class="handdrawn-box">
+          <h4><i class="fa-solid fa-lightbulb fa-shake"></i> 選んだ理由</h4>
+          <ul>
+            <li><span class="keyword"><i class="fa-solid fa-coins"></i>手頃な価格帯</span>：高機能ながら比較的手頃</li>
+            <li><span class="keyword"><i class="fa-solid fa-wind"></i>吸引力と静音性</span>：評価が高い実力派</li>
+            <li><span class="keyword"><i class="fa-solid fa-mobile-screen"></i>操作性</span>：アプリ連携で外出先からも操作可能</li>
+          </ul>
+        </div>
+        
+        <h4><i class="fa-solid fa-circle-check fa-bounce"></i> 得られた変化</h4>
+        <ul class="benefit-list">
+          <li><span class="keyword"><i class="fa-solid fa-broom"></i>掃除機がけからの解放</span>：労力の大幅削減</li>
+          <li><span class="keyword"><i class="fa-solid fa-sparkles"></i>常に清潔な空間</span>：ホコリや髪の毛の減少</li>
+          <li><span class="keyword"><i class="fa-solid fa-brain"></i>精神的な負担減</span>：「掃除しなきゃ…」からの解放</li>
+          <li><span class="keyword"><i class="fa-solid fa-gauge-simple-low"></i>掃除のハードル低下</span>：部分掃除だけで済む</li>
+        </ul>
+      </div>
+      
+      <!-- 第三のアイテム -->
+      <div class="card fade-in">
+        <div class="card-icon">
+          <i class="fa-solid fa-medal fa-2x"></i>
+        </div>
+        <h3 class="section-title"><i class="fa-solid fa-box fa-beat"></i>思わぬ助っ人</h3>
+        <h4><span class="highlight">梱包用PPバンドがあのストレスを解消</span></h4>
+        
+        <p>地味にストレスだったのが、<span class="keyword"><i class="fa-solid fa-boxes-stacked"></i>溜まった段ボールの処理</span>。ネット通販をよく利用するので、段ボールはどんどん溜まります。</p>
+        
+        <div class="bubble">
+          「紐が食い込んで手が痛い」「うまく縛れなくて、途中で緩んでくる」「かさばって、保管場所に困る」
+        </div>
+        
+        <div class="handdrawn-box">
+          <h4><i class="fa-solid fa-lightbulb fa-shake"></i> PPバンドの魅力</h4>
+          <ul>
+            <li><span class="keyword"><i class="fa-solid fa-hand-fist"></i>力いらず</span>：引き締め機で簡単固定</li>
+            <li><span class="keyword"><i class="fa-solid fa-lock"></i>緩まない</span>：一度固定すれば安心</li>
+            <li><span class="keyword"><i class="fa-solid fa-bolt"></i>スピーディー</span>：紐より圧倒的に早い</li>
+            <li><span class="keyword"><i class="fa-solid fa-compress"></i>省スペース</span>：コンパクトにまとまる</li>
+          </ul>
+        </div>
+        
+        <p class="note-card">
+          <i class="fa-solid fa-lightbulb fa-bounce"></i> まさに、<span class="keyword">灯台下暗し</span>。最新家電だけでなく、こんな身近なアイテムが、家事を楽にしてくれるなんて。
+        </p>
+      </div>
+      
+      <!-- 結論部分 -->
+      <div class="conclusion card fade-in">
+        <h3 class="section-title"><i class="fa-solid fa-heart-pulse fa-beat"></i>頼れる３本柱がもたらした変化</h3>
+        
+        <div class="handdrawn-box">
+          <h4><i class="fa-solid fa-crown fa-shake"></i> 得られた最大の財産</h4>
+          <p class="highlight" style="font-size: 18px; text-align: center;">「心の余裕」という名の財産</p>
+          <div style="display: flex; justify-content: space-around; margin: 20px 0; text-align: center;">
+            <div>
+              <i class="fa-solid fa-kitchen-set fa-3x pulse" style="color: var(--color-primary);"></i>
+              <p>食洗機「AINX」</p>
+              <p>洗い物から解放</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-robot fa-3x pulse" style="color: var(--color-primary);"></i>
+              <p>ロボット掃除機「Eufy」</p>
+              <p>床掃除から解放</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-box fa-3x pulse" style="color: var(--color-primary);"></i>
+              <p>梱包用PPバンド</p>
+              <p>段ボール処理から解放</p>
+            </div>
+          </div>
+        </div>
+        
+        <p>
+          一つの家事負担は小さく見えるかもしれません。でも、これらが積み重なることで、私たちの<span class="keyword"><i class="fa-regular fa-clock"></i>時間</span>と<span class="keyword"><i class="fa-solid fa-battery-half"></i>気力</span>は確実に奪われていきます。
+        </p>
+        
+        <p>
+          これらのアイテムを手に入れたことで、<span class="highlight">時間に追われなくなり</span>、<span class="highlight">面倒な作業から解放され</span>たことで、<span class="keyword"><i class="fa-solid fa-heart"></i>心にスペースが生まれました</span>。
+        </p>
+        
+        <p class="note-card">
+          <i class="fa-solid fa-quote-left"></i> 家事を楽にすることは、決して手抜きではありません。むしろ、便利なツールに頼ることで生まれた時間と心の余裕を、もっと大切なこと、自分自身や家族のために使うための、<span class="highlight">賢い選択</span>なのだと思います。 <i class="fa-solid fa-quote-right"></i>
+        </p>
+        
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-down-long fa-bounce"></i>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+          <p style="font-size: 18px; font-weight: bold; color: var(--color-primary);">
+            <i class="fa-solid fa-wand-magic-sparkles fa-beat"></i> あなたの「頼れる相棒」を見つける旅が、より豊かで快適な毎日へと繋がることを。
+          </p>
+          <p>
+            テクノロジーやちょっとした工夫を味方につけて、もっと軽やかに、もっと自分らしく毎日を過ごしませんか。
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>
+        <i class="fa-solid fa-book"></i> 出典：ブログ記事「もう手放せない！私の家事を劇的にラクにした暮らしを変えた３つのアイテムとの出会い」
+      </p>
+    </footer>
+  </div>
+  
+  <script>
+    // スクロールアニメーション
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      function checkFade() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight - 50) {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      }
+      
+      // 初期チェック
+      checkFade();
+      
+      // スクロール時にチェック
+      window.addEventListener('scroll', checkFade);
+    });
+  </script>
+</body>
+</html>
