@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>「今、この瞬間」だけが、あなたの生きる場所</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    :root {
+      --color-primary: #2E578C;
+      --color-secondary: #182D40;
+      --color-accent: #BF807A;
+      --color-dark: #592A2A;
+      --color-light: #F2F2F2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-secondary);
+      line-height: 1.6;
+      padding: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-opacity='0.05'%3E%3Cpath fill='%232E578C' d='M50 0 L100 50 L50 100 L0 50 Z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      border-bottom: 3px dotted var(--color-primary);
+      padding-bottom: 20px;
+    }
+
+    .title-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--color-primary);
+      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+      margin: 0;
+      background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .date {
+      font-family: 'Yomogi', cursive;
+      font-size: 14px;
+      color: var(--color-accent);
+    }
+
+    .title-icon {
+      font-size: 36px;
+      margin: 0 15px;
+      color: var(--color-primary);
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+      border-radius: 3px;
+    }
+
+    .section-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: var(--color-primary);
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 18px;
+      color: var(--color-primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title i {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .keyword {
+      font-weight: bold;
+      color: var(--color-primary);
+      background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.3) 40%);
+      padding: 0 4px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .keyword i {
+      margin-right: 5px;
+      color: var(--color-accent);
+    }
+
+    .quote {
+      font-family: 'Yomogi', cursive;
+      font-size: 16px;
+      color: var(--color-dark);
+      border-left: 3px solid var(--color-accent);
+      padding-left: 15px;
+      margin: 15px 0;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .card-title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 16px;
+      color: var(--color-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-title i {
+      margin-right: 8px;
+    }
+
+    .benefit-list {
+      list-style: none;
+    }
+
+    .benefit-list li {
+      margin-bottom: 10px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .benefit-list li i {
+      position: absolute;
+      left: 0;
+      top: 3px;
+      color: var(--color-accent);
+    }
+
+    .practice-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px dashed var(--color-primary);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .step-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .connection {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      color: var(--color-primary);
+      font-size: 24px;
+    }
+
+    .connection i {
+      margin: 0 10px;
+      animation: move 2s infinite;
+    }
+
+    .highlight-box {
+      background-color: rgba(46, 87, 140, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid var(--color-primary);
+      position: relative;
+    }
+
+    .highlight-box::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      background-color: rgba(46, 87, 140, 0.1);
+      transform: rotate(45deg);
+      border-right: 1px solid var(--color-primary);
+      border-bottom: 1px solid var(--color-primary);
+    }
+
+    .sensation-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .sensation-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sensation-title i {
+      margin-right: 8px;
+      color: var(--color-accent);
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 3px dotted var(--color-primary);
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-accent);
+    }
+
+    /* Animation */
+    @keyframes move {
+      0% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      100% { transform: translateX(-5px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+      .column {
+        min-width: 100%;
+      }
+    }
+
+    /* Icon hover effects */
+    i.fa, i.fas, i.far {
+      transition: all 0.3s ease;
+    }
+
+    i.fa:hover, i.fas:hover, i.far:hover {
+      transform: scale(1.2);
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-container">
+        <i class="fas fa-clock title-icon fa-beat"></i>
+        <h1 class="title">「今、この瞬間」だけが、あなたの生きる場所</h1>
+        <i class="fas fa-heart title-icon fa-beat"></i>
+      </div>
+      <div class="date">
+        <i class="fas fa-calendar-day"></i> 2025年4月20日
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- 左カラム -->
+      <div class="column fade-in" style="animation-delay: 0.2s;">
+        <div class="section">
+          <i class="fas fa-brain section-icon fa-spin" style="--fa-animation-duration: 10s;"></i>
+          <h2 class="section-title"><i class="fas fa-question-circle fa-bounce"></i>なぜ私たちは「今」から離れるのか</h2>
+          
+          <div class="quote">
+            <i class="fas fa-quote-left" style="margin-right: 5px; color: var(--color-accent);"></i>
+            「ああ、あの時こうしていれば…」<br>
+            「これからどうなるんだろう…」
+            <i class="fas fa-quote-right" style="margin-left: 5px; color: var(--color-accent);"></i>
+          </div>
+          
+          <p>私たちの思考は、つい<span class="keyword"><i class="fas fa-history"></i>過去</span>への後悔や<span class="keyword"><i class="fas fa-rocket"></i>未来</span>への不安へと滑り出していませんか？しかし、本当に「生きる」ことができるのは<span class="keyword"><i class="fas fa-star fa-beat"></i>今この瞬間</span>だけなのです。</p>
+          
+          <div class="highlight-box">
+            <p><i class="fas fa-lightbulb fa-lg" style="color: var(--color-accent);"></i> <strong>「今、この瞬間」</strong>だけが、あなたが存在し、経験し、行動できる唯一の場所です。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-title"><i class="fas fa-brain"></i>思考が「今」から離れる理由</div>
+            <ul class="benefit-list">
+              <li><i class="fas fa-shield-alt"></i>脳の生存本能 - 過去から学び、未来の危険に備える</li>
+              <li><i class="fas fa-chart-line"></i>現代社会の『次』を求めるプレッシャー</li>
+              <li><i class="fas fa-running"></i>「より良くならなければ」という焦り</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <i class="fas fa-hand-sparkles section-icon fa-flip"></i>
+          <h2 class="section-title"><i class="fas fa-arrows-alt fa-fade"></i>思考の迷子から、感覚のリアルへ</h2>
+          
+          <p>「今を生きる」とは、<span class="keyword"><i class="fas fa-eye"></i>今ここ</span>で起きていることに意識の焦点を合わせること。五感を通して入ってくる情報は、紛れもなく「今」の証です。</p>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-keyboard"></i>キーボードを叩く感触</div>
+            <p>指がキーに触れる瞬間の抵抗感。押し込んだ時の沈む感覚。底に当たって跳ね返る反動。カチッという音。</p>
+          </div>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-pencil-alt"></i>鉛筆で書く感触</div>
+            <p>紙の上を滑る芯の、さらさらとした感触。文字が生まれていくのを目で追い、手で感じる体験。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中央カラム -->
+      <div class="column fade-in" style="animation-delay: 0.4s;">
+        <div class="section">
+          <i class="fas fa-utensils section-icon fa-fade"></i>
+          <h2 class="section-title"><i class="fas fa-gift fa-beat"></i>日常の「当たり前」に隠された豊かさ</h2>
+          
+          <p>私たちは毎日、無意識のうちに多くの行動を繰り返しています。これらの「当たり前」の瞬間にも、「今」を味わうヒントが隠されています。</p>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-apple-alt"></i>食事の感覚</div>
+            <p>口に運んだ食べ物が舌の上で広がる味。甘味、塩味、酸味、苦味、旨味。温かさ、冷たさ。歯ごたえ。咀嚼する顎の動き。</p>
+          </div>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-shower"></i>シャワーの感覚</div>
+            <p>肌に当たるお湯の温かさ、水圧。シャンプーの香り、泡の滑らかさ。水滴が体を伝い落ちる感覚。水の音。</p>
+          </div>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-walking"></i>歩く感覚</div>
+            <p>足の裏が地面に触れる感触。一歩踏み出すごとの体重移動。膝が曲がり、腕が振れる動き。前に進む推進力。</p>
+          </div>
+          
+          <div class="sensation-card">
+            <div class="sensation-title"><i class="fas fa-wind"></i>風を感じる感覚</div>
+            <p>皮膚に触れる風の温度。髪や服が揺れる感覚。風が運ぶ匂い。深呼吸すれば、空気を体に取り込む実感。</p>
+          </div>
+        </div>
+
+        <div class="connection">
+          <i class="fas fa-arrow-down fa-bounce"></i>
+        </div>
+
+        <div class="section">
+          <i class="fas fa-heart section-icon fa-beat"></i>
+          <h2 class="section-title"><i class="fas fa-check-circle fa-flip"></i>なぜ「今」に集中するのか？</h2>
+          
+          <div class="card">
+            <div class="card-title"><i class="fas fa-star"></i>「今」に意識を向けるメリット</div>
+            <ul class="benefit-list">
+              <li><i class="fas fa-peace"></i><span class="keyword">心の平穏</span>: 過去の後悔や未来への不安からの解放</li>
+              <li><i class="fas fa-eye"></i><span class="keyword">感覚の覚醒</span>: 世界がより鮮やかに感じられる</li>
+              <li><i class="fas fa-bullseye"></i><span class="keyword">集中力の向上</span>: 一つのことに深く没入する力</li>
+              <li><i class="fas fa-pray"></i><span class="keyword">感謝の念</span>: 「当たり前」の恵みへの気づき</li>
+              <li><i class="fas fa-bolt"></i><span class="keyword">行動力向上</span>: 「今」できることへの集中</li>
+              <li><i class="fas fa-users"></i><span class="keyword">人間関係の深化</span>: より深い共感や理解</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="column fade-in" style="animation-delay: 0.6s;">
+        <div class="section">
+          <i class="fas fa-leaf section-icon fa-fade"></i>
+          <h2 class="section-title"><i class="fas fa-dumbbell fa-pulse"></i>「今」を生きる練習</h2>
+          
+          <p>難しく考える必要はありません。日常の中で、ほんの少し意識を向けるだけでいいのです。</p>
+          
+          <div class="practice-step">
+            <div class="step-number">1</div>
+            <div>
+              <div class="sensation-title"><i class="fas fa-lungs"></i>呼吸に気づく</div>
+              <p>1日に数回、自分の呼吸に意識を向けてみましょう。<span class="keyword"><i class="fas fa-arrow-right"></i>吸って、吐いて</span>を繰り返す絶え間ないリズムに注意を向けます。</p>
+            </div>
+          </div>
+          
+          <div class="practice-step">
+            <div class="step-number">2</div>
+            <div>
+              <div class="sensation-title"><i class="fas fa-heartbeat fa-beat"></i>心臓の鼓動を感じる</div>
+              <p>静かな場所で胸に手を当て、<span class="keyword"><i class="fas fa-circle"></i>ドクン、ドクン</span>と打ち続ける心臓の鼓動を感じる。生きている証。</p>
+            </div>
+          </div>
+          
+          <div class="practice-step">
+            <div class="step-number">3</div>
+            <div>
+              <div class="sensation-title"><i class="fas fa-mug-hot"></i>一つの動作に集中する</div>
+              <p>コーヒーを淹れる、お皿を洗う、洗濯物を畳む。その動作の一つ一つに意識を集中してみましょう。</p>
+            </div>
+          </div>
+          
+          <div class="practice-step">
+            <div class="step-number">4</div>
+            <div>
+              <div class="sensation-title"><i class="fas fa-glasses"></i>五感をフル活用する</div>
+              <p>通勤途中、散歩中、食事中。目に見えるもの、聞こえる音、匂い、触感、味わいに意識を向けます。</p>
+            </div>
+          </div>
+          
+          <div class="highlight-box">
+            <p><i class="fas fa-exclamation-circle fa-lg" style="color: var(--color-accent);"></i> 完璧を目指さないこと。気が散ったら、ただ気づいて、そっと「今」に戻る。その繰り返しが大切です。</p>
+          </div>
+        </div>
+
+        <div class="section pulse">
+          <i class="fas fa-infinity section-icon fa-spin"></i>
+          <h2 class="section-title"><i class="fas fa-certificate fa-spin"></i>「今」だけがリアル</h2>
+          
+          <p>過去は記憶の中に、未来は想像の中にあります。あなたが実際に触れ、感じ、行動し、影響を与えられるのは、「今、この瞬間」だけです。</p>
+          
+          <div class="quote">
+            <i class="fas fa-quote-left" style="margin-right: 5px; color: var(--color-accent);"></i>
+            「今、この瞬間」は、過去からの贈り物であり、未来への種を蒔く場所でもあります。
+            <i class="fas fa-quote-right" style="margin-left: 5px; color: var(--color-accent);"></i>
+          </div>
+          
+          <p style="text-align: center; font-size: 18px; font-weight: bold; margin-top: 20px;">
+            <i class="fas fa-seedling fa-bounce" style="color: var(--color-accent);"></i>
+            さあ、深呼吸ひとつから。あなたの『今』を、始めてみませんか？
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <i class="fas fa-book"></i> 出典：オリジナル記事「今、この瞬間」だけが、あなたの生きる場所
+    </div>
+  </div>
+
+  <script>
+    // スクロールアニメーション
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        observer.observe(section);
+      });
+    });
+
+    // アイコンホバーエフェクト
+    document.querySelectorAll('i.fas, i.far, i.fa').forEach(icon => {
+      icon.addEventListener('mouseenter', () => {
+        if (!icon.classList.contains('fa-beat') && 
+            !icon.classList.contains('fa-bounce') && 
+            !icon.classList.contains('fa-spin') && 
+            !icon.classList.contains('fa-pulse') && 
+            !icon.classList.contains('fa-flip') && 
+            !icon.classList.contains('fa-fade')) {
+          icon.classList.add('fa-beat');
+        }
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        if (icon.classList.contains('fa-beat') && 
+            !icon.className.includes('title-icon') && 
+            !icon.className.includes('section-title')) {
+          icon.classList.remove('fa-beat');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
