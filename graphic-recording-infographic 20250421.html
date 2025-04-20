@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生80年、あなたはあと何日生きられる？</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-1: #2E578C;
+            --color-2: #182D40;
+            --color-3: #BF807A;
+            --color-4: #592A2A;
+            --color-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-5);
+            color: var(--color-2);
+            line-height: 1.4;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%232E578C' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--color-1);
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--color-1);
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, var(--color-1), var(--color-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .title i {
+            margin: 0 15px;
+            color: var(--color-1);
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            color: var(--color-4);
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--color-3);
+            opacity: 0.7;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--color-1);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--color-1);
+        }
+
+        .text-content {
+            font-size: 14px;
+            color: var(--color-2);
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, var(--color-3) 0%);
+            font-weight: bold;
+        }
+
+        .keyword {
+            color: var(--color-4);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 16px;
+        }
+
+        .handdrawn-box {
+            border: 3px solid var(--color-1);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            border-style: dashed;
+        }
+
+        .handdrawn-arrow {
+            position: relative;
+            width: 100%;
+            height: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .handdrawn-arrow:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-3);
+            transform: translateY(-50%);
+        }
+
+        .handdrawn-arrow:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            border-top: 2px solid var(--color-3);
+            border-right: 2px solid var(--color-3);
+            transform: translateY(-50%) rotate(45deg);
+            z-index: 1;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background-color: var(--color-5);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 15px 0;
+            border: 2px solid var(--color-1);
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--color-1);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background-color: var(--color-1);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -27px;
+            width: 15px;
+            height: 15px;
+            background-color: var(--color-3);
+            border-radius: 50%;
+            border: 2px solid var(--color-1);
+            z-index: 1;
+        }
+
+        .calculation-box {
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--color-1);
+        }
+
+        .data-visual {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .data-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .data-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--color-1);
+            display: block;
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: var(--color-2);
+        }
+
+        .action-list {
+            margin: 15px 0;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .action-item i {
+            margin-right: 10px;
+            color: var(--color-3);
+        }
+
+        .big-number {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--color-1);
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+        }
+
+        .quote {
+            font-family: 'Yomogi', cursive;
+            font-style: italic;
+            color: var(--color-4);
+            border-left: 3px solid var(--color-3);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--color-1);
+            text-align: center;
+            font-size: 14px;
+            color: var(--color-4);
+        }
+
+        .footer i {
+            margin: 0 5px;
+        }
+
+        /* アニメーション効果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+
+        @keyframes flowArrow {
+            0% { background-position: 0% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        .flow-arrow {
+            position: relative;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, var(--color-3), var(--color-3) 10px, transparent 10px, transparent 15px);
+            background-size: 25px 100%;
+            animation: flowArrow 1s infinite linear;
+        }
+
+        .glow-effect {
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .glow-effect:hover {
+            color: var(--color-3);
+            text-shadow: 0 0 8px rgba(191, 128, 122, 0.5);
+        }
+
+        /* グラスモーフィズム効果 */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(46, 87, 140, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-effect::before {
+            content: "\f521";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: -20px;
+            right: -15px;
+            font-size: 100px;
+            color: rgba(46, 87, 140, 0.05);
+            z-index: -1;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .title {
+                font-size: 24px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date {
+                margin-top: 10px;
+            }
+        }
+
+        /* ホバーエフェクト */
+        .icon-hover {
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .icon-hover:hover {
+            transform: scale(1.2);
+            color: var(--color-3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <i class="fas fa-hourglass-half fa-beat"></i>
+                人生80年、あなたはあと何日生きられる？
+                <i class="fas fa-calendar-day fa-beat"></i>
+            </h1>
+            <div class="date">
+                <i class="fas fa-clock"></i> 2025年4月
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <!-- セクション1: イントロ -->
+            <div class="card fade-in">
+                <i class="card-icon fas fa-quote-left fa-flip"></i>
+                <h2 class="section-title"><i class="fas fa-door-open fa-beat"></i> はじめに</h2>
+                <div class="text-content">
+                    <div class="quote">
+                        「ああ、もうこんな時間か」
+                    </div>
+                    <p>慌ただしい日々に追われ、気づけば一日が終わり、一週間が過ぎ、あっという間に一年が過ぎていく。それが、私たち<span class="keyword">40代<i class="fas fa-user"></i></span>の日常かもしれません。</p>
+                    <p>でも、時々、ほんの一瞬でもいいから、<span class="highlight">立ち止まって考えてみませんか？</span></p>
+                    <div class="speech-bubble">
+                        「私の人生は、あとどのくらい残っているんだろう？」
+                    </div>
+                    <p>この問いが、あなたの<span class="keyword">「最高の今」<i class="fas fa-star fa-spin"></i></span>を見つけるための、最初の一歩になるかもしれません。</p>
+                </div>
+            </div>
+
+            <!-- セクション2: 残された時間の計算 -->
+            <div class="card fade-in delay-1">
+                <i class="card-icon fas fa-calculator fa-bounce"></i>
+                <h2 class="section-title"><i class="fas fa-stopwatch fa-beat"></i> 残された時間</h2>
+                <div class="text-content">
+                    <p>仮に、あなたが<span class="keyword">人生80年<i class="fas fa-heart"></i></span>を全うすると仮定しましょう。そして、あなたが今、40代だとします。</p>
+                    
+                    <div class="calculation-box">
+                        <p>残り時間 = 80歳 - 現在の年齢</p>
+                        <p>例：45歳の場合 → 残り35年</p>
+                        <p>日数換算：35年 × 365日 = <span class="highlight">12,775日</span></p>
+                    </div>
+                    
+                    <p>さらに、睡眠・仕事・食事などを除くと、「自由に使える時間」はもっと少なくなります。</p>
+                    
+                    <div class="data-visual">
+                        <div class="data-item">
+                            <i class="fas fa-briefcase fa-2x icon-hover" style="color: var(--color-1);"></i>
+                            <span class="data-number">23.8%</span>
+                            <span class="data-label">仕事</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fas fa-bed fa-2x icon-hover" style="color: var(--color-3);"></i>
+                            <span class="data-number">29.2%</span>
+                            <span class="data-label">睡眠</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fas fa-utensils fa-2x icon-hover" style="color: var(--color-4);"></i>
+                            <span class="data-number">??%</span>
+                            <span class="data-label">食事・雑務</span>
+                        </div>
+                    </div>
+                    
+                    <div class="big-number">
+                        12,775日
+                    </div>
+                    
+                    <p>この数字を、かけがえのない「<span class="keyword">日々の積み重ね<i class="fas fa-layer-group"></i></span>」として捉え直してみてください。</p>
+                </div>
+            </div>
+
+            <!-- セクション3: 1日1日を大事に -->
+            <div class="card fade-in delay-2">
+                <i class="card-icon fas fa-gem fa-fade"></i>
+                <h2 class="section-title"><i class="fas fa-sun fa-spin"></i> 1日1日を大事に</h2>
+                <div class="text-content">
+                    <p>人生の終わりを逆算して考えることは、決して悲観的になることではありません。むしろ、<span class="highlight">残された時間の貴重さを痛感</span>し、「今、ここ」にある一瞬一瞬がいかに尊いかを気づかせてくれます。</p>
+                    
+                    <div class="handdrawn-box">
+                        私たちは、つい「いつか」や「そのうち」という言葉で、本当にやりたいことを先延ばしにしてしまいがちです。
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <i class="fas fa-book-open"></i> いつか時間ができたら、あの本を読もう
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-palette"></i> そのうち落ち着いたら、新しい趣味を始めよう
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-plane"></i> 定年になったら、旅行に行こう
+                        </div>
+                    </div>
+                    
+                    <p>でも、「いつか」や「そのうち」は、永遠に来ないかもしれません。この視点を持つと、「今日」という一日が、<span class="keyword">12,775分の1<i class="fas fa-calendar-day"></i></span>という、二度と戻らない貴重な一日として輝き始めます。</p>
+                </div>
+            </div>
+
+            <!-- セクション4: 今の仕事は？ -->
+            <div class="card fade-in delay-3 glass-effect">
+                <i class="card-icon fas fa-briefcase fa-shake"></i>
+                <h2 class="section-title"><i class="fas fa-question-circle fa-beat"></i> 今の仕事はこのままで？</h2>
+                <div class="text-content">
+                    <p>人生の残り時間を意識すると、次に湧き上がってくるのは、「では、この貴重な時間を何に使うべきなのか？」という問いです。</p>
+                    
+                    <div class="speech-bubble">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li><i class="fas fa-angle-right"></i> 今の仕事は、本当に自分のやりたいことなのだろうか？</li>
+                            <li><i class="fas fa-angle-right"></i> この仕事を通して、私は何を社会に貢献できているのだろうか？</li>
+                            <li><i class="fas fa-angle-right"></i> このまま定年まで働き続けて、後悔しないだろうか？</li>
+                        </ul>
+                    </div>
+                    
+                    <p>このような疑問は、健全な<span class="keyword">自己省察<i class="fas fa-brain"></i></span>の表れです。</p>
+                    
+                    <div class="handdrawn-arrow"></div>
+                    
+                    <p>問い直す上で、考えてみたい視点：</p>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <i class="fas fa-heart fa-beat"></i> あなたの価値観は何ですか？
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-fire fa-fade"></i> 何をしている時に、最も「生きている」と感じますか？
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-mountain fa-flip"></i> 理想の最期を想像してください。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セクション5: 深く考え、気づく -->
+            <div class="card fade-in delay-4">
+                <i class="card-icon fas fa-lightbulb fa-bounce"></i>
+                <h2 class="section-title"><i class="fas fa-seedling fa-beat"></i> 深く考え、気づく</h2>
+                <div class="text-content">
+                    <p>人生の残り時間を意識し、自分の現状を深く考えるプロセスは、多くの気づきをもたらしてくれます。</p>
+                    
+                    <div class="flow-arrow"></div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <i class="fas fa-unlock"></i> <span class="keyword">完璧主義<i class="fas fa-ban"></i></span>や「後回し癖」からの解放
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-user-check"></i> <span class="keyword">自己理解<i class="fas fa-search"></i></span>が深まる
+                        </div>
+                        <div class="timeline-item">
+                            <i class="fas fa-crown"></i> 人生の<span class="keyword">主導権<i class="fas fa-hands"></i></span>は自分にある
+                        </div>
+                    </div>
+                    
+                    <p>これは、単なるポジティブシンキングではありません。<span class="highlight">限られたリソースを、自分にとって最も価値のあるものに集中投下する</span>という、戦略的な人生設計の始まりなのです。</p>
+                </div>
+            </div>
+
+            <!-- セクション6: アクションを起こす -->
+            <div class="card fade-in delay-5">
+                <i class="card-icon fas fa-rocket fa-flip"></i>
+                <h2 class="section-title"><i class="fas fa-play-circle fa-beat"></i> アクションを起こす</h2>
+                <div class="text-content">
+                    <p>深く考え、多くの気づきを得たとしても、それを行動に移さなければ、それはただの頭の中のアイデアで終わってしまいます。</p>
+                    
+                    <div class="handdrawn-box">
+                        小さな行動の積み重ねが、あなたの「今日」を変え、そして「明日」を変えていきます。
+                    </div>
+                    
+                    <div class="action-list">
+                        <div class="action-item">
+                            <i class="fas fa-pen-fancy"></i> 毎日、感謝できることを3つ書き出す
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-book"></i> スキマ時間に、前から読みたかった本を開く
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-comments"></i> 週末に、家族や友人とじっくり話す時間を作る
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-running"></i> 運動する習慣を始める
+                        </div>
+                    </div>
+                    
+                    <p>行動にはリスクが伴います。変化は怖いものです。でも、<span class="highlight">何も行動しないまま、漠然とした不満や不安を抱えたまま過ごすことの方が、より大きなリスク</span>ではないでしょうか？</p>
+                </div>
+            </div>
+
+            <!-- セクション7: 最高の「今」を生きる -->
+            <div class="card fade-in delay-5" style="grid-column: span 3;">
+                <i class="card-icon fas fa-infinity fa-spin"></i>
+                <h2 class="section-title"><i class="fas fa-star fa-beat"></i> 最高の「今」を生きる</h2>
+                <div class="text-content">
+                    <div class="big-number">
+                        12,775日
+                    </div>
+                    
+                    <p>この数字は、未来の遠い日のことではありません。今日という一日、明日という一日、明後日という一日...と、あなたがこれから経験する一つ一つの「今」の積み重ねです。
+                    
+                    <div class="handdrawn-box">
+                        過去を悔やむのではなく、未来を憂うのでもなく、<span class="highlight">今、この瞬間を最大限に生きる</span>。
+                    </div>
+                    
+                    <p>自分の心に正直に、価値観に基づいて選択し、行動する。それが、<span class="keyword">「最高の今」を生きる<i class="fas fa-crown fa-bounce"></i></span>ということです。</p>
+                    
+                    <div class="speech-bubble">
+                        あなたの人生は、あなたのものです。残された時間を、後悔のない、あなたらしい色の詰まった日々にしていきましょう。
+                    </div>
+                    
+                    <div class="handdrawn-arrow"></div>
+                    
+                    <p style="text-align: center; font-size: 20px; font-weight: bold; color: var(--color-1);">
+                        <i class="fas fa-hourglass-start fa-shake"></i> さあ、立ち止まって考え、感じ、そして、行動を起こしましょう <i class="fas fa-hourglass-end fa-shake"></i>
+                    </p>
+                    
+                    <p style="text-align: center; font-size: 24px; font-weight: bold; color: var(--color-3); margin-top: 20px;">
+                        あなたの最高の人生は、「今」から始まります。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>
+                <i class="fas fa-book"></i> 出典：「人生80年、あなたはあと何日生きられる？～40代からの逆算思考で「最高の今」を見つける～」
+            </p>
+            <p style="margin-top: 10px;">
+                <i class="fas fa-comment-dots"></i> この記事を読んで、あなたはどんなことを感じましたか？ 
+                心に引っかかったこと、考えさせられたことがあれば、ぜひコメントで教えてください。
+                一緒に、人生の貴重な時間について、共有しませんか？
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // スクロールアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach(item => {
+                observer.observe(item);
+            });
+
+            // アイコンをクリックした時のエフェクト
+            document.querySelectorAll('.icon-hover').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    this.classList.add('fa-beat');
+                    setTimeout(() => {
+                        this.classList.remove('fa-beat');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
