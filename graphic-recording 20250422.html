@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あなたの最期の日、何を思いますか？</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-primary: #2E578C;
+            --color-secondary: #182D40;
+            --color-accent: #BF807A;
+            --color-dark: #592A2A;
+            --color-light: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-secondary);
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--color-light);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            border-bottom: 2px dotted var(--color-accent);
+            padding-bottom: 15px;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-right: 15px;
+        }
+
+        h1 {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            margin: 0;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            color: var(--color-accent);
+            font-size: 16px;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+            border-radius: 12px 0 0 12px;
+        }
+
+        .section-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover .section-icon {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        h2 {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+            margin-right: 10px;
+        }
+
+        .keyword {
+            font-weight: bold;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 2px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword i {
+            margin-right: 5px;
+            color: var(--color-primary);
+        }
+
+        .arrow-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .flow-arrow {
+            color: var(--color-accent);
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--color-primary);
+            position: relative;
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 8px;
+        }
+
+        .quote {
+            background: rgba(46, 87, 140, 0.05);
+            border-left: 3px solid var(--color-accent);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: var(--color-accent);
+            background: white;
+            padding: 0 5px;
+            font-size: 1.2rem;
+        }
+
+        .emotion {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            background: var(--color-light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .emotion i {
+            margin-right: 5px;
+            color: var(--color-accent);
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--color-primary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .connecting-line {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px 0;
+            border-top: 2px dashed var(--color-accent);
+            text-align: center;
+        }
+
+        .connecting-line i {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 5px;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, rgba(46, 87, 140, 0.1), rgba(191, 128, 122, 0.1));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .highlight-icon {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: var(--color-primary);
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(242, 242, 242, 0.5);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(242, 242, 242, 0.8);
+            transform: translateX(5px);
+        }
+
+        .action-icon {
+            margin-right: 10px;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dotted var(--color-accent);
+            color: var(--color-secondary);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer i {
+            color: var(--color-accent);
+            margin: 0 5px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .column {
+                flex: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-pattern">
+            <i class="fa-solid fa-shapes"></i>
+        </div>
+        <div class="header">
+            <div class="title-container">
+                <div class="title-icon">
+                    <i class="fa-solid fa-hourglass-end fa-beat"></i>
+                </div>
+                <h1>あなたの最期の日、何を思いますか？</h1>
+            </div>
+            <div class="date">
+                <i class="fa-regular fa-calendar"></i> 2025年4月22日
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 左カラム -->
+            <div class="column">
+                <!-- 思考実験セクション -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-brain fa-fade"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-lightbulb fa-beat" style="color: #2E578C;"></i> 思考実験の目的</h2>
+                    <p>「<span class="keyword"><i class="fa-solid fa-hourglass"></i>最期の日</span>」を想像することは、悲観的になるためでも不安を煽るためでもありません。むしろ、残された「<span class="keyword"><i class="fa-solid fa-clock"></i>いま</span>」という時間を、最大限に輝かせるための<span class="keyword"><i class="fa-solid fa-compass"></i>羅針盤</span>となり得るのです。</p>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-quote-left"></i> 思考実験の本質</div>
+                        <p>本当に大切なものは何かを見つけ出し、<span class="keyword"><i class="fa-solid fa-ban"></i>後悔のない</span>未来を創造するための具体的な一歩を踏み出す方法を探ります。</p>
+                    </div>
+                </div>
+
+                <!-- 臨死体験シミュレーション -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-person-falling fa-flip"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-film fa-shake" style="color: #2E578C;"></i> 臨死体験シミュレーション</h2>
+                    <p>あなたは穏やかな空間にいます。体は少し重く、外の世界の音は遠くで響いているだけ。感覚が研ぎ澄まされ、<span class="keyword"><i class="fa-solid fa-clock-rotate-left"></i>時間の流れ</span>がゆっくりに感じられます。</p>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-clapperboard"></i> 人生の映画
+                        </div>
+                        <p>あなたの人生という名の映画が、心の中で上映されています。幼い頃の無邪気な笑顔、学生時代の輝き、初めて恋をした思い出、仕事での成功や失敗、家族との時間...</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-circle-question"></i> 自問自答</div>
+                        <div class="emotion"><i class="fa-solid fa-face-smile"></i> 感謝</div>
+                        <div class="emotion"><i class="fa-solid fa-face-sad-tear"></i> 後悔</div>
+                        <p>どんな人々が、あなたの心に強く焼き付いていますか？ その人たちとの関係は、あなたの心を温めるものですか？</p>
+                        <p>挑戦したかったけれど、結局踏み出せなかった<span class="keyword"><i class="fa-solid fa-seedling"></i>夢</span>はありますか？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中央カラム -->
+            <div class="column">
+                <!-- 後悔の普遍性 -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-triangle-exclamation fa-bounce"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-globe fa-spin" style="color: #2E578C;"></i> 多くの人が抱く後悔</h2>
+                    
+                    <div class="quote">
+                        緩和ケア病棟の看護師、ブロンニー・ウェアが著書『死ぬ前に後悔すること5つ』で紹介した内容
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-heart-crack"></i> 5つの普遍的な後悔</div>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-user"></i>自分自身</span>に忠実に生きればよかった</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-briefcase"></i>働きすぎ</span>なければよかった</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-comment"></i>気持ち</span>をもっと表現する勇気を持てばよかった</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-user-group"></i>友人</span>と連絡を取り続ければよかった</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-face-laugh-beam"></i>幸せ</span>をもっと追求すればよかった</div>
+                        </div>
+                    </div>
+
+                    <div class="connecting-line">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+
+                    <h2><i class="fa-solid fa-user-pen" style="color: #2E578C;"></i> 筆者の個人的な後悔</h2>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-baseball"></i> 高校野球の後悔</div>
+                        <p>野球が好きで、友人も誘ってくれていたが、「<span class="keyword"><i class="fa-solid fa-scissors"></i>丸坊主</span>」が嫌で部活に入らなかった。</p>
+                        <p>髪型という表面的なことにとらわれず、一つの目標に向かって仲間と汗を流す経験を選んでいれば...</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-user-doctor"></i> 理学療法士の挫折</div>
+                        <p>理学療法士を目指して専門学校に入学したが、厳しい実習で大きな壁にぶつかり、<span class="keyword"><i class="fa-solid fa-ban"></i>諦めてしまった</span>。</p>
+                        <p>努力し続ければ乗り越えられたかもしれない壁から、自分で逃げてしまった...</p>
+                    </div>
+                </div>
+
+                <div class="arrow-container">
+                    <i class="fa-solid fa-arrow-down flow-arrow"></i>
+                </div>
+
+                <!-- 練習だという気づき -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-lightbulb fa-beat"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-arrow-rotate-left fa-flip" style="color: #2E578C;"></i> これは「練習」だ</h2>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-gift"></i> やり直しの機会
+                        </div>
+                        <p>あのシミュレーションで感じた後悔は、まだ現実のものではありません。まだ回避可能な「<span class="keyword"><i class="fa-solid fa-clock-rotate-left"></i>未来の後悔</span>」です。</p>
+                    </div>
+
+                    <p>この思考実験の真の価値は、未来の終着点から逆算して、「<span class="keyword"><i class="fa-solid fa-clock"></i>いま</span>」、この瞬間に何をなすべきかを明確にしてくれるところにあります。</p>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div class="column">
+                <!-- 具体的行動計画 -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-list-check fa-bounce"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-person-running fa-beat" style="color: #2E578C;"></i> 「いま」なすべきこと</h2>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-arrows-to-circle"></i> 過去の後悔から学ぶ</div>
+                        <p>過去の後悔は、単なる過去の失敗談ではありません。それは、「<span class="keyword"><i class="fa-solid fa-user-check"></i>未来の自分</span>が、どんな自分だったら心から満足できるか」を教えてくれる、強力なメッセージなのです。</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-graduation-cap"></i> 筆者の例：学び直し</div>
+                        <p>社会保険労務士（社労士）の資格取得と、英語の学習を選択。</p>
+                        <p>過去の後悔の根底にある「<span class="keyword"><i class="fa-solid fa-handshake-angle"></i>人の役に立ちたい</span>」という思いと、「<span class="keyword"><i class="fa-solid fa-ban"></i>困難から逃げない</span>」という反省から生まれた新たな目標。</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-bullseye"></i> あなたのアクション
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon"><i class="fa-solid fa-heart fa-beat"></i></div>
+                            <div>大切な人に「ありがとう」や「愛してる」を伝える</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon"><i class="fa-solid fa-rocket"></i></div>
+                            <div>やりたかった夢への最初の小さな一歩を踏み出す</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <div>仕事とプライベートのバランスを見直す</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 行動のための具体的ステップ -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-shoe-prints fa-flip"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-stairs fa-beat" style="color: #2E578C;"></i> 行動に移すための具体的な一歩</h2>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> 小さな変化と継続</div>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-puzzle-piece"></i>分解</span>する：大きな目標を小さな行動に分ける</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-shoe-prints"></i>最初の一歩</span>を決める：ハードルの低いものから</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-calendar-check"></i>計画</span>に落とし込む：具体的なスケジュールを立てる</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-clock"></i>時間</span>を確保する：意図的に時間を作る</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content"><span class="keyword"><i class="fa-solid fa-thumbs-up"></i>完璧を目指さない</span>：継続することを目標にする</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 毎日を最期の日の視点から -->
+                <div class="section">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-infinity fa-spin"></i>
+                    </div>
+                    <h2><i class="fa-solid fa-calendar-day fa-shake" style="color: #2E578C;"></i> 毎日を「最期の日」の視点から生きる</h2>
+                    
+                    <p>「最期の日」の視点は、人生から不要なノイズを取り除き、<span class="keyword"><i class="fa-solid fa-heart"></i>本当に大切なもの</span>に焦点を当てる手助けをしてくれます。</p>
+                    
+                    <div class="card">
+                        <div class="card-title"><i class="fa-solid fa-eye"></i> 視点の転換</div>
+                        <p>イライラすることがあっても、「これは最期の日でも気にするようなことだろうか？」と自問すれば、落ち着きを取り戻せる</p>
+                        <p>新しい挑戦をためらうとき、「最期の日、挑戦しなかったことを後悔するだろうか？」と問えば、一歩踏み出す勇気が湧く</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>あなたの人生の物語を、最高の最終回へと導く確かな道標となるはずです <i class="fa-solid fa-heart"></i> 共に、後悔のない人生を創り上げていきましょう。</p>
+            <p><i class="fa-solid fa-book"></i> 出典：ブロンニー・ウェア著『死ぬ前に後悔すること5つ』</p>
+        </div>
+    </div>
+</body>
+</html>
