@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>農業をはじめるための完全ガイド：体と心を癒す自給自足の喜び</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        
+        :root {
+            --color-primary: #2E578C;
+            --color-secondary: #182D40;
+            --color-accent: #BF807A;
+            --color-dark: #592A2A;
+            --color-light: #F2F2F2;
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--color-light);
+            font-family: 'Zen Kurenaido', sans-serif;
+            color: var(--color-secondary);
+            line-height: 1.4;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "\f06c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 180px;
+            opacity: 0.1;
+            right: -20px;
+            top: -40px;
+            transform: rotate(15deg);
+        }
+        
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, var(--color-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%232E578C' fill-opacity='0.03' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+        }
+        
+        .column {
+            width: 33.333%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 900px) {
+            .column {
+                width: 50%;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            color: var(--color-primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed var(--color-accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--color-primary);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(46, 87, 140, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--color-primary);
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .card:hover .card-icon {
+            opacity: 0.7;
+            transform: scale(1.2);
+        }
+        
+        .keyword {
+            font-weight: bold;
+            color: var(--color-dark);
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 40%);
+            padding: 0 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .keyword i {
+            font-size: 0.9em;
+            color: var(--color-accent);
+        }
+        
+        .emphasis {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(191, 128, 122, 0.1);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .emphasis i {
+            font-size: 20px;
+            color: var(--color-accent);
+        }
+        
+        .list {
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .list li {
+            margin-bottom: 10px;
+            position: relative;
+            list-style-type: none;
+        }
+        
+        .list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -25px;
+            color: var(--color-primary);
+        }
+        
+        .number-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            font-family: 'Yomogi', cursive;
+        }
+        
+        .arrow {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            opacity: 0.7;
+            animation: arrowPulse 2s infinite;
+        }
+        
+        .arrow i {
+            color: var(--color-primary);
+            margin: 0 5px;
+        }
+        
+        .arrow-line {
+            flex-grow: 1;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--color-primary),
+                var(--color-primary) 6px,
+                transparent 6px,
+                transparent 12px
+            );
+        }
+        
+        .note {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        
+        .note i {
+            margin-top: 3px;
+            color: var(--color-primary);
+        }
+        
+        .footer {
+            background-color: var(--color-secondary);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Animations */
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        
+        /* Connection elements */
+        .connection {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        
+        .connection-line {
+            flex-grow: 1;
+            height: 2px;
+            background-color: var(--color-primary);
+            opacity: 0.5;
+        }
+        
+        .connection i {
+            color: var(--color-primary);
+        }
+        
+        /* Glass morphism effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: "\f06c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.05;
+            right: -20px;
+            bottom: -20px;
+            transform: rotate(15deg);
+            z-index: -1;
+        }
+
+        /* Additional icon styles */
+        .icon-lg {
+            font-size: 1.3em;
+        }
+
+        .icon-2x {
+            font-size: 2em;
+        }
+
+        .icon-3x {
+            font-size: 3em;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            color: var(--color-primary);
+        }
+
+        /* Icon hover effects */
+        .hoverable-icon {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hoverable-icon:hover {
+            transform: scale(1.2);
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-container">
+                <i class="fa-solid fa-seedling fa-2x fa-bounce"></i>
+                <h1 class="title">農業をはじめるための完全ガイド</h1>
+                <i class="fa-solid fa-heart-pulse fa-2x fa-beat"></i>
+            </div>
+            <div class="date">2025年4月</div>
+        </div>
+        
+        <div class="content">
+            <!-- Column 1 -->
+            <div class="column">
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-book-open fa-beat"></i>
+                        はじめに
+                    </h2>
+                    <div class="card">
+                        <i class="fa-solid fa-leaf card-icon"></i>
+                        <p>現代社会では、<span class="keyword"><i class="fa-solid fa-display"></i>デジタル化</span>が進み、私たちの生活はますます自然から遠ざかっています。画面の前で過ごす時間が増え、手を土に触れる機会は減少の一途をたどっています。</p>
+                        <div class="emphasis">
+                            <i class="fa-solid fa-lightbulb fa-shake"></i>
+                            <div>「農業」という古くて新しい営みに注目が集まっています。</div>
+                        </div>
+                        <p>農業は単なる<span class="keyword"><i class="fa-solid fa-wheat-awn"></i>食料生産</span>の手段ではありません。それは体を動かし、心を癒し、自給自足の喜びを味わい、万が一の事態に備える術でもあるのです。</p>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-question fa-flip"></i>
+                        なぜ今、農業なのか？
+                    </h2>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-heart-circle-bolt card-icon"></i>
+                        <h3><i class="fa-solid fa-person-running icon-lg"></i> 体と心の健康のために</h3>
+                        <p>農作業は意外にもハードな<span class="keyword"><i class="fa-solid fa-dumbbell"></i>運動</span>です。畑を耕し、種をまき、水やりをし、雑草を抜き、収穫する。</p>
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>研究によれば、農作業は有酸素運動と筋力トレーニングの両方の効果があり、1時間の農作業で約<span class="keyword"><i class="fa-solid fa-fire"></i>300～400カロリー</span>を消費するとされています。</div>
+                        </div>
+                        <p>また、土に触れることで得られる心理的効果も見逃せません。「<span class="keyword"><i class="fa-solid fa-hands-holding-circle"></i>土いじり</span>」によって放出される<span class="keyword"><i class="fa-solid fa-brain"></i>セロトニン</span>は、ストレスを軽減し、心を落ち着かせる効果があります。</p>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-basket-shopping card-icon"></i>
+                        <h3><i class="fa-solid fa-house-circle-check icon-lg"></i> 自給自足と危機管理のために</h3>
+                        <p>近年の世界情勢や<span class="keyword"><i class="fa-solid fa-temperature-arrow-up"></i>気候変動</span>の影響で、食料安全保障への関心が高まっています。</p>
+                        <div class="emphasis">
+                            <i class="fa-solid fa-shield-halved fa-beat"></i>
+                            <div>自分で食料を生産できるスキルを持つことは、災害時や非常時に大きな安心をもたらします。</div>
+                        </div>
+                        <p>また、市販の野菜と比べて<span class="keyword"><i class="fa-solid fa-seedling"></i>自家栽培</span>の野菜は鮮度が高く、栄養価も豊富です。農薬や化学肥料の使用も自分でコントロールできるため、より安全な食材を手に入れることができます。</p>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-coins card-icon"></i>
+                        <h3><i class="fa-solid fa-sack-dollar icon-lg"></i> 経済的メリット</h3>
+                        <p>農業を始めることで、<span class="keyword"><i class="fa-solid fa-money-bill-wave"></i>食費の節約</span>にもつながります。</p>
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>例えば、トマトの苗1つから収穫できる実の量は、スーパーで購入するよりもはるかに経済的です。</div>
+                        </div>
+                        <p>余った作物は近所や友人と<span class="keyword"><i class="fa-solid fa-right-left"></i>交換</span>することで、さらに多様な食材を手に入れることも可能です。地域によっては、ファーマーズマーケットなどで販売することで、副収入を得ることもできるでしょう。</p>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-seedling fa-fade"></i>
+                        農業の知識を深めるために
+                    </h2>
+                    <div class="card">
+                        <i class="fa-solid fa-graduation-cap card-icon"></i>
+                        <h3><i class="fa-solid fa-book icon-lg"></i> 本やオンラインリソース</h3>
+                        <p>農業の知識を深めるために、以下のようなリソースが役立ちます：</p>
+                        <ul class="list">
+                            <li>初心者向けの園芸書籍</li>
+                            <li>地域の農業改良普及センターが発行する資料</li>
+                            <li>農業関連のブログやYouTubeチャンネル</li>
+                            <li>オンラインフォーラムやSNSグループ</li>
+                        </ul>
+                        <div class="emphasis">
+                            <i class="fa-solid fa-location-dot fa-beat"></i>
+                            <div>特に地域に特化した情報は貴重です。地元の気候や土壌条件に合わせたアドバイスは実用的です。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-people-group card-icon"></i>
+                        <h3><i class="fa-solid fa-chalkboard-user icon-lg"></i> ワークショップと講習会</h3>
+                        <p>多くの地域で、農業初心者向けのワークショップや講習会が開催されています。これらに参加することで、実践的なスキルを学び、同じ興味を持つ人々とのネットワークを広げることができます。</p>
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>地域の農業協同組合（JA）、市民農園、ガーデニングクラブなどが主催するイベントをチェックしてみてください。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 2 -->
+            <div class="column">
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-trowel fa-shake"></i>
+                        農業の始め方：基礎知識
+                    </h2>
+                    
+                    <div class="glass-card">
+                        <i class="fa-solid fa-arrows-to-dot card-icon"></i>
+                        <h3><i class="fa-solid fa-minimize icon-lg"></i> まずは小さく始める</h3>
+                        <p>農業初心者にとって大切なのは、「<span class="keyword"><i class="fa-solid fa-seedling"></i>小さく始めること</span>」です。いきなり大きな畑を借りて多品種を栽培するのではなく、まずはプランターやバルコニーでのハーブ栽培、小さな家庭菜園から始めるのが理想的です。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-thumbs-up fa-bounce"></i>
+                            <div>初心者にオススメの野菜：</div>
+                        </div>
+                        
+                        <ul class="list">
+                            <li>葉物野菜（ホウレンソウ、レタス、小松菜など）</li>
+                            <li>ハーブ類（バジル、ミント、タイム）</li>
+                            <li>ミニトマト</li>
+                            <li>ラディッシュ</li>
+                            <li>枝豆</li>
+                        </ul>
+                        
+                        <p>これらは比較的育てやすく、収穫までの期間も短いため、初心者でも成功体験を得やすい作物です。</p>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-mountain card-icon"></i>
+                        <h3><i class="fa-solid fa-layer-group icon-lg"></i> 土作りの基本</h3>
+                        <p>農業の成功は、良質な<span class="keyword"><i class="fa-solid fa-earth-americas"></i>土作り</span>から始まります。理想的な土は、以下の3つの要素がバランスよく含まれています：</p>
+                        
+                        <div class="number-item">
+                            <div class="number">1</div>
+                            <div><span class="keyword"><i class="fa-solid fa-hourglass"></i>砂（Sand）</span>：水はけを良くする</div>
+                        </div>
+                        
+                        <div class="number-item">
+                            <div class="number">2</div>
+                            <div><span class="keyword"><i class="fa-solid fa-water"></i>シルト（Silt）</span>：水分と栄養を保持する</div>
+                        </div>
+                        
+                        <div class="number-item">
+                            <div class="number">3</div>
+                            <div><span class="keyword"><i class="fa-solid fa-mountain"></i>粘土（Clay）</span>：栄養を蓄える</div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>初心者であれば、ホームセンターで販売されている培養土から始めるのが無難です。その後、自分でコンポスト（堆肥）を作り、土に混ぜていくことで、より理想的な土に近づけていくことができます。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-sun card-icon"></i>
+                        <h3><i class="fa-solid fa-calendar-days icon-lg"></i> 季節と気候を理解する</h3>
+                        <p>日本は<span class="keyword"><i class="fa-solid fa-leaf"></i>四季</span>がはっきりとしているため、季節に合わせた栽培計画が重要です。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-sun fa-spin"></i>
+                            <div><span class="keyword"><i class="fa-solid fa-temperature-high"></i>夏</span>は暑さに強い野菜（ナス、キュウリ、トマトなど）</div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-snowflake fa-fade"></i>
+                            <div><span class="keyword"><i class="fa-solid fa-temperature-low"></i>冬</span>は寒さに強い野菜（大根、白菜、ホウレンソウなど）</div>
+                        </div>
+                        
+                        <p>地域の気候や微気候（自分の庭や畑の特性）も理解することが大切です。日当たりの良し悪し、風の当たり方、周辺環境などを観察し、その環境に合った作物を選ぶことで成功率が高まります。</p>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-money-bill-wave fa-bounce"></i>
+                        お金をかけずに始める農業テクニック
+                    </h2>
+                    <div class="card">
+                        <i class="fa-solid fa-seedling card-icon"></i>
+                        <h3><i class="fa-solid fa-plant-wilt icon-lg"></i> 種の採取と保存</h3>
+                        <p>市販の野菜から<span class="keyword"><i class="fa-solid fa-seedling"></i>種を採取</span>することで、種代を節約できます。トマト、ピーマン、カボチャなどは比較的簡単に種を取ることができます。</p>
+                        <div class="note">
+                            <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                            <div>ただし、F1品種（交配種）の場合は、親と同じ特性を持つ作物が育たない可能性があるため注意が必要です。</div>
+                        </div>
+                        
+                        <p>採取した種は、以下の手順で保存します：</p>
+                        <div class="number-item">
+                            <div class="number">1</div>
+                            <div>完全に乾燥させる</div>
+                        </div>
+                        <div class="number-item">
+                            <div class="number">2</div>
+                            <div>紙袋や封筒に入れる</div>
+                        </div>
+                        <div class="number-item">
+                            <div class="number">3</div>
+                            <div>冷暗所で保管する</div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-people-group fa-beat"></i>
+                            <div>地域の種交換会に参加することで、様々な種類の種を無料または格安で入手することもできます。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-recycle card-icon"></i>
+                        <h3><i class="fa-solid fa-screwdriver-wrench icon-lg"></i> DIY農具と再利用</h3>
+                        <p>農具は必ずしも高価なものを購入する必要はありません。家にある道具を工夫して使うことで、初期投資を抑えることができます。</p>
+                        
+                        <p>例えば：</p>
+                        <ul class="list">
+                            <li>ペットボトルを利用した点滴灌水システム</li>
+                            <li>牛乳パックで作る育苗ポット</li>
+                            <li>割り箸や古い木材で作る植物ラベル</li>
+                            <li>新聞紙で作る生分解性のポット</li>
+                        </ul>
+                        
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>不要になった物を再利用することも重要です。古いバケツ、タイヤ、木箱などは素晴らしい植木鉢になります。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-leaf card-icon"></i>
+                        <h3><i class="fa-solid fa-balance-scale icon-lg"></i> 自然の力を活用する</h3>
+                        <p>化学肥料や農薬に頼らず、<span class="keyword"><i class="fa-solid fa-globe"></i>自然の力</span>を活用することで、コストを削減し、環境にも優しい農業が実現できます。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-seedling fa-fade"></i>
+                            <div><span class="keyword"><i class="fa-solid fa-handshake"></i>コンパニオンプランティング</span>：相性の良い植物を一緒に植えることで、害虫を防いだり、成長を促進</div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-bug-slash fa-shake"></i>
+                            <div><span class="keyword"><i class="fa-solid fa-spider"></i>天敵の活用</span>：テントウムシやカマキリなど、害虫を食べる生き物を庭に呼び込む</div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-recycle fa-spin"></i>
+                            <div><span class="keyword"><i class="fa-solid fa-egg"></i>自家製の有機肥料</span>：バナナの皮、コーヒーかす、卵の殻などの台所の残りものを利用</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-person-digging fa-beat"></i>
+                        先輩農家からの学び
+                    </h2>
+                    <div class="glass-card">
+                        <i class="fa-solid fa-graduation-cap card-icon"></i>
+                        <p>書籍やインターネットから得られる知識も重要ですが、実際に農業に取り組んでいる人からの直接的なアドバイスはさらに価値があります。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-people-roof fa-beat"></i>
+                            <div>地域の農家や熟練の家庭菜園家に質問する機会があれば、積極的に活用しましょう。</div>
+                        </div>
+                        
+                        <p>多くのベテラン農家は、自分の知識や経験を次世代に伝えることに喜びを感じています。謙虚な姿勢で学ぶ意欲を示せば、貴重なアドバイスやコツを惜しみなく教えてくれるでしょう。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="column">
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-heart fa-bounce"></i>
+                        農業から得られる喜び
+                    </h2>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-basket-shopping card-icon"></i>
+                        <h3><i class="fa-solid fa-carrot icon-lg"></i> 収穫の喜び</h3>
+                        <p>種まきから収穫までの過程を経て、自分の手で育てた作物を収穫する瞬間は何物にも代えがたい<span class="keyword"><i class="fa-solid fa-face-smile"></i>喜び</span>です。</p>
+                        
+                        <div class="note">
+                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                            <div>スーパーの野菜とは比べものにならない、新鮮で風味豊かな作物の味は、あなたの努力に対する自然からの最高の褒美と言えるでしょう。</div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-children fa-bounce"></i>
+                            <div>特に子どもと一緒に農業を楽しむ場合、種がどのように成長し、食べ物になるのかを実体験として学ぶことができ、食育としても最適です。</div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-people-group card-icon"></i>
+                        <h3><i class="fa-solid fa-hands-holding-circle icon-lg"></i> コミュニティとのつながり</h3>
+                        <p>農業は意外にも<span class="keyword"><i class="fa-solid fa-users"></i>社会的な活動</span>です。地域の農園や市民農園に参加することで、同じ趣味を持つ人々と出会い、知識や経験を共有する機会が生まれます。</p>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <i class="fa-solid fa-share-nodes hoverable-icon"></i>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <p>収穫物を近所の人々と分け合うことで、コミュニティとのつながりも深まります。また、子どもたちに農業の知識を伝えることで、次世代への継承にも貢献できるでしょう。</p>
+                    </div>
+                    
+                    <div class="arrow">
+                        <div class="arrow-line"></div>
+                        <i class="fa-solid fa-chevron-down fa-bounce"></i>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fa-solid fa-earth-americas card-icon"></i>
+                        <h3><i class="fa-solid fa-seedling icon-lg"></i> 持続可能な生活への第一歩</h3>
+                        <p>自分で食料を育てることは、環境への負荷を減らし、より<span class="keyword"><i class="fa-solid fa-recycle"></i>持続可能</span>な生活スタイルへの第一歩です。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-leaf fa-beat"></i>
+                            <div>食料の輸送に伴う二酸化炭素排出の削減、化学物質の使用低減、生物多様性の促進など、小さな家庭菜園であっても、大きな環境的メリットがあります。</div>
+                        </div>
+                        
+                        <p>また、自分で育てた作物の価値を知ることで、食料の無駄を減らす意識も高まります。これは経済的な節約だけでなく、環境保全にもつながる重要な意識変革です。</p>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-hand-peace fa-shake"></i>
+                        結論：一歩を踏み出す勇気
+                    </h2>
+                    <div class="glass-card">
+                        <i class="fa-3x fa-solid fa-seedling fa-bounce"></i>
+                        
+                        <p>農業は、体を動かし、心を癒し、自給自足の喜びを味わい、経済的な節約にもつながる素晴らしい活動です。初めは小さな一歩から始めて、徐々に経験と知識を積み重ねていくことが成功の鍵です。</p>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <i class="fa-solid fa-arrow-trend-up hoverable-icon"></i>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                            <div>失敗を恐れず、土と対話しながら学んでいく姿勢を持ちましょう。農業において完璧な年はありません。</div>
+                        </div>
+                        
+                        <p>天候不順や害虫、病気など、予期せぬ困難に直面することもあるでしょう。しかし、そうした経験こそが、あなたを成長させる貴重な学びとなります。</p>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <i class="fa-solid fa-arrow-trend-up hoverable-icon"></i>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <p>今日から、あなたの農業ライフをスタートさせませんか？ベランダのハーブ、窓辺のミニトマト、庭の一角の小さな畑…どんなに小さな始まりでも、そこから広がる世界は無限大です。</p>
+                        
+                        <div class="emphasis">
+                            <i class="fa-solid fa-lightbulb fa-bounce"></i>
+                            <div>土の香り、植物の生命力、収穫の喜びがあなたを待っています。</div>
+                        </div>
+                        
+                        <p>自然との対話を通じて、より豊かな生活を手に入れる第一歩を、今日、踏み出してみませんか？</p>
+                    </div>
+                </div>
+                
+                <div class="section fade-in">
+                    <i class="fa-solid fa-quote-left icon-3x fa-fade"></i>
+                    <div class="note">
+                        <i class="fa-solid fa-heart fa-beat-fade"></i>
+                        <div>「農業とは、人間が自然と協力して行う、最も純粋な形の共同作業である」</div>
+                    </div>
+                    <i class="fa-solid fa-quote-right icon-3x fa-fade"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <i class="fa-solid fa-book fa-flip"></i>
+            <span>© 2025 農業ガイドブック</span>
+            <i class="fa-solid fa-seedling fa-flip"></i>
+        </div>
+    </div>
+
+    <script>
+        // ScrollTrigger animation for sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add hover effects to icons
+            const icons = document.querySelectorAll('.hoverable-icon');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', () => {
+                    icon.classList.add('fa-beat');
+                });
+                
+                icon.addEventListener('mouseout', () => {
+                    icon.classList.remove('fa-beat');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
