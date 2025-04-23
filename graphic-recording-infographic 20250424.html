@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3年以内離職問題とその対策 - グラフィックレコーディング</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    :root {
+      --color-1: #2E578C;
+      --color-2: #182D40;
+      --color-3: #BF807A;
+      --color-4: #592A2A;
+      --color-5: #F2F2F2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-5);
+      color: var(--color-2);
+      line-height: 1.6;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 背景パターン */
+    body::before {
+      content: "\f009";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: rgba(46, 87, 140, 0.03);
+      font-size: 30px;
+      z-index: -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ヘッダー */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--color-1), var(--color-3), var(--color-1));
+      border-radius: 5px;
+    }
+
+    .title-area {
+      display: flex;
+      align-items: center;
+    }
+
+    .title-text {
+      margin-left: 15px;
+    }
+
+    h1 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--color-1), var(--color-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 i {
+      margin: 0 15px;
+    }
+
+    .source {
+      font-size: 14px;
+      color: #475569;
+      text-align: right;
+    }
+
+    /* レイアウト */
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    /* カード */
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-1), var(--color-3));
+      border-radius: 5px 0 0 5px;
+    }
+
+    .card-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: var(--color-1);
+      opacity: 0.2;
+      font-size: 42px;
+      transform: rotate(5deg);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: rotate(0deg) scale(1.1);
+      opacity: 0.3;
+    }
+
+    /* セクション見出し */
+    h2 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 22px;
+      color: var(--color-1);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-3), transparent);
+      border-radius: 2px;
+    }
+
+    h2 i {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    h3 {
+      font-family: 'Yomogi', sans-serif;
+      font-size: 18px;
+      color: var(--color-4);
+      margin: 15px 0 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    h3 i {
+      margin-right: 8px;
+      color: var(--color-3);
+    }
+
+    /* テキスト */
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 15px;
+    }
+
+    /* キーワード強調 */
+    .keyword {
+      font-weight: bold;
+      color: var(--color-1);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .keyword i {
+      font-size: 14px;
+      margin-right: 4px;
+    }
+
+    .highlight {
+      background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.3) 40%);
+      padding: 0 2px;
+    }
+
+    .marker {
+      position: relative;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .marker::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: rgba(46, 87, 140, 0.2);
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    /* データ表示 */
+    .data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      font-family: 'Kaisei Decol', serif;
+    }
+
+    .big-number {
+      font-size: 48px;
+      font-weight: bold;
+      color: var(--color-1);
+      text-align: center;
+      line-height: 1;
+      position: relative;
+    }
+
+    .data-label {
+      font-size: 14px;
+      margin-left: 10px;
+      color: var(--color-2);
+      width: 120px;
+    }
+
+    /* リスト */
+    .custom-list {
+      list-style: none;
+      margin: 15px 0;
+      padding-left: 5px;
+    }
+
+    .custom-list li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .custom-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--color-3);
+    }
+
+    /* 矢印・接続線 */
+    .arrow-connection {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      color: var(--color-1);
+      font-size: 30px;
+    }
+
+    .circle-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--color-1);
+      color: white;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    /* アイコングループ */
+    .icon-group {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 15px;
+      text-align: center;
+    }
+
+    .icon-item i {
+      font-size: 32px;
+      color: var(--color-1);
+      margin-bottom: 10px;
+    }
+
+    .icon-caption {
+      font-size: 12px;
+      max-width: 100px;
+      text-align: center;
+    }
+
+    /* フッター */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #475569;
+      padding: 20px 0;
+      border-top: 1px dashed var(--color-3);
+    }
+
+    /* 吹き出し */
+    .speech-bubble {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: 30px;
+      border-width: 0 15px 15px;
+      border-style: solid;
+      border-color: white transparent;
+    }
+
+    /* アニメーション */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+
+    /* ホバー効果 */
+    .hover-effect {
+      transition: all 0.3s ease;
+    }
+
+    .hover-effect:hover {
+      transform: scale(1.05);
+    }
+
+    /* グラスモーフィズム */
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      .column {
+        flex: 100%;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .big-number {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-area">
+        <i class="fa-solid fa-user-group fa-3x fa-fade" style="color: #2E578C;"></i>
+        <div class="title-text">
+          <h1>深刻化する「3年以内離職」問題とその対策 <i class="fa-solid fa-life-ring fa-bounce"></i></h1>
+          <p>若手人材の流出を防ぎ、定着と活躍を促す組織づくり</p>
+        </div>
+      </div>
+      <div class="source">
+        <i class="fa-solid fa-calendar-days"></i> 2025年4月24日
+      </div>
+    </div>
+
+    <!-- イントロダクション -->
+    <div class="card fade-in">
+      <i class="fa-solid fa-exclamation-triangle card-icon"></i>
+      <h2><i class="fa-solid fa-triangle-exclamation fa-beat"></i> はじめに</h2>
+      <div class="speech-bubble">
+        <p><i class="fa-solid fa-comment-dots"></i> あなたの会社では新入社員が定着していますか？</p>
+      </div>
+      
+      <div class="data">
+        <div class="big-number">34.9<span style="font-size: 24px;">%</span></div>
+        <div class="data-label">大卒新入社員の<br>3年以内離職率</div>
+      </div>
+      
+      <p>厚生労働省の最新データによると、<span class="highlight">2021年に大学を卒業して就職した新入社員の3年以内離職率は34.9%</span>と、過去15年で最高の数値を記録。<span class="marker">実に3人に1人以上</span>が入社後わずか3年以内に会社を去っています。</p>
+      
+      <h3><i class="fa-solid fa-chart-column"></i> 業種別離職率</h3>
+      <div class="icon-group">
+        <div class="icon-item hover-effect">
+          <i class="fa-solid fa-utensils fa-2x"></i>
+          <div class="big-number" style="font-size: 24px;">51.4<span style="font-size: 14px;">%</span></div>
+          <div class="icon-caption">宿泊業・飲食サービス業</div>
+        </div>
+        <div class="icon-item hover-effect">
+          <i class="fa-solid fa-spa fa-2x"></i>
+          <div class="big-number" style="font-size: 24px;">48.0<span style="font-size: 14px;">%</span></div>
+          <div class="icon-caption">生活関連サービス業・娯楽業</div>
+        </div>
+        <div class="icon-item hover-effect">
+          <i class="fa-solid fa-graduation-cap fa-2x"></i>
+          <div class="big-number" style="font-size: 24px;">46.0<span style="font-size: 14px;">%</span></div>
+          <div class="icon-caption">教育・学習支援業</div>
+        </div>
+      </div>
+      
+      <p>この状況は以前から続いており、2010年以降も約32%程度で推移していることから、<span class="keyword"><i class="fa-solid fa-sitemap"></i>構造的な問題</span>であることがわかります。</p>
+    </div>
+
+    <div class="content">
+      <div class="column">
+        <!-- 離職理由 -->
+        <div class="card fade-in delay-1">
+          <i class="fa-solid fa-door-open card-icon"></i>
+          <h2><i class="fa-solid fa-magnifying-glass fa-flip"></i> 若手社員が辞める本当の理由</h2>
+          
+          <p>表面的な退職理由と本音には<span class="keyword"><i class="fa-solid fa-mask"></i>ギャップ</span>があります。リクルートマネジメントソリューションズの調査によると、入社1年目に感じる悩みとして最も多かったのは:</p>
+          
+          <div class="speech-bubble">
+            <p><i class="fa-solid fa-quote-left"></i> 仕事に正解がなく、どうすればよいか分からないことが多かった <span style="font-size: 14px; color: #475569;">(27.1％)</span> <i class="fa-solid fa-quote-right"></i></p>
+          </div>
+          
+          <h3><i class="fa-solid fa-circle-exclamation"></i> 離職の本質的な5つの要因</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-not-equal"></i>実態とのギャップ</span>：採用活動で示された仕事内容や企業文化と実態の乖離</li>
+            <li><span class="keyword"><i class="fa-solid fa-road"></i>キャリア展望の不透明さ</span>：成長やキャリアアップへの道筋が見えない</li>
+            <li><span class="keyword"><i class="fa-solid fa-comments"></i>コミュニケーション不足</span>：上司や先輩との関係構築の機会や質の不足</li>
+            <li><span class="keyword"><i class="fa-solid fa-puzzle-piece"></i>業務内容のミスマッチ</span>：適性や希望と合わない業務への配置</li>
+            <li><span class="keyword"><i class="fa-solid fa-clock"></i>働き方・待遇への不満</span>：長時間労働や評価・待遇に対する不満</li>
+          </ul>
+          
+          <div class="glass">
+            <p><i class="fa-solid fa-lightbulb fa-fade"></i> 特に注目すべきは、アデコ株式会社の調査によれば、<span class="highlight">離職者の約8割が「退職して良かった」と考えており</span>、「自身の希望と業務内容のミスマッチ」（37.9%）が最も多い退職理由だった点です。</p>
+          </div>
+        </div>
+
+        <!-- コスト -->
+        <div class="card fade-in delay-2">
+          <i class="fa-solid fa-coins card-icon"></i>
+          <h2><i class="fa-solid fa-sack-dollar fa-shake"></i> 企業が負う「見えざるコスト」</h2>
+          
+          <h3><i class="fa-solid fa-calculator"></i> 採用・育成コストの損失</h3>
+          <div class="data">
+            <div class="big-number">300<span style="font-size: 24px;">万円</span></div>
+            <div class="data-label">新入社員1人あたりの<br>投資コスト</div>
+          </div>
+          
+          <p>マイナビの調査によると、新入社員1人あたりの採用にかかるコストは<span class="marker">約114万円</span>。さらに入社後の研修費用や育成コストを加えると、<span class="keyword"><i class="fa-solid fa-money-bill-trend-up"></i>1人あたり約200〜300万円</span>のコストがかかります。</p>
+          
+          <h3><i class="fa-solid fa-arrow-trend-down"></i> 組織活力の低下と負のスパイラル</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-face-tired"></i>残された社員の負担増加</span>とモチベーション低下</li>
+            <li><span class="keyword"><i class="fa-solid fa-hourglass-end"></i>組織の平均年齢上昇</span>による新たな発想や変化への適応力低下</li>
+            <li><span class="keyword"><i class="fa-solid fa-user-graduate"></i>将来のリーダー候補の喪失</span>による中長期的な競争力低下</li>
+            <li><span class="keyword"><i class="fa-solid fa-thumbs-down"></i>採用ブランドの毀損</span>による採用難化</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="column">
+        <!-- オンボーディング -->
+        <div class="card fade-in delay-3">
+          <i class="fa-solid fa-ship card-icon"></i>
+          <h2><i class="fa-solid fa-anchor fa-bounce"></i> 離職防止の鍵となる「オンボーディング」戦略</h2>
+          
+          <p><span class="keyword"><i class="fa-solid fa-ship"></i>オンボーディング</span>とは、「新入社員が組織に適応し戦力となるまでを支援する一連のプロセス」を指します。日本語では「<span class="highlight">乗船</span>」を意味する言葉から来ており、新入社員が組織という船に乗り込み、航海の一員として機能するようになるまでを包括的に支援する考え方です。</p>
+          
+          <h3><i class="fa-solid fa-compass"></i> オンボーディングの4つの軸</h3>
+          <div class="icon-group">
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-clipboard-check fa-fade"></i>
+              <div class="icon-caption">適応<br>(Compliance)</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-bullseye fa-spin"></i>
+              <div class="icon-caption">明確化<br>(Clarification)</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-seedling fa-beat"></i>
+              <div class="icon-caption">文化<br>(Culture)</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-handshake fa-bounce"></i>
+              <div class="icon-caption">つながり<br>(Connection)</div>
+            </div>
+          </div>
+          
+          <div class="glass">
+            <p><i class="fa-solid fa-lightbulb fa-fade"></i> 日本では従来、「適応」と「明確化」に重点を置いたオンボーディングが多く、<span class="marker">「文化」と「つながり」への配慮が不足</span>しがちでした。しかし、近年の若手社員の離職理由を見ると、むしろ後者が重要であることがわかります。</p>
+          </div>
+        </div>
+
+        <!-- 成功事例 -->
+        <div class="card fade-in delay-4">
+          <i class="fa-solid fa-trophy card-icon"></i>
+          <h2><i class="fa-solid fa-medal fa-flip"></i> 成功事例から学ぶ効果的アプローチ</h2>
+          
+          <div class="icon-group">
+            <div class="icon-item">
+              <i class="fa-solid fa-building fa-shake"></i>
+              <div class="icon-caption">ベイシア</div>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-desktop fa-beat"></i>
+              <div class="icon-caption">富士通</div>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-network-wired fa-flip"></i>
+              <div class="icon-caption">アイネット</div>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-house fa-bounce"></i>
+              <div class="icon-caption">レオパレス21</div>
+            </div>
+          </div>
+          
+          <h3><i class="fa-solid fa-star"></i> ベイシアの事例</h3>
+          <p>社内SNSを活用したオンボーディングを実施。新入社員同士のつながりを強化し、「今週の気づき、学び」を共有することで相互成長の文化を醸成。<span class="highlight">98%という高い定着率</span>を実現しています。</p>
+          
+          <h3><i class="fa-solid fa-star"></i> 株式会社河合電器製作所の事例</h3>
+          <p>量産型からオーダーメイド型にビジネスモデルを転換し、同時に働き方改革も推進。「たくさん作らない」「海外で作らない」「人を増やさない」という3つのポリシーのもと、<span class="keyword"><i class="fa-solid fa-lightbulb"></i>従業員一人ひとりがアイデアを発揮できる環境づくり</span>に注力した結果、<span class="marker">入社3年以内の離職率0%</span>を実現しました。</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <!-- 具体的対策 -->
+        <div class="card fade-in delay-5">
+          <i class="fa-solid fa-toolbox card-icon"></i>
+          <h2><i class="fa-solid fa-screwdriver-wrench fa-shake"></i> 今日から始められる具体的対策</h2>
+          
+          <h3><i class="fa-solid fa-file-signature"></i> 入社前からのギャップ軽減</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-check-double"></i>採用時の情報の正確さ</span>：美化せず、実態に即した情報発信</li>
+            <li><span class="keyword"><i class="fa-solid fa-user-graduate"></i>インターンシップの活用</span>：実際の業務や社風を体験する機会の提供</li>
+            <li><span class="keyword"><i class="fa-solid fa-envelope-open-text"></i>内定者フォロー</span>：入社までの期間を活用した関係構築と情報提供</li>
+          </ul>
+          
+          <h3><i class="fa-solid fa-hand-holding-hand"></i> 入社直後の効果的サポート</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-chalkboard-user"></i>メンター制度導入</span>：直属上司以外の相談相手を設ける</li>
+            <li><span class="keyword"><i class="fa-solid fa-comments"></i>1on1ミーティング</span>：最初の90日間は週1回など頻度を高く設定</li>
+            <li><span class="keyword"><i class="fa-solid fa-user-tie"></i>ロールモデルの提示</span>：成長イメージがつかめる先輩社員との接点創出</li>
+          </ul>
+          
+          <h3><i class="fa-solid fa-route"></i> 中長期的な定着施策</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-map"></i>キャリアパスの可視化</span>：将来の成長イメージを具体的に示す</li>
+            <li><span class="keyword"><i class="fa-solid fa-laptop-house"></i>柔軟な働き方の導入</span>：リモートワークやフレックスなどの選択肢</li>
+            <li><span class="keyword"><i class="fa-solid fa-graduation-cap"></i>スキルアップ支援</span>：資格取得支援や外部研修参加機会の提供</li>
+          </ul>
+          
+          <h3><i class="fa-solid fa-people-group"></i> 組織文化としての取り組み</h3>
+          <ul class="custom-list">
+            <li><span class="keyword"><i class="fa-solid fa-handshake"></i>経営層のコミットメント</span>：新人育成を組織の優先事項として位置づける</li>
+            <li><span class="keyword"><i class="fa-solid fa-shield-heart"></i>心理的安全性の確保</span>：失敗を恐れず挑戦できる風土づくり</li>
+            <li><span class="keyword"><i class="fa-solid fa-chart-simple"></i>定期的な調査とフィードバック</span>：エンゲージメント調査や1on1の制度化</li>
+          </ul>
+        </div>
+
+        <!-- まとめ -->
+        <div class="card fade-in delay-5">
+          <i class="fa-solid fa-check-double card-icon"></i>
+          <h2><i class="fa-solid fa-flag-checkered fa-beat"></i> まとめ：「定着」から「活躍」へと発想を転換する</h2>
+          
+          <div class="glass">
+            <p><i class="fa-solid fa-lightbulb fa-fade"></i> 新入社員の早期離職問題は、単に「辞めさせない」対策ではなく、<span class="keyword"><i class="fa-solid fa-rocket"></i>「活躍できる環境を整える」</span>という発想の転換が必要です。若手社員たちは単に安定や給与だけを求めてはいません。自分の成長と組織への貢献を実感できる環境を強く望んでいます。</p>
+          </div>
+          
+          <div class="arrow-connection">
+            <i class="fa-solid fa-arrow-right-long fa-beat"></i>
+          </div>
+          
+          <p>重要なのは、「辞めない」ことを目的化するのではなく、「活躍できる」環境を整えることです。<span class="marker">仕事にやりがいを感じ、成長を実感し、組織の一員としての帰属意識を持って働ける環境</span>があれば、おのずと離職率は低下するでしょう。</p>
+          
+          <div class="icon-group">
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-seedling fa-2x fa-beat"></i>
+              <div class="icon-caption">成長実感</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-lightbulb fa-2x fa-flip"></i>
+              <div class="icon-caption">やりがい</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-users fa-2x fa-bounce"></i>
+              <div class="icon-caption">帰属意識</div>
+            </div>
+            <div class="icon-item hover-effect">
+              <i class="fa-solid fa-heart fa-2x fa-fade"></i>
+              <div class="icon-caption">心理的安全性</div>
+            </div>
+          </div>
+          
+          <p>若手人材の流出は、企業の持続的成長にとって大きなリスクです。しかし同時に、現状を見直し、より良い組織へと変革する絶好の機会でもあります。<span class="highlight">今こそ、若手社員の可能性を最大限に引き出す組織づくりに取り組むとき</span>なのではないでしょうか。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p><i class="fa-solid fa-book"></i> 本インフォグラフィックは厚生労働省やリクルートマネジメントソリューションズなどの最新調査結果をもとに作成しています。</p>
+      <p><i class="fa-solid fa-copyright"></i> 2025 グラフィックレコーディング事例</p>
+    </div>
+  </div>
+
+  <script>
+    // スクロールアニメーション
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(el => {
+        observer.observe(el);
+      });
+      
+      // アイコンホバーエフェクト
+      const icons = document.querySelectorAll('.icon-item i');
+      icons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+          icon.style.color = '#BF807A';
+        });
+        icon.addEventListener('mouseleave', () => {
+          icon.style.color = '#2E578C';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
