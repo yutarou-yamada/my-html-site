@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デジタルノート革命：iPad mini＋Goodnotesの最強コンビ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-primary: #2E578C;
+            --color-secondary: #182D40;
+            --color-accent: #BF807A;
+            --color-dark: #592A2A;
+            --color-light: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-secondary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: radial-gradient(var(--color-light) 85%, rgba(191, 128, 122, 0.1) 100%);
+            animation: bgAnimation 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--color-primary);
+            position: relative;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .title-icon {
+            font-size: 3em;
+            margin-right: 15px;
+            color: var(--color-primary);
+            animation: fa-beat 5s infinite;
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--color-secondary);
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 30%;
+            position: relative;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2em;
+            color: var(--color-primary);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed var(--color-accent);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title-icon {
+            margin-right: 10px;
+            color: var(--color-primary);
+            animation: fa-bounce 2s infinite;
+        }
+
+        .text {
+            font-size: 14px;
+            color: var(--color-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 100%);
+            padding: 0 3px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            animation: highlightAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes highlightAnimation {
+            0% { background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 100%); }
+            50% { background: linear-gradient(transparent 60%, rgba(46, 87, 140, 0.4) 100%); }
+            100% { background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 100%); }
+        }
+
+        .highlight-icon {
+            font-size: 0.9em;
+            margin: 0 3px;
+            color: var(--color-primary);
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--color-primary);
+            border-bottom: 1px solid var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword-icon {
+            font-size: 1em;
+            margin-right: 4px;
+            color: var(--color-accent);
+        }
+
+        .feature-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .feature-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .feature-icon {
+            color: var(--color-primary);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            color: var(--color-accent);
+        }
+
+        .arrow-connection {
+            position: relative;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 2em;
+            color: var(--color-primary);
+            animation: arrowAnimation 2s infinite;
+        }
+
+        @keyframes arrowAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .note-type {
+            background-color: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .note-type:hover {
+            transform: scale(1.03);
+        }
+
+        .note-type-icon {
+            font-size: 1.8em;
+            margin-right: 12px;
+            color: var(--color-primary);
+        }
+
+        .note-type-title {
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .comparison {
+            display: flex;
+            margin: 15px 0;
+            gap: 15px;
+        }
+
+        .comparison-col {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .paper {
+            background-color: #f8f0e5;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .digital {
+            background-color: #e8f4f8;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comparison-title .icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        .comparison-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .comparison-icon {
+            margin-right: 8px;
+            color: var(--color-primary);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--color-secondary);
+            border-top: 1px dashed var(--color-accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-icon {
+            margin: 0 10px;
+            font-size: 1.2em;
+            color: var(--color-primary);
+        }
+
+        .background-icon {
+            position: absolute;
+            font-size: 8em;
+            color: rgba(191, 128, 122, 0.05);
+            z-index: 0;
+        }
+
+        .bg-icon-1 {
+            top: 100px;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .bg-icon-2 {
+            bottom: 150px;
+            right: 10%;
+            transform: rotate(10deg);
+        }
+
+        .bg-icon-3 {
+            top: 40%;
+            left: 50%;
+            transform: rotate(5deg);
+        }
+
+        .icon-hover:hover {
+            transform: scale(1.2);
+            color: var(--color-accent);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .column {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 背景アイコン -->
+        <i class="fa-solid fa-pencil background-icon bg-icon-1"></i>
+        <i class="fa-solid fa-tablet-screen-button background-icon bg-icon-2"></i>
+        <i class="fa-solid fa-note-sticky background-icon bg-icon-3"></i>
+
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="title-container">
+                <i class="fa-solid fa-tablet-screen-button title-icon"></i>
+                <h1 class="title">デジタルノート革命：iPad mini＋Goodnotesの最強コンビ</h1>
+            </div>
+            <p class="date"><i class="fa-regular fa-calendar"></i> 2025年4月</p>
+        </header>
+
+        <!-- コンテンツ -->
+        <div class="content">
+            <!-- 左カラム -->
+            <div class="column">
+                <div class="section">
+                    <i class="fa-solid fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-wand-magic-sparkles section-title-icon"></i>
+                        デジタルノート革命とは
+                    </h2>
+                    <p class="text">
+                        日々のワークフロー、学習効率、そしてプライベートの充実度を
+                        <span class="highlight">劇的に向上<i class="fa-solid fa-arrow-trend-up highlight-icon"></i></span>
+                        させる「最強」の組み合わせ。それは、
+                        <span class="keyword"><i class="fa-solid fa-tablet-screen-button keyword-icon"></i>iPad mini（第6世代）</span>と
+                        <span class="keyword"><i class="fa-solid fa-pen-to-square keyword-icon"></i>Goodnotes</span>
+                        のコンビネーションです。
+                    </p>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-tablet-screen-button section-icon fa-fade"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-ruler section-title-icon"></i>
+                        iPad mini（第6世代）を選ぶ理由
+                    </h2>
+                    <p class="text">
+                        <span class="highlight">このサイズ感が「神」<i class="fa-solid fa-crown highlight-icon"></i></span>
+                        と言えるのはなぜか？
+                    </p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fa-solid fa-hand-holding feature-icon"></i>
+                            片手で持てる<span class="keyword">コンパクトさ<i class="fa-solid fa-compress keyword-icon"></i></span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-display feature-icon"></i>
+                            Liquid Retinaディスプレイでの<span class="keyword">広い作業領域<i class="fa-solid fa-expand keyword-icon"></i></span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-bolt feature-icon fa-shake"></i>
+                            どこでも<span class="keyword">すぐに取り出せる機動力<i class="fa-solid fa-rocket keyword-icon"></i></span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-lightbulb feature-icon fa-bounce"></i>
+                            「思いついたらすぐメモ」が実現
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-wand-magic-sparkles section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-pencil section-title-icon"></i>
+                        Apple Pencilとの連携
+                    </h2>
+                    <p class="text">
+                        <span class="highlight">慣れれば最高の書き心地<i class="fa-solid fa-heart highlight-icon fa-beat"></i></span>
+                        が実現！
+                    </p>
+                    <div class="card">
+                        <i class="fa-solid fa-pencil card-icon"></i>
+                        <p class="text">
+                            <span class="keyword">Apple Pencil（第2世代）の特徴<i class="fa-solid fa-list keyword-icon"></i></span>
+                        </p>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fa-solid fa-check feature-icon"></i>
+                                滑らかな書き心地、紙のような感覚
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-check feature-icon"></i>
+                                筆圧・傾きを感知して表現力アップ
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-check feature-icon"></i>
+                                マグネットで簡単装着＆充電
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-check feature-icon"></i>
+                                様々なペン種類や色を自由に選択可能
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中央カラム -->
+            <div class="column">
+                <div class="section">
+                    <i class="fa-solid fa-pen-to-square section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-book-open section-title-icon"></i>
+                        Goodnotesとの出会い
+                    </h2>
+                    <p class="text">
+                        Apple純正アプリから乗り換え、そして相棒との出会い。
+                    </p>
+                    <div class="card">
+                        <i class="fa-solid fa-cloud card-icon"></i>
+                        <p class="text">
+                            <span class="keyword">Apple純正アプリの課題<i class="fa-solid fa-triangle-exclamation keyword-icon"></i></span>
+                        </p>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fa-solid fa-cloud-arrow-up feature-icon"></i>
+                                無料iCloudストレージ5GBがすぐに満杯に
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-arrow-right-arrow-left feature-icon"></i>
+                                資料の移行が面倒
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="arrow-connection">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa-solid fa-pen-to-square card-icon fa-bounce"></i>
+                        <p class="text">
+                            <span class="keyword">Goodnotesの魅力<i class="fa-solid fa-star keyword-icon"></i></span>
+                        </p>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fa-solid fa-book feature-icon"></i>
+                                「ノート」単位での情報管理
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-infinity feature-icon"></i>
+                                無限のページと柔軟な管理
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-magnifying-glass feature-icon fa-shake"></i>
+                                <span class="highlight">手書き文字も検索可能<i class="fa-solid fa-magnifying-glass highlight-icon"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-folder-open section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-layer-group section-title-icon"></i>
+                        情報管理の革命
+                    </h2>
+                    <p class="text">
+                        3種類のノートで情報をスマートに整理：
+                    </p>
+                    <div class="note-type">
+                        <i class="fa-solid fa-briefcase note-type-icon"></i>
+                        <div>
+                            <div class="note-type-title">仕事用ノート</div>
+                            <p class="text">会議の議事録、ブレインストーミング、タスクリスト、アイデアメモなど</p>
+                        </div>
+                    </div>
+                    <div class="note-type">
+                        <i class="fa-solid fa-graduation-cap note-type-icon"></i>
+                        <div>
+                            <div class="note-type-title">勉強用ノート</div>
+                            <p class="text">資格試験の勉強、読書の記録、オンライン講座のメモなど</p>
+                        </div>
+                    </div>
+                    <div class="note-type">
+                        <i class="fa-solid fa-heart note-type-icon"></i>
+                        <div>
+                            <div class="note-type-title">プライベートノート</div>
+                            <p class="text">日記、TODOリスト、個人的な記録や計画など</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-eraser section-icon fa-flip"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-wand-magic-sparkles section-title-icon"></i>
+                        感動の「ぐりぐり消し」機能
+                    </h2>
+                    <p class="text">
+                        <span class="highlight">手書きの「常識」を覆す魔法<i class="fa-solid fa-hat-wizard highlight-icon"></i></span>
+                    </p>
+                    <div class="card">
+                        <i class="fa-solid fa-eraser card-icon"></i>
+                        <p class="text">
+                            Apple Pencilで「ぐりぐり」と塗りつぶすようなジェスチャーをするだけで、
+                            <span class="keyword">魔法のように消せる<i class="fa-solid fa-magic keyword-icon"></i></span>
+                        </p>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fa-solid fa-check feature-icon"></i>
+                                ツール切り替え不要でストレスフリー
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-brain feature-icon"></i>
+                                思考の流れを止めない直感的操作
+                            </li>
+                            <li class="feature-item">
+                                <i class="fa-solid fa-lightbulb feature-icon"></i>
+                                <span class="keyword">デジタルならではの利便性<i class="fa-solid fa-bolt keyword-icon"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div class="column">
+                <div class="section">
+                    <i class="fa-solid fa-scale-balanced section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-scale-balanced section-title-icon"></i>
+                        紙 vs デジタルノート
+                    </h2>
+                    <div class="comparison">
+                        <div class="comparison-col paper">
+                            <div class="comparison-title">
+                                <i class="fa-solid fa-book icon"></i>
+                                紙のノート
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-xmark comparison-icon"></i>
+                                検索できない
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-xmark comparison-icon"></i>
+                                かさばる
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-xmark comparison-icon"></i>
+                                消しゴムの跡が残る
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-check comparison-icon"></i>
+                                電源不要
+                            </div>
+                        </div>
+                        <div class="comparison-col digital">
+                            <div class="comparison-title">
+                                <i class="fa-solid fa-tablet comparison-icon"></i>
+                                デジタルノート
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-check comparison-icon"></i>
+                                手書きも検索可能
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-check comparison-icon"></i>
+                                コンパクト
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-check comparison-icon"></i>
+                                キレイに消せる
+                            </div>
+                            <div class="comparison-item">
+                                <i class="fa-solid fa-battery-half comparison-icon"></i>
+                                充電が必要
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-thumbs-up section-icon fa-beat"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-star section-title-icon"></i>
+                        デジタルノートの最大の魅力
+                    </h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fa-solid fa-magnifying-glass feature-icon"></i>
+                            <span class="highlight">手書き文字の検索機能<i class="fa-solid fa-magnifying-glass highlight-icon fa-flip"></i></span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-layer-group feature-icon"></i>
+                            情報の一元管理と整理のしやすさ
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-tablet-screen-button feature-icon"></i>
+                            どこへでも持ち運べる携帯性
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-eraser feature-icon"></i>
+                            間違えても瞬時に綺麗に消せる
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-file-pdf feature-icon"></i>
+                            PDFの取り込みとマーカー・書き込み
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-paint-brush feature-icon"></i>
+                            ペンの種類や色を自由に選べる
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <i class="fa-solid fa-thumbtack section-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-check-double section-title-icon"></i>
+                        まとめ：最強のポータブル環境
+                    </h2>
+                    <p class="text">
+                        iPad mini（第6世代）とGoodnotesの組み合わせで実現する
+                        <span class="highlight">デジタルノート革命<i class="fa-solid fa-rocket highlight-icon"></i></span>
+                    </p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fa-solid fa-brain feature-icon"></i>
+                            どこへでも「脳の拡張」を持ち運べる
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-folder-tree feature-icon"></i>
+                            情報を整理し、目的別に管理
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-wand-magic-sparkles feature-icon fa-bounce"></i>
+                            デジタルの利点を最大限に活かした操作性
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-arrow-trend-up feature-icon"></i>
+                            仕事、勉強、プライベートの効率化
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer class="footer">
+            <i class="fa-solid fa-book footer-icon"></i>
+            出典：個人のデジタルノート活用体験
+            <i class="fa-solid fa-calendar footer-icon"></i>
+            2025年4月
+        </footer>
+    </div>
+</body>
+</html>
