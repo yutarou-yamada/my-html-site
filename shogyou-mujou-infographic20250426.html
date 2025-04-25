@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>諸行無常―変わりゆく世界を生きるための哲学</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    :root {
+      --color-1: #2E578C;
+      --color-2: #182D40;
+      --color-3: #BF807A;
+      --color-4: #592A2A;
+      --color-5: #F2F2F2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-5);
+      color: var(--color-2);
+      line-height: 1.4;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "\f56b";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 120px;
+      color: rgba(46, 87, 140, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      background-color: rgba(242, 242, 242, 0.9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .title-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--color-1);
+      margin-left: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(to right, var(--color-1), var(--color-4));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+
+    .title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--color-1), var(--color-3));
+      border-radius: 2px;
+    }
+
+    .date {
+      font-family: 'Yomogi', cursive;
+      font-size: 16px;
+      color: var(--color-3);
+      display: flex;
+      align-items: center;
+    }
+
+    .date i {
+      margin-right: 5px;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1 1 30%;
+      min-width: 300px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 22px;
+      color: var(--color-1);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 35px;
+    }
+
+    .section-title i {
+      position: absolute;
+      left: 0;
+      color: var(--color-1);
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid var(--color-3);
+    }
+
+    .card-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: var(--color-3);
+      opacity: 0.8;
+    }
+
+    .card h3 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 18px;
+      color: var(--color-4);
+      margin-bottom: 10px;
+      padding-right: 30px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--color-2);
+    }
+
+    .highlight {
+      font-weight: bold;
+      background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.3) 40%);
+      padding: 0 2px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .highlight i {
+      margin-right: 3px;
+      font-size: 0.8em;
+    }
+
+    .keyword {
+      color: var(--color-1);
+      font-weight: bold;
+      margin: 0 2px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .keyword i {
+      margin-right: 3px;
+      font-size: 0.9em;
+    }
+
+    .connection {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      justify-content: center;
+    }
+
+    .arrow {
+      width: 100px;
+      height: 2px;
+      background-color: var(--color-1);
+      position: relative;
+    }
+
+    .arrow::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: -4px;
+      border-width: 5px 0 5px 10px;
+      border-style: solid;
+      border-color: transparent transparent transparent var(--color-1);
+    }
+
+    .arrow-icon {
+      margin: 0 10px;
+      color: var(--color-1);
+    }
+
+    .note {
+      background-color: rgba(46, 87, 140, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .note::before {
+      content: "\f0eb";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background-color: white;
+      padding: 0 10px;
+      color: var(--color-1);
+      border-radius: 50%;
+      border: 1px solid rgba(46, 87, 140, 0.3);
+    }
+
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--color-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px dashed var(--color-3);
+      padding-top: 15px;
+    }
+
+    .footer i {
+      margin-right: 5px;
+    }
+
+    /* アニメーション効果 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    .section {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.3s; }
+    .section:nth-child(3) { animation-delay: 0.5s; }
+    .section:nth-child(4) { animation-delay: 0.7s; }
+    .section:nth-child(5) { animation-delay: 0.9s; }
+
+    .fa-beat {
+      animation: wave 2s infinite;
+    }
+
+    .fa-pulse {
+      animation: pulse 3s infinite;
+    }
+
+    /* 手書き風の装飾 */
+    .hand-drawn {
+      position: relative;
+    }
+
+    .hand-drawn::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--color-3);
+      border-radius: 50%;
+      transform: rotate(-0.5deg);
+    }
+
+    .bubble {
+      background-color: white;
+      border-radius: 20px;
+      padding: 15px;
+      margin: 10px 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      border: 1px solid var(--color-1);
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 30px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: white transparent transparent;
+    }
+
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -11px;
+      left: 30px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: var(--color-1) transparent transparent;
+      z-index: -1;
+    }
+
+    /* アイコンのホバー効果 */
+    .icon-hover {
+      transition: all 0.3s ease;
+    }
+
+    .icon-hover:hover {
+      transform: scale(1.2);
+      color: var(--color-4);
+    }
+
+    /* グラスモーフィズム効果 */
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* 吹き出し */
+    .speech-bubble {
+      position: relative;
+      background: var(--color-1);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Yomogi', cursive;
+      margin: 20px 0;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      right: 20px;
+      top: -10px;
+      border-width: 0 10px 10px;
+      border-style: solid;
+      border-color: var(--color-1) transparent;
+    }
+
+    /* メディアクエリ - レスポンシブデザイン */
+    @media (max-width: 768px) {
+      .column {
+        flex: 1 1 100%;
+      }
+      
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .date {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-container">
+        <i class="fas fa-dharmachakra fa-3x" style="color: var(--color-1);"></i>
+        <h1 class="title">諸行無常―変わりゆく世界を生きるための哲学</h1>
+      </div>
+      <div class="date">
+        <i class="fas fa-calendar-alt"></i> 2025年4月26日
+      </div>
+    </div>
+    
+    <div class="content">
+      <!-- 左カラム -->
+      <div class="column">
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-book-open fa-beat"></i> はじめに</h2>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-quote-left"></i></div>
+            <p>「<span class="highlight"><i class="fas fa-torii-gate"></i>祇園精舎の鐘の声、諸行無常の響きあり</span>」</p>
+            <p>平家物語の冒頭に詠まれたこの一節は、日本の美意識や人生観に深く根差した「<span class="keyword"><i class="fas fa-infinity"></i>諸行無常</span>」という言葉を象徴しています。これは<span class="keyword"><i class="fas fa-pray"></i>仏教</span>の根本的な真理の一つであり、私たちがこの世界で苦悩を乗り越え、より良く生きるための深い哲学を含んでいます。</p>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-yin-yang fa-spin"></i> 「諸行無常」とは何か？</h2>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-hourglass-half"></i></div>
+            <h3><i class="fas fa-stamp"></i> 三法印の一つ</h3>
+            <p>「<span class="keyword"><i class="fas fa-infinity"></i>諸行無常</span>」（しょぎょうむじょう）は、仏教の基本的な教えである「<span class="keyword"><i class="fas fa-stamp"></i>三法印</span>」の一つです。三法印とは、仏教徒であるかどうかにかかわらず、この世界の真理を見抜けば理解できる普遍的な三つの真実を指します。</p>
+          </div>
+          
+          <div class="bubble">
+            <p><i class="fas fa-list"></i> <span class="hand-drawn">三法印（または四法印）</span>：</p>
+            <ol>
+              <li><i class="fas fa-water fa-beat"></i> <span class="hand-drawn">諸行無常</span>：全てのつくられたものは、常に変化し、決して常住ではない</li>
+              <li><i class="fas fa-cloud fa-pulse"></i> <span class="hand-drawn">諸法無我</span>：全ての存在は、固定不変の実体である「我」を持たない</li>
+              <li><i class="fas fa-exclamation-circle"></i> <span class="hand-drawn">一切皆苦</span>：世の中の全ては、思い通りにならないという本質において「苦」</li>
+              <li><i class="fas fa-moon"></i> <span class="hand-drawn">涅槃寂静</span>：涅槃だけが、あらゆる苦悩や煩悩を離れた静寂である</li>
+            </ol>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-circle-notch fa-spin"></i></div>
+            <h3><i class="fas fa-arrows-spin"></i> 無常の意味</h3>
+            <p>「<span class="keyword"><i class="fas fa-water"></i>無常</span>」（むじょう）とは、「常ではない」、つまり「常に変化している」「決して留まることがない」という意味です。</p>
+            <p>時間と共に古くなる、壊れるといった目に見える変化だけでなく、一瞬一瞬、刻々と変化し続けているという、より<span class="highlight"><i class="fas fa-microscope"></i>ミクロな、本質的な変化</span>をも含みます。</p>
+          </div>
+        </div>
+        
+        <div class="glass">
+          <h3><i class="fas fa-leaf icon-hover"></i> <span class="hand-drawn">諸行無常の定義</span></h3>
+          <p>「原因や条件によって成り立っている全てのものは、例外なく常に変化し続けており、決して不変のものではない」という世界のあり方</p>
+        </div>
+      </div>
+      
+      <!-- 中央カラム -->
+      <div class="column">
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-puzzle-piece fa-flip"></i> なぜ諸行無常の理解が重要なのか？</h2>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-heart-broken"></i></div>
+            <h3><i class="fas fa-link"></i> 苦悩との関連性</h3>
+            <p>仏陀は「<span class="keyword"><i class="fas fa-infinity"></i>諸行無常</span>」という真理を強調しました。無常であるという真理を理解できないこと、あるいは受け入れられないことが、人間が<span class="keyword"><i class="fas fa-face-sad-tear"></i>苦悩</span>する根本的な原因だからです。</p>
+          </div>
+          
+          <div class="speech-bubble">
+            <p><i class="fas fa-quote-left"></i> 私たちは、無常であるにもかかわらず、様々なものに「常」を求め、そこに「私」や「私のもの」という<span class="highlight"><i class="fas fa-grip-lines"></i>執着</span>を生み出します <i class="fas fa-quote-right"></i></p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-mountain"></i></div>
+            <h3><i class="fas fa-seedling"></i> 苦悩が生まれる仕組み</h3>
+            <p><span class="keyword"><i class="fas fa-anchor"></i>安定・不変への渇望</span>：安心できる状態、変わらない関係、永遠に続く幸福を求める心が、現実の無常さと衝突するとき、苦しみが生じます。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-user"></i></div>
+            <h3><i class="fas fa-id-badge"></i> 「私」という執着</h3>
+            <p>私たちは「<span class="keyword"><i class="fas fa-user"></i>私</span>」という不変の実体があると思い込み、「私の体」「私の感情」「私の考え」といった形で諸行に執着します。しかし、体も、感情も、考えも、全ては絶えず変化する諸行です。</p>
+          </div>
+          
+          <div class="connection">
+            <div class="arrow"></div>
+            <i class="fas fa-unlink arrow-icon"></i>
+            <div class="arrow"></div>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3><i class="fas fa-not-equal"></i> 期待と現実のギャップ</h3>
+            <p>未来に対する期待は自然ですが、諸行無常である以上、<span class="highlight"><i class="fas fa-exclamation-triangle"></i>期待通りにならないこと</span>の方が圧倒的に多いかもしれません。結果への執着が強ければ強いほど、思い通りにならなかった時の失望や苦しみは大きくなります。</p>
+          </div>
+        </div>
+        
+        <div class="note">
+          <p><i class="fas fa-fire-alt"></i> <span class="hand-drawn">煩悩の三毒</span>：<span class="keyword"><i class="fas fa-hand-holding-usd"></i>貪り</span>（欲）、<span class="keyword"><i class="fas fa-bolt"></i>瞋り</span>（怒り）、<span class="keyword"><i class="fas fa-question-circle"></i>痴り</span>（無知）</p>
+          <p>無常への無知や抵抗は、「痴り」に深く関わっています。</p>
+        </div>
+      </div>
+      
+      <!-- 右カラム -->
+      <div class="column">
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-dove fa-beat"></i> 諸行無常を受け入れることで得られるもの</h2>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-unlock-alt"></i></div>
+            <h3><i class="fas fa-hand-peace"></i> 苦悩からの解放</h3>
+            <p>無常を受け入れることは、変化や喪失に対する抵抗を和らげます。「<span class="highlight"><i class="fas fa-quote-left"></i>これもまた移りゆくものだ</span>」と理解することで、必要以上に物事や感情に囚われなくなり、苦しみが軽減されます。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-hourglass-start"></i></div>
+            <h3><i class="fas fa-star"></i> 今この瞬間の大切さ</h3>
+            <p>全ては刻々と変化しているということは、<span class="keyword"><i class="fas fa-clock"></i>今この瞬間</span>は二度と訪れないということです。この真理を理解すると、過去や未来への囚われが減り、「今ここ」に意識を向けやすくなります。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-hands-open"></i></div>
+            <h3><i class="fas fa-wind"></i> 執着を手放す力</h3>
+            <p>無常であるという見方は、物事への執着を手放す助けとなります。どれほど価値があるように見えるものでも、いつかは失われる、変化する。この事実を心に留めることで、より<span class="highlight"><i class="fas fa-feather"></i>自由な心</span>で生きることができます。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-hands-holding-heart"></i></div>
+            <h3><i class="fas fa-heart"></i> 他者への慈悲</h3>
+            <p>全てが相互に関係し、変化し続けているという<span class="keyword"><i class="fas fa-network-wired"></i>縁起</span>の思想とも繋がります。私たち自身も他者も、苦悩する存在であり、無常の中にあります。この共通の基盤を理解することで、<span class="highlight"><i class="fas fa-hands-helping"></i>より寛容で慈悲深い心</span>を育むことができます。</p>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+            <h3><i class="fas fa-sun"></i> 前向きな変化への希望</h3>
+            <p>諸行無常は、悲観的な真理ではありません。悪い状況や苦しい状態もまた、永遠には続かない、必ず変化するという<span class="keyword"><i class="fas fa-hand-holding-heart"></i>希望</span>を与えてくれます。また、自分自身も変わることができる、成長できるという可能性を示唆します。</p>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-seedling fa-fade"></i> 現代社会で「諸行無常」を生きる</h2>
+          
+          <div class="bubble">
+            <p><i class="fas fa-lightbulb fa-bounce"></i> <span class="hand-drawn">実践方法</span>：</p>
+            <ul>
+              <li><i class="fas fa-check"></i> <span class="hand-drawn">「当たり前」への問いかけ</span>：今ある状況が永遠に続く「当たり前」ではないことを意識する</li>
+              <li><i class="fas fa-brain"></i> <span class="hand-drawn">マインドフルネスの実践</span>：呼吸、体の感覚、思考や感情の変化を観察する</li>
+              <li><i class="fas fa-pause"></i> <span class="hand-drawn">「間」を作る</span>：出来事や感情に対して、一呼吸置いて観察する</li>
+              <li><i class="fas fa-hand-sparkles"></i> <span class="hand-drawn">手放す練習</span>：小さなことから「手放す」感覚を掴む</li>
+              <li><i class="fas fa-sync-alt"></i> <span class="hand-drawn">変化を受け入れる</span>：変化を恐れるのではなく、成長の機会と捉える</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-torii-gate fa-fade"></i> 日本文化と「諸行無常」</h2>
+          
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-cherry-blossom"></i></div>
+            <p>日本文化は、古くから「<span class="keyword"><i class="fas fa-infinity"></i>諸行無常</span>」の思想を深く受け入れてきました。<span class="highlight"><i class="fas fa-leaf"></i>季節の移ろい</span>を愛でる心、<span class="highlight"><i class="fas fa-cherry-blossom"></i>桜の儚い美しさ</span>に心を寄せる感性（ものの哀れ）、不完全さや古びたものの中に美しさを見出す<span class="keyword"><i class="fas fa-moon"></i>侘び寂び</span>といった美意識は、まさに無常観に基づいています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="glass" style="margin-top: 20px; text-align: center;">
+      <h2><i class="fas fa-quote-left fa-sm"></i> まとめ <i class="fas fa-quote-right fa-sm"></i></h2>
+      <p>「<span class="keyword"><i class="fas fa-infinity"></i>諸行無常</span>」は、全てのつくられたものが常に変化し続けるという、世界の根本的な真理です。この真理から目を背け、不変を求め、執着することで、私たちは多くの苦悩を生み出します。</p>
+      <p>しかし、諸行無常を理解し、受け入れることは、私たちに多くの恵みをもたらします。それは、<span class="highlight"><i class="fas fa-heart"></i>苦悩を和らげ</span>、<span class="highlight"><i class="fas fa-star"></i>今この瞬間を深く味わい</span>、<span class="highlight"><i class="fas fa-feather"></i>執着から自由になり</span>、<span class="highlight"><i class="fas fa-hands-helping"></i>他者への慈悲を育み</span>、そして<span class="highlight"><i class="fas fa-sun"></i>変化を前向きに受け入れる力</span>となります。</p>
+      <p>諸行無常は、悲しい真理ではなく、私たちを苦しみから解放し、人生をより深く、鮮やかに生きるための扉を開いてくれる金言です。日々の中で移ろいゆくものに意識を向け、変化の中に潜む真理を感じ取ることから始めてみましょう。</p>
+    </div>
+    
+    <div class="footer">
+      <i class="fas fa-book"></i> 出典：「諸行無常――変わりゆく世界を生きるための哲学」
+    </div>
+  </div>
+  
+  <script>
+    // アイコンのホバー効果
+    document.querySelectorAll('.icon-hover').forEach(icon => {
+      icon.addEventListener('mouseenter', () => {
+        icon.style.transform = 'scale(1.2)';
+        icon.style.color = '#592A2A';
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        icon.style.transform = 'scale(1)';
+        icon.style.color = '';
+      });
+    });
+    
+    // スクロールに連動したアニメーション
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.card, .bubble, .note, .glass').forEach(element => {
+      element.style.opacity = 0;
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
