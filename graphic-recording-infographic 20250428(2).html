@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伝わる話し方のコツ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-1: #2E578C;
+            --color-2: #182D40;
+            --color-3: #BF807A;
+            --color-4: #592A2A;
+            --color-5: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--color-5);
+            color: var(--color-2);
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "\f5fd \f0eb \f086 \f4ad";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 20vw;
+            color: rgba(242, 242, 242, 0.3);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--color-1);
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-1), var(--color-3), var(--color-1));
+            animation: gradientFlow 5s infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--color-1);
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--color-1), var(--color-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 i {
+            margin: 0 10px;
+            animation: fa-bounce 2s infinite;
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--color-4);
+            text-align: right;
+        }
+
+        .date i {
+            margin-right: 5px;
+            animation: fa-spin 10s linear infinite;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 30%;
+            padding: 15px;
+            position: relative;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-1), var(--color-3));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card i.card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--color-1);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover i.card-icon {
+            transform: scale(1.2);
+            color: var(--color-3);
+        }
+
+        h2 {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--color-1);
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--color-3);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+            margin-right: 10px;
+            font-size: 24px;
+            animation: fa-beat 1.5s infinite;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--color-4);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        .icon-inline {
+            color: var(--color-1);
+            margin: 0 3px;
+            font-size: 16px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+
+        .icon-inline:hover {
+            transform: scale(1.2);
+            color: var(--color-3);
+        }
+
+        .icon-large {
+            font-size: 2em;
+            color: var(--color-1);
+            margin: 10px 0;
+            text-align: center;
+            display: block;
+            animation: fa-fade 3s infinite;
+        }
+
+        .arrow {
+            color: var(--color-3);
+            font-size: 24px;
+            margin: 10px 0;
+            animation: arrowAnimation 2s infinite;
+        }
+
+        @keyframes arrowAnimation {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .connection {
+            position: relative;
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px dashed var(--color-1);
+        }
+
+        .connection::before {
+            content: "\f0b0";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -10px;
+            color: var(--color-1);
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .point-list {
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .point-list li {
+            margin-bottom: 10px;
+            position: relative;
+            list-style-type: none;
+        }
+
+        .point-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -25px;
+            color: var(--color-3);
+        }
+
+        .tip-box {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-left: 4px solid var(--color-1);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            background-color: var(--color-1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            animation: fa-shake 3s infinite;
+        }
+
+        .emphasis {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: var(--color-3);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 0 2px;
+            transform: rotate(-2deg);
+            box-shadow: 2px 2px 0 rgba(89, 42, 42, 0.2);
+        }
+
+        .speech-bubble {
+            position: relative;
+            background-color: var(--color-5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .speech-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--color-5) transparent;
+        }
+
+        .handwritten {
+            font-family: 'Yomogi', cursive;
+            color: var(--color-4);
+            transform: rotate(-1deg);
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--color-1);
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-2);
+        }
+
+        footer i {
+            margin-right: 5px;
+            color: var(--color-1);
+        }
+
+        /* アニメーション効果を追加 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .column:nth-child(1) .card:nth-child(1) { animation-delay: 0.1s; }
+        .column:nth-child(1) .card:nth-child(2) { animation-delay: 0.2s; }
+        .column:nth-child(2) .card:nth-child(1) { animation-delay: 0.3s; }
+        .column:nth-child(2) .card:nth-child(2) { animation-delay: 0.4s; }
+        .column:nth-child(3) .card:nth-child(1) { animation-delay: 0.5s; }
+        .column:nth-child(3) .card:nth-child(2) { animation-delay: 0.6s; }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-microphone-alt fa-beat"></i>伝わる話し方のコツ<i class="fas fa-comment-dots fa-bounce"></i></h1>
+            <div class="date"><i class="fas fa-calendar-alt"></i> 2025年4月</div>
+        </header>
+
+        <div class="content">
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-bullhorn fa-fade card-icon"></i>
+                    <h2><i class="fas fa-running fa-beat"></i>早口を卒業する</h2>
+                    <p>多くの人が<span class="highlight">緊張すると早口に<i class="icon-inline fas fa-heart-rate"></i></span>なってしまいます。しかし、早口だと<span class="highlight">情報を処理する時間<i class="icon-inline fas fa-brain"></i></span>を聞き手から奪ってしまうのです。</p>
+
+                    <div class="tip-box">
+                        <p><span class="handwritten">なぜ早口になる？</span></p>
+                        <ul class="point-list">
+                            <li><i class="icon-inline fas fa-tired"></i> 緊張や不安から解放されたい</li>
+                            <li><i class="icon-inline fas fa-compress-alt"></i> 情報を詰め込みすぎる</li>
+                            <li><i class="icon-inline fas fa-hand-holding-heart"></i> 自信のなさをごまかす</li>
+                            <li><i class="icon-inline fas fa-users"></i> 聞き手への配慮不足</li>
+                        </ul>
+                    </div>
+
+                    <i class="fas fa-arrow-down fa-2x icon-large"></i>
+
+                    <div class="speech-bubble">
+                        <p><span class="emphasis">解決策</span></p>
+                        <ul class="point-list">
+                            <li><span class="highlight">"少し遅い"と感じるくらいがちょうどいい<i class="icon-inline fas fa-thumbs-up"></i></span></li>
+                            <li>句点（。）でしっかり区切る<i class="icon-inline fas fa-stop"></i></li>
+                            <li>重要ポイントの前後に「間」を作る<i class="icon-inline fas fa-hourglass-half fa-flip"></i></li>
+                            <li>深呼吸を意識する<i class="icon-inline fas fa-wind"></i></li>
+                            <li>自分の話し声を録音してチェック<i class="icon-inline fas fa-microphone"></i></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-lightbulb fa-beat card-icon"></i>
+                    <h2><i class="fas fa-star fa-spin"></i>話し方の好循環</h2>
+                    <p>3つのコツは<span class="highlight">互いに関連<i class="icon-inline fas fa-link"></i></span>しています。ひとつを改善すると、他のコツも向上する好循環が生まれます。</p>
+
+                    <div class="connection">
+                        <p><i class="icon-inline fas fa-clock fa-spin"></i> <span class="highlight">ゆっくり話す</span></p>
+                        <i class="fas fa-arrow-down arrow"></i>
+                        <p><i class="icon-inline fas fa-brain fa-fade"></i> <span class="highlight">考える余裕ができる</span></p>
+                        <i class="fas fa-arrow-down arrow"></i>
+                        <p><i class="icon-inline fas fa-ban fa-shake"></i> <span class="highlight">「あー」「えー」が減る</span></p>
+                        <i class="fas fa-arrow-down arrow"></i>
+                        <p><i class="icon-inline fas fa-sitemap fa-fade"></i> <span class="highlight">論理的な構成で話せる</span></p>
+                        <i class="fas fa-arrow-down arrow"></i>
+                        <p><i class="icon-inline fas fa-smile fa-bounce"></i> <span class="highlight">自信を持って話せる</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-ban fa-shake card-icon"></i>
+                    <h2><i class="fas fa-comment-slash fa-beat"></i>「あー」「えー」を追放する</h2>
+                    <p><span class="highlight">フィラー<i class="icon-inline fas fa-fill-drip"></i></span>と呼ばれる「あー」「えー」「そのぉ」「なんか」といった言葉は、<span class="highlight">自信がない<i class="icon-inline fas fa-face-frown"></i></span>印象を与えてしまいます。</p>
+
+                    <i class="fas fa-exclamation-circle fa-2x icon-large"></i>
+
+                    <div class="speech-bubble">
+                        <p><span class="emphasis">フィラーを減らす方法</span></p>
+                        <ul class="point-list">
+                            <li><span class="highlight">フィラーの代わりに「無音のポーズ（間）」<i class="icon-inline fas fa-pause"></i></span></li>
+                            <li>「間」を恐れない<i class="icon-inline fas fa-hourglass fa-spin"></i></li>
+                            <li>自分のフィラー使用を客観的に把握<i class="icon-inline fas fa-search"></i></li>
+                            <li>話す内容を事前に整理<i class="icon-inline fas fa-list-check"></i></li>
+                            <li>話し始める前に「考える時間」を持つ<i class="icon-inline fas fa-brain fa-pulse"></i></li>
+                            <li>完璧を目指さない<i class="icon-inline fas fa-heart"></i></li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <p><span class="handwritten">「間」の効果</span></p>
+                        <p><i class="icon-inline fas fa-crown"></i> 落ち着いて自信がある印象</p>
+                        <p><i class="icon-inline fas fa-ear-listen"></i> 聞き手の集中力アップ</p>
+                        <p><i class="icon-inline fas fa-bolt"></i> メッセージが力強く響く</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-check-double fa-fade card-icon"></i>
+                    <h2><i class="fas fa-list-check fa-beat"></i>伝わる話し方チェックリスト</h2>
+                    <p>日常的に意識して<span class="highlight">練習<i class="icon-inline fas fa-dumbbell"></i></span>することで、少しずつスキルアップしていきましょう。</p>
+
+                    <div class="tip-box">
+                        <p><span class="handwritten">毎日の練習ポイント</span></p>
+                        <ul class="point-list">
+                            <li><i class="icon-inline fas fa-clock-rotate-left"></i> 1日1分、ゆっくり話す練習</li>
+                            <li><i class="icon-inline fas fa-microphone"></i> 週1回、自分の声を録音する</li>
+                            <li><i class="icon-inline fas fa-ban"></i> フィラーを使ったら意識する</li>
+                            <li><i class="icon-inline fas fa-sitemap"></i> 話す前に構成を考える習慣</li>
+                            <li><i class="icon-inline fas fa-face-smile"></i> 完璧を求めず改善を楽しむ</li>
+                        </ul>
+                    </div>
+
+                    <p><i class="icon-inline fas fa-quote-left"></i> <span class="highlight">伝わる話し方は、練習すれば誰でも身につけられるスキル<i class="icon-inline fas fa-seedling fa-fade"></i></span>です。 <i class="icon-inline fas fa-quote-right"></i></p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-brain fa-spin card-icon"></i>
+                    <h2><i class="fas fa-sitemap fa-beat"></i>頭の中で整理しながら話す</h2>
+                    <p>話し手が<span class="highlight">次に何を話すか<i class="icon-inline fas fa-forward"></i></span>迷うと、聞き手も混乱します。事前の準備と<span class="highlight">思考の整理<i class="icon-inline fas fa-brain"></i></span>が重要です。</p>
+
+                    <div class="speech-bubble">
+                        <p><span class="emphasis">徹底した「事前準備」</span></p>
+                        <ul class="point-list">
+                            <li>話の構成（アウトライン）を作成<i class="icon-inline fas fa-sitemap"></i></li>
+                            <li>キーワードをメモする<i class="icon-inline fas fa-key"></i></li>
+                            <li>想定質問への回答を準備<i class="icon-inline fas fa-question-circle"></i></li>
+                            <li>声に出して練習する<i class="icon-inline fas fa-microphone-alt"></i></li>
+                        </ul>
+                    </div>
+
+                    <i class="fas fa-plus fa-2x icon-large"></i>
+
+                    <div class="speech-bubble">
+                        <p><span class="emphasis">話しながら思考を整理</span></p>
+                        <ul class="point-list">
+                            <li><span class="highlight">適切な「間」で考える時間を確保<i class="icon-inline fas fa-hourglass-half fa-flip"></i></span></li>
+                            <li>「なぜなら」「したがって」などの接続詞を効果的に使う<i class="icon-inline fas fa-link fa-spin"></i></li>
+                            <li>次の話題を予告・直前の話を要約<i class="icon-inline fas fa-bullhorn"></i></li>
+                            <li>聞き手の理解度を常に意識<i class="icon-inline fas fa-face-thinking"></i></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-rocket fa-shake card-icon"></i>
+                    <h2><i class="fas fa-flag-checkered fa-beat"></i>伝わる話し方のゴール</h2>
+                    <p>話し方の改善によって、あなたは<span class="highlight">聞き手の心に響く<i class="icon-inline fas fa-heart fa-beat"></i></span>話し手になれます。</p>
+
+                    <div class="tip-box">
+                        <p><span class="handwritten">伝わる話し方の効果</span></p>
+                        <ul class="point-list">
+                            <li><i class="icon-inline fas fa-bullseye"></i> 伝えたいことが正確に伝わる</li>
+                            <li><i class="icon-inline fas fa-user-tie"></i> 信頼感と説得力がアップ</li>
+                            <li><i class="icon-inline fas fa-comments"></i> コミュニケーションが活性化</li>
+                            <li><i class="icon-inline fas fa-chart-line"></i> 仕事のパフォーマンス向上</li>
+                            <li><i class="icon-inline fas fa-heart"></i> 人間関係の質が向上</li>
+                        </ul>
+                    </div>
+
+                    <i class="fas fa-arrow-right fa-2x icon-large"></i>
+
+                    <div class="speech-bubble">
+                        <p><span class="handwritten">今日から始めましょう！</span></p>
+                        <p><i class="icon-inline fas fa-walking fa-fade"></i> <span class="highlight">一つずつ改善</span>していきましょう</p>
+                        <p><i class="icon-inline fas fa-calendar-check"></i> 毎日の<span class="highlight">小さな練習</span>を習慣に</p>
+                        <p><i class="icon-inline fas fa-heart fa-beat"></i> 完璧より<span class="highlight">伝わりやすさ</span>を優先</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><i class="fas fa-book"></i> 出典：伝わる話し方のコツ：早口・「あー」「えー」を卒業し、頭の中で整理しながら話す技術</p>
+        </footer>
+    </div>
+</body>
+</html>
