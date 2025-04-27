@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今を生きる力をもたらす 禅の教え - グラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: #F2F2F2;
+            color: #182D40;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2E578C;
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #BF807A;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #2E578C;
+            background: linear-gradient(90deg, #2E578C, #BF807A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .header-title i {
+            font-size: 36px;
+            margin-right: 15px;
+            color: #2E578C;
+            -webkit-text-fill-color: #2E578C;
+        }
+
+        .header-title i:last-child {
+            margin-left: 15px;
+            margin-right: 0;
+        }
+
+        .header-date {
+            font-size: 14px;
+            color: #592A2A;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #2E578C;
+            opacity: 0.7;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dashed #BF807A;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: #592A2A;
+        }
+
+        .section-content {
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: #2E578C;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword i {
+            font-size: 14px;
+            margin-left: 5px;
+            color: #BF807A;
+        }
+
+        .keyword::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #BF807A, transparent);
+            border-radius: 2px;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, rgba(191, 128, 122, 0.2), transparent);
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .arrow {
+            display: block;
+            text-align: center;
+            margin: 15px 0;
+            color: #2E578C;
+            font-size: 24px;
+            animation: arrowMove 2s infinite;
+        }
+
+        @keyframes arrowMove {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        .quote {
+            font-family: 'Yomogi', cursive;
+            font-style: italic;
+            color: #592A2A;
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 3px solid #BF807A;
+            background-color: rgba(242, 242, 242, 0.7);
+        }
+
+        .connection {
+            position: relative;
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 2px dotted #2E578C;
+        }
+
+        .connection-icon {
+            position: absolute;
+            left: -15px;
+            top: 0;
+            color: #BF807A;
+            background-color: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        .practice-list {
+            margin: 15px 0;
+        }
+
+        .practice-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .practice-item i {
+            margin-right: 10px;
+            color: #2E578C;
+            font-size: 18px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #592A2A;
+            padding-top: 15px;
+            border-top: 1px solid #BF807A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin-right: 5px;
+        }
+
+        /* 手書き風装飾 */
+        .handwriting-line {
+            position: relative;
+            margin: 20px 0;
+            height: 2px;
+            background: #BF807A;
+            opacity: 0.5;
+        }
+
+        .handwriting-line::before,
+        .handwriting-line::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            width: 20px;
+            height: 10px;
+            border: 2px solid #BF807A;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        .handwriting-line::before {
+            left: 20%;
+        }
+
+        .handwriting-line::after {
+            right: 20%;
+        }
+
+        .handwriting-circle {
+            display: inline-block;
+            position: relative;
+        }
+
+        .handwriting-circle::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border: 2px solid #BF807A;
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        /* グラスモーフィズム */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* 背景装飾 */
+        .bg-pattern {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.05;
+            color: #2E578C;
+            font-size: 120px;
+        }
+
+        .bg-pattern-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .bg-pattern-2 {
+            top: 40%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+
+        .bg-pattern-3 {
+            bottom: 10%;
+            left: 15%;
+            transform: rotate(-5deg);
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* スクロールアニメーション */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ホバーエフェクト */
+        .icon-hover {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .icon-hover:hover {
+            transform: scale(1.2);
+            color: #BF807A !important;
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-date {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header-title">
+                <i class="fa-solid fa-dharmachakra fa-beat"></i>
+                今を生きる力をもたらす 禅の教え
+                <i class="fa-solid fa-peace fa-beat"></i>
+            </h1>
+            <div class="header-date">
+                <i class="fa-solid fa-calendar-day"></i> 2025年4月
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- セクション1: 禅とは何か？ -->
+            <div class="card scroll-fade">
+                <i class="fa-solid fa-yin-yang fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-question fa-bounce"></i>
+                    禅とは何か？
+                </h2>
+                <div class="section-content">
+                    <p>
+                        禅は、<span class="keyword">坐禅を通じて<i class="fa-solid fa-user-zen"></i></span>自己の本来の姿（<span class="keyword">仏性<i class="fa-solid fa-seedling"></i></span>）に目覚め、<span class="highlight">今ここを徹底的に生きる</span>ことを目指す教えです。
+                    </p>
+                    <div class="quote">
+                        <i class="fa-solid fa-quote-left"></i>
+                        不立文字（ふりゅうもんじ）、教外別伝（きょうげべつでん）
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
+                    <p>
+                        これは「<span class="keyword">言葉や文字に頼らず<i class="fa-solid fa-ban"></i></span>、教えとは別に、師から弟子へと<span class="keyword">直接心が伝えられる<i class="fa-solid fa-heart"></i></span>」という意味です。
+                    </p>
+                    <div class="connection">
+                        <i class="fa-solid fa-link connection-icon fa-spin"></i>
+                        <p>経典は真理を指し示す<span class="keyword">指先<i class="fa-solid fa-hand-point-up"></i></span>にすぎず、指先（言葉）に囚われて<span class="keyword">月（真理）<i class="fa-solid fa-moon"></i></span>を見失ってはならない</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セクション2: 坐禅 -->
+            <div class="card scroll-fade" style="animation-delay: 0.2s;">
+                <i class="fa-solid fa-person-meditating fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-lotus-position fa-bounce"></i>
+                    禅の中心実践「坐禅」
+                </h2>
+                <div class="section-content">
+                    <p>
+                        坐禅は「<span class="keyword">坐って心を調える<i class="fa-solid fa-brain"></i></span>」修行です。日本の禅には二つの主要な流れがあります：
+                    </p>
+                    <div class="glass">
+                        <p><span class="handwriting-circle">曹洞宗</span> - <span class="keyword">只管打坐<i class="fa-solid fa-chair"></i></span>（しかんたざ）</p>
+                        <div class="connection">
+                            <i class="fa-solid fa-arrow-right connection-icon"></i>
+                            <p>「ただひたすらに坐る」という意味</p>
+                        </div>
+                        <p>目的を持たず、<span class="keyword">修証一等<i class="fa-solid fa-equals"></i></span>（修行と悟りは一体）</p>
+                    </div>
+                    <div class="arrow">
+                        <i class="fa-solid fa-arrow-down-long"></i>
+                    </div>
+                    <div class="glass">
+                        <p><span class="handwriting-circle">臨済宗</span> - <span class="keyword">公案禅<i class="fa-solid fa-puzzle-piece"></i></span></p>
+                        <div class="connection">
+                            <i class="fa-solid fa-arrow-right connection-icon"></i>
+                            <p>常識的思考では答えられない問いを用いる</p>
+                        </div>
+                        <p>例：<span class="keyword">趙州無字<i class="fa-solid fa-dog"></i></span>、<span class="keyword">隻手音声<i class="fa-solid fa-hand"></i></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セクション3: 禅の核心概念 -->
+            <div class="card scroll-fade" style="animation-delay: 0.4s;">
+                <i class="fa-solid fa-infinity fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-lightbulb fa-bounce"></i>
+                    禅の核心概念
+                </h2>
+                <div class="section-content">
+                    <p><span class="keyword">悟り（さとり）<i class="fa-solid fa-sun"></i></span></p>
+                    <p>
+                        自己と世界の真実のありさまを<span class="highlight">身体全体で体験的に理解し、腑に落ちた状態</span>です。
+                    </p>
+                    <div class="handwriting-line"></div>
+                    <p><span class="keyword">空（くう）<i class="fa-solid fa-wind"></i></span></p>
+                    <p>
+                        すべての存在は<span class="keyword">独立した不変の実体を持たない<i class="fa-solid fa-wave-square"></i></span>という考え。物も人も<span class="keyword">常に変化し<i class="fa-solid fa-arrows-rotate"></i></span>、<span class="keyword">関係性の中で成り立つ<i class="fa-solid fa-network-wired"></i></span>。
+                    </p>
+                    <div class="handwriting-line"></div>
+                    <p><span class="keyword">仏性（ぶっしょう）<i class="fa-solid fa-seedling"></i></span></p>
+                    <p>
+                        すべての生きものには<span class="highlight">生まれながらにして仏となる可能性</span>が宿っています。
+                    </p>
+                    <div class="handwriting-line"></div>
+                    <p><span class="keyword">煩悩即菩提<i class="fa-solid fa-yin-yang"></i></span></p>
+                    <p>
+                        煩悩（迷いや苦しみ）そのものが<span class="highlight">悟りである</span>という逆説的な教え。
+                    </p>
+                </div>
+            </div>
+
+            <!-- セクション4: 禅を日常に活かす -->
+            <div class="card scroll-fade" style="animation-delay: 0.6s;">
+                <i class="fa-solid fa-mug-hot fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-calendar-day fa-bounce"></i>
+                    禅を日常に活かす
+                </h2>
+                <div class="section-content">
+                    <p>
+                        <span class="keyword">喫茶去<i class="fa-solid fa-mug-tea"></i></span>（きっさこ - お茶を飲んで行きなさい）の精神で日常のあらゆる瞬間を修行の場に。
+                    </p>
+                    <div class="practice-list">
+                        <div class="practice-item">
+                            <i class="fa-solid fa-bullseye icon-hover fa-beat"></i>
+                            <div>
+                                <span class="keyword">今この瞬間に集中する<i class="fa-solid fa-clock"></i></span>
+                                <p>日常のマインドフルネス。洗い物をしている時は洗い物に集中。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-minus icon-hover fa-beat"></i>
+                            <div>
+                                <span class="keyword">余計なものを削ぎ落とす<i class="fa-solid fa-broom"></i></span>
+                                <p>シンプルさを追求し、本当に必要なものは何かを見極める。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-water icon-hover fa-beat"></i>
+                            <div>
+                                <span class="keyword">変化を受け入れる<i class="fa-solid fa-leaf"></i></span>
+                                <p>諸行無常の理解で、予期せぬ変化や困難もしなやかに受け入れる。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-hammer icon-hover fa-beat"></i>
+                            <div>
+                                <span class="keyword">行動そのものに意味を見出す<i class="fa-solid fa-fire"></i></span>
+                                <p>結果への執着を手放し、今為している行動そのものに全力を尽くす。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セクション5: 禅が現代社会にもたらすもの -->
+            <div class="card scroll-fade" style="animation-delay: 0.8s;">
+                <i class="fa-solid fa-city fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-gift fa-bounce"></i>
+                    禅が現代社会にもたらすもの
+                </h2>
+                <div class="section-content">
+                    <p>情報過多、ストレス過多の現代社会で、禅の教えはますます重要性を増しています。</p>
+                    <div class="practice-list">
+                        <div class="practice-item">
+                            <i class="fa-solid fa-heart-pulse icon-hover fa-fade"></i>
+                            <div>
+                                <span class="keyword">心の安定と平静<i class="fa-solid fa-feather"></i></span>
+                                <p>絶えず変化する環境の中で、内なる平静を取り戻す力。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-microscope icon-hover fa-fade"></i>
+                            <div>
+                                <span class="keyword">集中力と生産性の向上<i class="fa-solid fa-gauge-high"></i></span>
+                                <p>マルチタスクではなく、シングルタスクに没頭する力。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-user-check icon-hover fa-fade"></i>
+                            <div>
+                                <span class="keyword">自己理解と自己受容<i class="fa-solid fa-scale-balanced"></i></span>
+                                <p>思考や感情パターンに気づき、不完全な自分をも受け入れる。</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <i class="fa-solid fa-handshake icon-hover fa-fade"></i>
+                            <div>
+                                <span class="keyword">より良い人間関係<i class="fa-solid fa-users"></i></span>
+                                <p>自己理解が他者理解につながり、より深い関係を築く。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セクション6: まとめ -->
+            <div class="card scroll-fade" style="animation-delay: 1s;">
+                <i class="fa-solid fa-circle-nodes fa-2x card-icon"></i>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-check-double fa-bounce"></i>
+                    まとめ
+                </h2>
+                <div class="section-content">
+                    <p>
+                        禅の教えは「<span class="keyword">今ここ<i class="fa-solid fa-location-crosshairs"></i></span>」という、誰にでも開かれている現実に全身全霊で向き合うことにあります。
+                    </p>
+                    <div class="glass">
+                        <p class="highlight">
+                            <i class="fa-solid fa-quote-left"></i>
+                            完璧を目指すのではなく、ありのままの自分と世界を受け入れ、今できる最善を尽くして生きていく
+                            <i class="fa-solid fa-quote-right"></i>
+                        </p>
+                    </div>
+                    <p>
+                        小さな一歩から、禅の智慧をあなたの人生に取り入れてみませんか？
+                    </p>
+                    <div class="connection">
+                        <i class="fa-solid fa-seedling connection-icon fa-beat"></i>
+                        <p>きっと、世界の見え方が変わり、<span class="keyword">今を生きる力<i class="fa-solid fa-bolt"></i></span>が湧いてくるはずです。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <i class="fa-solid fa-book"></i> 
+            出典：禅の教えに関する記事（2025年4月）
+        </footer>
+    </div>
+
+    <!-- 背景装飾 -->
+    <div class="bg-pattern bg-pattern-1">
+        <i class="fa-solid fa-shapes"></i>
+    </div>
+    <div class="bg-pattern bg-pattern-2">
+        <i class="fa-solid fa-dharmachakra"></i>
+    </div>
+    <div class="bg-pattern bg-pattern-3">
+        <i class="fa-solid fa-yin-yang"></i>
+    </div>
+
+    <script>
+        // スクロールアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-fade');
+            
+            function elementInView(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+                );
+            }
+            
+            function displayScrollElement(element) {
+                element.classList.add('visible');
+            }
+            
+            function handleScrollAnimation() {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el)) {
+                        displayScrollElement(el);
+                    }
+                });
+            }
+            
+            // 初期チェック
+            handleScrollAnimation();
+            
+            // スクロールイベント
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+
+            // アイコンの相互作用
+            const iconHovers = document.querySelectorAll('.icon-hover');
+            iconHovers.forEach((icon) => {
+                icon.addEventListener('click', function() {
+                    this.classList.toggle('fa-flip');
+                    setTimeout(() => {
+                        this.classList.toggle('fa-flip');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
