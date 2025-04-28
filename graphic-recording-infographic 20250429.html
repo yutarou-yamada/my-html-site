@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.5万円GoProを買わずに得た気づき 〜温泉旅で実践した「足るを知る」の幸福論〜</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    :root {
+      --color-1: #2E578C;
+      --color-2: #182D40;
+      --color-3: #BF807A;
+      --color-4: #592A2A;
+      --color-5: #F2F2F2;
+    }
+
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-5);
+      color: var(--color-2);
+      line-height: 1.4;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 3px solid var(--color-1);
+      padding-bottom: 15px;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      background: linear-gradient(45deg, var(--color-1), var(--color-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      position: relative;
+      padding-left: 45px;
+    }
+
+    h1::before {
+      content: "\f5c0";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 36px;
+      color: var(--color-1);
+      -webkit-text-fill-color: var(--color-1);
+    }
+
+    h1::after {
+      content: "\f6de";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: -45px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 36px;
+      color: var(--color-3);
+      -webkit-text-fill-color: var(--color-3);
+    }
+
+    .date {
+      font-family: 'Yomogi', cursive;
+      color: var(--color-4);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 30%;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--color-1), var(--color-3));
+      border-radius: 12px 12px 0 0;
+    }
+
+    h2 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: 18px;
+      color: var(--color-1);
+      margin-top: 0;
+      margin-bottom: 15px;
+      padding-left: 35px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    h2 i {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: var(--color-1);
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--color-2);
+      margin-bottom: 10px;
+    }
+
+    .keyword {
+      font-weight: bold;
+      color: var(--color-1);
+      background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.3) 40%);
+      padding: 0 2px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .keyword i {
+      font-size: 14px;
+      margin-right: 3px;
+      color: var(--color-3);
+    }
+
+    .quote {
+      font-family: 'Yomogi', cursive;
+      font-style: italic;
+      color: var(--color-4);
+      border-left: 3px solid var(--color-3);
+      padding-left: 10px;
+      margin: 15px 0;
+    }
+
+    .highlight-box {
+      background: rgba(46, 87, 140, 0.08);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .highlight-box i.corner-icon {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 20px;
+      background: white;
+      color: var(--color-1);
+      border-radius: 50%;
+      padding: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .connection {
+      position: relative;
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .connection::before {
+      content: "\f061";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--color-3);
+    }
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .icon-container i {
+      font-size: 48px;
+      color: var(--color-1);
+      margin: 0 10px;
+    }
+
+    .icon-circle {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      margin: 0 auto 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon-circle i {
+      font-size: 40px;
+      color: var(--color-1);
+    }
+
+    .icon-circle::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 2px dashed var(--color-3);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .benefits {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .benefits li {
+      margin-bottom: 10px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .benefits li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--color-3);
+    }
+
+    .comparison {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .comparison-item {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .vs {
+      font-weight: bold;
+      color: var(--color-4);
+      font-size: 20px;
+      margin: 0 10px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--color-1);
+      margin-top: 5px;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: var(--color-4);
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid var(--color-3);
+    }
+
+    .arrow-connection {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .arrow-connection::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: var(--color-3);
+      transform: translateY(-50%);
+    }
+
+    .arrow-connection::after {
+      content: "\f061";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 20%;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-3);
+      font-size: 20px;
+    }
+
+    .arrow-connection i {
+      background: white;
+      position: relative;
+      z-index: 1;
+      padding: 0 10px;
+      color: var(--color-1);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      font-size: 200px;
+      opacity: 0.03;
+      color: var(--color-1);
+      transform: rotate(-15deg);
+      z-index: -1;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+      
+      .column {
+        min-width: 100%;
+      }
+    }
+
+    /* アニメーション効果 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* ホバー効果 */
+    .icon-circle:hover i {
+      color: var(--color-3);
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+
+    .keyword:hover {
+      color: var(--color-3);
+      transition: color 0.3s ease;
+    }
+
+    h2 i:hover {
+      transform: translateY(-50%) scale(1.1);
+      color: var(--color-3);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <i class="fa-solid fa-shapes bg-pattern"></i>
+    
+    <div class="header">
+      <h1>3.5万円GoProを買わずに得た気づき</h1>
+      <div class="date">
+        <i class="fa-solid fa-calendar-days"></i> 温泉旅で実践した「足るを知る」の幸福論
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- 左カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-circle-question fa-beat"></i> 「足るを知る」とは何か？</h2>
+          <p>私たちは<span class="keyword"><i class="fa-solid fa-arrow-trend-up"></i>情報過多</span>の時代に生きています。新しいガジェット、流行のアイテム、SNSで輝く他人の生活――。次々と現れる魅力的なモノや情報に囲まれていると、「もっと良いものが欲しい」という思いが、心のどこかに芽生えがちです。</p>
+          
+          <div class="quote">
+            「知足者富（足るを知る者は富む）」<i class="fa-solid fa-book"></i> 老子
+          </div>
+          
+          <p>これは、持っているもの、今の状況に<span class="keyword"><i class="fa-solid fa-heart"></i>満足する</span>ことこそが、本当の豊かさであるという意味です。現代社会は、常に「不足」を意識させられるようにできています。</p>
+          
+          <div class="highlight-box">
+            <i class="fa-solid fa-lightbulb corner-icon fa-bounce"></i>
+            <p>「足るを知る」は、<span class="keyword"><i class="fa-solid fa-ban"></i>我慢や諦め</span>ではありません。外部の基準や他者との比較から一度離れ、自分の内面に目を向け、「自分はすでに十分持っているのではないか？」と問いかけることから始まります。</p>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-camera-retro fa-flip"></i> GoProへの憧れ</h2>
+          
+          <p>待ちに待った温泉地への旅行を計画していました。美しい景色を写真や動画に残したい、そう考える中で、ふと頭に浮かんだのが<span class="keyword"><i class="fa-solid fa-video"></i>GoPro</span>でした。</p>
+          
+          <div class="icon-container">
+            <i class="fa-solid fa-person-swimming"></i>
+            <i class="fa-solid fa-mountain-sun"></i>
+            <i class="fa-solid fa-hot-tub-person"></i>
+          </div>
+          
+          <p>小型で防水、手ブレ補正も優秀で、旅行やアウトドアにぴったりだという評判。家電量販店のサイトを見たり、レビュー動画を見たりするうちに、欲しい気持ちはどんどん強くなっていきました。</p>
+          
+          <div class="comparison">
+            <div class="comparison-item">
+              <i class="fa-solid fa-video fa-2x" style="color: var(--color-1);"></i>
+              <p>GoPro最新モデル</p>
+              <div class="price">3.5万円</div>
+            </div>
+            <div class="vs">VS</div>
+            <div class="comparison-item">
+              <i class="fa-solid fa-mobile-screen fa-2x" style="color: var(--color-3);"></i>
+              <p>iPhone 8 (所有済)</p>
+              <div class="price">0円</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-lightbulb fa-shake"></i> 「足るを知る」実践のきっかけ</h2>
+          
+          <p>GoPro購入寸前まで心が動いたのですが、そこで立ち止まるきっかけがありました。</p>
+          
+          <div class="connection">
+            <p>「本当にGoProじゃなきゃダメか？」</p>
+          </div>
+          
+          <div class="connection">
+            <p>「今の目的を果たすために、他に使えるものはないか？」</p>
+          </div>
+          
+          <p>考えてみると、私はまだ十分に使える<span class="keyword"><i class="fa-solid fa-mobile-screen"></i>iPhone 8</span>を持っていました。最新モデルではないけれど、写真も動画も撮れるし、日常使いには十分な性能です。</p>
+          
+          <p>ただ、GoProのように手軽に持って安定した撮影をするためのアクセサリーがありません。そこで思いついたのが、<span class="keyword"><i class="fa-solid fa-tripod"></i>スマートフォン用の三脚</span>です。</p>
+        </div>
+      </div>
+
+      <!-- 中央カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-lightbulb fa-fade"></i> 代替策の発見</h2>
+          
+
+          <p>Amazonなどで探した<span class="keyword"><i class="fa-solid fa-screwdriver-wrench"></i>伸び縮みする三脚</span>は、三脚の脚の部分が一体となって伸び縮みする構造になっており、脚を閉じるとそのまま一体型の棒状のグリップになるタイプのものです。</p>
+          
+          <div class="highlight-box">
+            <i class="fa-solid fa-wand-magic-sparkles corner-icon fa-bounce"></i>
+            <p>この一つのアイテムで、<span class="keyword"><i class="fa-solid fa-check"></i>複数の機能</span>を果たします！</p>
+          </div>
+          
+          <p><span class="keyword"><i class="fa-solid fa-1"></i>三脚モード</span>：脚を開いて地面やテーブルに置けば通常の三脚として使える。集合写真や、夜景など手ブレさせたくない撮影に便利。</p>
+          
+          <p><span class="keyword"><i class="fa-solid fa-2"></i>グリップモード</span>：脚をコンパクトに閉じて一体化させれば、太めのしっかりした持ち手になり、手ブレを抑えた撮影が可能。</p>
+          
+          <p><span class="keyword"><i class="fa-solid fa-3"></i>自撮り棒モード</span>：グリップ部分がさらに伸び縮みして、簡易的な自撮り棒としても使える。</p>
+          
+          <div class="arrow-connection">
+            <i class="fa-solid fa-recycle"></i>
+          </div>
+          
+          <div class="comparison">
+            <div class="comparison-item">
+              <i class="fa-solid fa-video fa-2x" style="color: var(--color-1);"></i>
+              <p>GoPro</p>
+              <div class="price">3.5万円</div>
+            </div>
+            <div class="vs">VS</div>
+            <div class="comparison-item">
+              <i class="fa-solid fa-tripod fa-2x" style="color: var(--color-3);"></i>
+              <p>伸び縮みする三脚</p>
+              <div class="price">数千円</div>
+            </div>
+          </div>
+          
+          <p>結局、私はGoProを買わないことを決め、代わりに<span class="keyword"><i class="fa-solid fa-money-bill-wave"></i>数千円</span>の伸び縮みするスマートフォン用三脚を購入しました。</p>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-user-check fa-fade"></i> 実践の成果</h2>
+          
+          <p>温泉地での旅行当日、iPhone 8と数千円で購入した伸び縮みする三脚が<span class="keyword"><i class="fa-solid fa-star"></i>大活躍</span>しました！</p>
+          
+          <div class="icon-container">
+            <i class="fa-solid fa-people-group"></i>
+            <i class="fa-solid fa-camera"></i>
+            <i class="fa-solid fa-person-hiking"></i>
+          </div>
+          
+          <p>美しい景色の前では、脚を開いて三脚として設置し、タイマー撮影や集合写真撮影に大活躍。みんなで一緒に写れた喜びは、高価なGoProで最高の画質を追求するよりも、ずっと大きな旅の価値に感じられました。</p>
+          
+          <p>また、脚を閉じてグリップ状にして手に持って撮影する際も、手で直接持つよりも安定感が増し、歩きながらの景色撮影もブレずに撮れるようになりました。</p>
+          
+          <div class="highlight-box">
+            <i class="fa-solid fa-circle-check corner-icon fa-bounce"></i>
+            <p>結果として、約<span class="keyword"><i class="fa-solid fa-yen-sign"></i>3.5万円</span>の出費を抑え、<span class="keyword"><i class="fa-solid fa-sack-dollar"></i>数千円</span>の投資で当初の目的を十分に果たすことができました！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="column">
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-gem fa-beat"></i> 得られたメリット</h2>
+          
+          <ul class="benefits">
+            <li><span class="keyword"><i class="fa-solid fa-sack-dollar"></i>費用の節約以上の価値</span>：数千円の投資で目的を達成できたという「賢い消費」の成功体験は、単なる節約以上の満足感をもたらしました。</li>
+            
+            <li><span class="keyword"><i class="fa-solid fa-rotate"></i>既存のモノの価値再発見＆拡張</span>：古いiPhone 8は、単体では限界があったかもしれません。しかし、数千円の伸び縮みする三脚というアクセサリーと組み合わせることで、その機能は大きく拡張されました。</li>
+            
+            <li><span class="keyword"><i class="fa-solid fa-ban"></i>無駄なモノが増えない</span>：GoProを買っていたら、また一つ新しいガジェットが増え、充電や管理の手間が増え、「型落ち」の不安も生まれたかも。</li>
+            
+            <li><span class="keyword"><i class="fa-solid fa-brain"></i>問題解決能力の向上</span>：新しいモノを買うという安易な解決策に飛びつくのではなく、「今あるものでどうにかできないか？」と考える力が鍛えられます。</li>
+            
+            <li><span class="keyword"><i class="fa-solid fa-bullseye"></i>本質へのフォーカス</span>：モノはあくまで手段であり、目的そのものではないという当たり前のことに改めて気づかされました。</li>
+            
+            <li><span class="keyword"><i class="fa-solid fa-heart"></i>内側からの満足感</span>：広告や他人の持ち物を見て生まれる欲求は、外側からの刺激によるものです。それに対して、「今あるもので十分だ」という感覚は、自分の内側から生まれる満足感です。</li>
+          </ul>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-seedling fa-fade"></i> 日常生活への応用</h2>
+          
+          <div class="connection">
+            <p><span class="keyword"><i class="fa-solid fa-pause"></i>衝動買いの前に「一時停止」</span>：何か新しいモノが欲しくなったら、すぐに買わずに一晩考えてみる。「本当に必要か？」と自問自答する習慣をつける。</p>
+          </div>
+          
+          <div class="connection">
+            <p><span class="keyword"><i class="fa-solid fa-magnifying-glass"></i>手持ちのモノを「再評価」</span>：自宅にあるモノを「足りないもの」の視点ではなく、「今あるもの」の視点で見直してみる。</p>
+          </div>
+          
+          <div class="connection">
+            <p><span class="keyword"><i class="fa-solid fa-gear"></i>機能に注目し、ステータスは気にしない</span>：モノを選ぶ際、ブランド名や最新かどうかよりも、自分の目的を果たす機能があるかに注目する。</p>
+          </div>
+          
+          <div class="connection">
+            <p><span class="keyword"><i class="fa-solid fa-scale-balanced"></i>「足りない」ではなく「ある」に目を向ける</span>：日々の中で、持っていないものではなく、すでに持っているものに意識的に目を向け、感謝する。</p>
+          </div>
+        </div>
+
+        <div class="section fade-in">
+          <h2><i class="fa-solid fa-flag-checkered fa-shake"></i> まとめ</h2>
+          
+          <div class="quote">
+            「足るを知る者は富む」
+          </div>
+          
+          <p>「足るを知る」ことは、決して我慢や諦めではありません。それは、際限のない欲望の追求というラットレースから降り、自分自身の内面に目を向け、今ある豊かさに気づき、心の平安と自由を得るための道です。</p>
+          
+          <div class="highlight-box">
+            <i class="fa-solid fa-lightbulb corner-icon fa-bounce"></i>
+            <p>この言葉の真の意味は、物質的な所有量ではなく、<span class="keyword"><i class="fa-solid fa-heart"></i>心の充足感</span>こそが真の豊かさだということです。</p>
+          </div>
+          
+          <p>もしあなたが今、「何か足りない」「もっと欲しい」と感じているなら、一度立ち止まって、あなたの足元、あなたの手の中にあるものを見てください。そして、<span class="keyword"><i class="fa-solid fa-question"></i>「今の私に『足りている』ものは何だろう？」</span>と問いかけてみてください。</p>
+          
+          <p>そこから、あなたが探していた真の豊かさへの扉が開かれるかもしれません。</p>
+          
+          <div class="icon-container">
+            <i class="fa-solid fa-heart fa-beat" style="color: var(--color-3);"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <i class="fa-solid fa-book"></i> 出典：「3.5万円GoProを買わずに得た気づき ～温泉旅で実践した「足るを知る」の幸福論～」
+    </div>
+  </div>
+</body>
+</html>
