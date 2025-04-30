@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アルトラシューズで変わる歩き方と日常生活</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --color-mystic1: #2E578C;
+            --color-mystic2: #182D40;
+            --color-mystic3: #BF807A;
+            --color-mystic4: #592A2A;
+            --color-mystic5: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Yomogi', cursive;
+            background-color: var(--color-mystic5);
+            color: #334155;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "\f5cb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: fixed;
+            top: 10%;
+            left: 5%;
+            font-size: 400px;
+            color: rgba(46, 87, 140, 0.05);
+            z-index: -1;
+        }
+
+        body::after {
+            content: "\f554";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: fixed;
+            bottom: 10%;
+            right: 5%;
+            font-size: 400px;
+            color: rgba(191, 128, 122, 0.05);
+            z-index: -1;
+            transform: rotate(-15deg);
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--color-mystic1);
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--color-mystic3);
+            border-radius: 3px;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--color-mystic1), var(--color-mystic4));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-container {
+            font-family: 'Zen Kurenaido', sans-serif;
+            color: var(--color-mystic2);
+            display: flex;
+            align-items: center;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1 1 30%;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-mystic1), var(--color-mystic3));
+            border-radius: 3px 0 0 3px;
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            color: var(--color-mystic1);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .card-icon:hover {
+            transform: scale(1.2);
+            color: var(--color-mystic3);
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .section-title i {
+            position: absolute;
+            left: 0;
+            color: var(--color-mystic1);
+        }
+
+        .handwritten {
+            font-family: 'Yomogi', cursive;
+            position: relative;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--color-mystic4);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .keyword::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-mystic3);
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+
+        .keyword i {
+            margin-right: 5px;
+            color: var(--color-mystic1);
+        }
+
+        .arrow {
+            position: relative;
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--color-mystic1);
+            animation: arrow-flow 2s infinite;
+        }
+
+        @keyframes arrow-flow {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .emotion {
+            display: inline-flex;
+            align-items: center;
+            color: var(--color-mystic4);
+        }
+
+        .emotion i {
+            margin-right: 5px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--color-mystic3);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, var(--color-mystic3), var(--color-mystic3) 5px, transparent 5px, transparent 12px);
+        }
+
+        .divider i {
+            margin: 0 10px;
+        }
+
+        .highlight-box {
+            border: 2px dashed var(--color-mystic1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            background-color: rgba(46, 87, 140, 0.05);
+        }
+
+        .highlight-box::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-top: 2px dashed var(--color-mystic1);
+            border-left: 2px dashed var(--color-mystic1);
+            transform: rotate(45deg);
+        }
+
+        .feature-list {
+            padding-left: 25px;
+            list-style-type: none;
+        }
+
+        .feature-list li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .feature-list li::before {
+            content: "\f105";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: -20px;
+            color: var(--color-mystic3);
+        }
+
+        .connection {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .connection-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-mystic1), var(--color-mystic3));
+            position: relative;
+        }
+
+        .connection-icon {
+            margin: 0 10px;
+            color: var(--color-mystic1);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-mystic1);
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .bubble {
+            position: relative;
+            background-color: var(--color-mystic5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .bubble::after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-style: solid;
+            border-color: transparent var(--color-mystic5) transparent transparent;
+        }
+
+        .conclusion {
+            font-family: 'Kaisei Decol', serif;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 20px;
+            color: var(--color-mystic4);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-mystic3);
+            font-family: 'Zen Kurenaido', sans-serif;
+            color: var(--color-mystic2);
+            font-size: 14px;
+        }
+
+        .footer i {
+            margin-right: 5px;
+        }
+
+        .wish-list {
+            padding-left: 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wish-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--color-mystic5);
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .wish-item:hover {
+            transform: translateX(5px);
+        }
+
+        .wish-icon {
+            margin-right: 10px;
+            color: var(--color-mystic1);
+            font-size: 20px;
+        }
+
+        /* アニメーション */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ホバーエフェクト */
+        .hover-effect {
+            transition: all 0.3s ease;
+        }
+
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .column {
+                flex: 1 1 100%;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date-container {
+                margin-top: 10px;
+            }
+            
+            .title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-container">
+                <i class="fa-solid fa-shoe-prints fa-2x fa-flip" style="color: var(--color-mystic1); margin-right: 15px;"></i>
+                <h1 class="title">アルトラシューズで変わる歩き方と日常生活</h1>
+                <i class="fa-solid fa-person-walking fa-2x fa-bounce" style="color: var(--color-mystic3); margin-left: 15px;"></i>
+            </div>
+            <div class="date-container">
+                <i class="fa-regular fa-calendar" style="margin-right: 5px;"></i>
+                <span>2025年5月1日</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 左カラム -->
+            <div class="column">
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-tv card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-magnifying-glass fa-beat"></i>
+                        出会いのきっかけ
+                    </h2>
+                    <p class="handwritten">
+                        <span class="emotion"><i class="fa-solid fa-quote-left"></i>「YouTubeって、本当に危険な場所だな…」</span>
+                        何気なく見ていた動画で、
+                        <span class="keyword"><i class="fa-solid fa-shoe-prints"></i>ALTRA（アルトラ）</span>
+                        という靴に出会いました。
+                    </p>
+                    <div class="bubble">
+                        <span class="keyword"><i class="fa-solid fa-comment"></i>動画での言葉</span>
+                        <ul class="feature-list">
+                            <li>一度履いたら、もう他の靴には戻れない</li>
+                            <li>足が本当に喜ぶ感覚</li>
+                            <li>散歩がしたくなる靴</li>
+                        </ul>
+                    </div>
+                    <p class="handwritten">
+                        最初の印象は「<span class="emotion"><i class="fa-solid fa-face-confused"></i>…え、この形？</span>」でした。
+                        つま先の<span class="keyword"><i class="fa-solid fa-arrows-left-right-to-line"></i>ぽってりとした形</span>に
+                        抵抗を感じましたが、「足が喜ぶ」という言葉が頭から離れませんでした。
+                    </p>
+                </div>
+
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-shoe-prints card-icon fa-flip"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-lightbulb fa-bounce"></i>
+                        アルトラの特徴
+                    </h2>
+                    <div class="highlight-box">
+                        <span class="keyword"><i class="fa-solid fa-1"></i>フットシェイプ™ トゥーボックス</span>
+                        <p class="handwritten">足の指が<span class="keyword"><i class="fa-solid fa-fan"></i>扇形</span>に自然に広がれるように設計されたつま先部分。足指が自由に動けるスペースを確保！</p>
+                    </div>
+                    
+                    <div class="connection">
+                        <div class="connection-line"></div>
+                        <i class="fa-solid fa-plus connection-icon fa-spin"></i>
+                        <div class="connection-line"></div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <span class="keyword"><i class="fa-solid fa-2"></i>バランスクッション™（ゼロドロップ）</span>
+                        <p class="handwritten">かかととつま先の<span class="keyword"><i class="fa-solid fa-ruler"></i>高低差がゼロ</span>。自然な姿勢を保ち、体の歪みを軽減！</p>
+                    </div>
+                    
+                    <p class="handwritten">
+                        これらの特徴により、足本来の機能を引き出し、より<span class="keyword"><i class="fa-solid fa-person-running"></i>自然な歩き方</span>をサポートします。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 中央カラム -->
+            <div class="column">
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-shop card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-store fa-fade"></i>
+                        試着体験
+                    </h2>
+                    <p class="handwritten">
+                        決心して店舗へ行き、恐る恐る足を入れてみると…
+                    </p>
+                    <div class="process-step">
+                        <div class="step-number">！</div>
+                        <div class="step-content">
+                            <span class="emotion"><i class="fa-solid fa-face-surprise fa-shake"></i>「なに、これ…！」</span>
+                        </div>
+                    </div>
+                    <p class="handwritten">
+                        それまでのどんな靴でも感じていた
+                        <span class="keyword"><i class="fa-solid fa-compress"></i>足先の締め付け感</span>が全くありません。
+                        代わりにあったのは圧倒的な<span class="keyword"><i class="fa-solid fa-unlock"></i>解放感</span>でした。
+                    </p>
+                    <div class="bubble">
+                        足の指たちが「<span class="emotion"><i class="fa-solid fa-face-grin-stars"></i>おおっ、やっと本来のスペースだ！</span>」と
+                        扇形に広がりました。
+                    </div>
+                    <p class="handwritten">
+                        歩いてみると、足裏全体で地面を<span class="keyword"><i class="fa-solid fa-hand-back-fist"></i>捉える感覚</span>と
+                        安定感を実感。見た目の抵抗は、この解放感の前には<span class="keyword"><i class="fa-solid fa-wind"></i>塵</span>のようでした。
+                    </p>
+                </div>
+
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-person-walking card-icon fa-bounce"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-arrows-spin fa-spin"></i>
+                        日常の変化
+                    </h2>
+                    <p class="handwritten">
+                        アルトラを履き始めてからの変化は驚くべきものでした。
+                    </p>
+                    <div class="process-step">
+                        <div class="step-number">前</div>
+                        <div class="step-content">
+                            会社の近くのコンビニに行くときは<span class="keyword"><i class="fa-solid fa-holly-berry"></i>クロックス</span>のまま。
+                        </div>
+                    </div>
+                    <div class="arrow">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">後</div>
+                        <div class="step-content">
+                            たとえ近距離でも<span class="keyword"><i class="fa-solid fa-shoe-prints fa-fade"></i>アルトラ</span>に履き替えるように！
+                        </div>
+                    </div>
+                    <p class="handwritten">
+                        あの<span class="keyword"><i class="fa-solid fa-heart fa-beat"></i>解放感</span>を味わいたくて、
+                        数秒の履き替え時間も惜しまなくなりました。
+                        アルトラでの一歩一歩が<span class="keyword"><i class="fa-solid fa-face-smile-beam"></i>快適</span>で
+                        <span class="keyword"><i class="fa-solid fa-face-grin-hearts"></i>楽しい</span>ものになったからです。
+                    </p>
+                </div>
+
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-map card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-seedling fa-beat"></i>
+                        体への良い影響
+                    </h2>
+                    <p class="handwritten">
+                        アルトラを履き始めて数週間で<span class="keyword"><i class="fa-solid fa-ban"></i>足の悩み</span>は消失。
+                        長時間歩いても足指の痛みや小指の擦れもなくなりました。
+                    </p>
+                    <div class="connection">
+                        <div class="connection-line"></div>
+                        <i class="fa-solid fa-check connection-icon fa-shake"></i>
+                        <div class="connection-line"></div>
+                    </div>
+                    <p class="handwritten">
+                        単なる「クッションが良い靴」ではなく、<span class="keyword"><i class="fa-solid fa-arrows-rotate"></i>足本来の機能を取り戻す</span>
+                        哲学が根底にあります。正しい姿勢で立てるようになり、
+                        歩行時の<span class="keyword"><i class="fa-solid fa-person-circle-check"></i>体のブレ</span>も減ったと感じています。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div class="column">
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-list card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-boxes-stacked fa-fade"></i>
+                        アルトラの製品ライン
+                    </h2>
+                    <p class="handwritten">
+                        アルトラには様々な用途に合わせたモデルがあります。
+                    </p>
+                    <ul class="feature-list">
+                        <li><span class="keyword"><i class="fa-solid fa-person-running"></i>ランニング</span>モデル</li>
+                        <li><span class="keyword"><i class="fa-solid fa-mountain"></i>トレイルランニング</span>モデル</li>
+                        <li><span class="keyword"><i class="fa-solid fa-person-walking"></i>ウォーキング</span>モデル</li>
+                        <li><span class="keyword"><i class="fa-solid fa-dumbbell"></i>フィットネス</span>モデル</li>
+                        <li><span class="keyword"><i class="fa-solid fa-shirt"></i>ライフスタイル</span>モデル</li>
+                    </ul>
+                    <p class="handwritten">
+                        最近は<span class="keyword"><i class="fa-solid fa-briefcase"></i>普段使い</span>しやすいモデルも登場：
+                    </p>
+                    <div class="highlight-box">
+                        <ul class="feature-list">
+                            <li>レザーの<span class="keyword"><i class="fa-solid fa-shoe-prints"></i>ADDICT/MOCCA</span></li>
+                            <li>日常使いに最適な<span class="keyword"><i class="fa-solid fa-shoe-prints"></i>Instinct Everyday</span></li>
+                            <li>通勤にも人気の<span class="keyword"><i class="fa-solid fa-shoe-prints"></i>ESCALANTE</span>シリーズ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-star card-icon fa-spin"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-heart fa-beat"></i>
+                        密かな願い
+                    </h2>
+                    <p class="handwritten">
+                        アルトラへの切実な願いがあります。
+                    </p>
+                    <div class="bubble">
+                        <span class="emotion"><i class="fa-solid fa-hands-praying"></i>願い：</span>
+                        <span class="keyword"><i class="fa-solid fa-briefcase"></i>ビジネスシューズ版</span>
+                        を作ってほしい！
+                    </div>
+                    <p class="handwritten">
+                        フットシェイプとゼロドロップを維持しつつ、
+                        <span class="keyword"><i class="fa-solid fa-user-tie"></i>スーツ</span>に合う本格的な
+                        <span class="keyword"><i class="fa-solid fa-shoe-prints"></i>革靴</span>があれば…
+                    </p>
+                    <div class="wish-list">
+                        <div class="wish-item">
+                            <i class="fa-solid fa-person-booth wish-icon"></i>
+                            <span>立ち仕事の方の足の悩み解消</span>
+                        </div>
+                        <div class="wish-item">
+                            <i class="fa-solid fa-car wish-icon"></i>
+                            <span>営業マンの外回りの負担軽減</span>
+                        </div>
+                        <div class="wish-item">
+                            <i class="fa-solid fa-chart-line wish-icon"></i>
+                            <span>ビジネスパフォーマンスの向上</span>
+                        </div>
+                    </div>
+                    <p class="handwritten">
+                        実現したら、多くのビジネスパーソンにとって
+                        <span class="keyword"><i class="fa-solid fa-bolt"></i>革命</span>になるはずです！
+                    </p>
+                </div>
+
+                <div class="card hover-effect">
+                    <i class="fa-solid fa-check-double card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-list-check fa-shake"></i>
+                        こんな人におすすめ
+                    </h2>
+                    <ul class="feature-list">
+                        <li><span class="keyword"><i class="fa-solid fa-face-frown"></i>長時間歩くと足が痛くなる</span>人</li>
+                        <li><span class="keyword"><i class="fa-solid fa-compress"></i>足指の締め付け</span>が気になる人</li>
+                        <li><span class="keyword"><i class="fa-solid fa-triangle-exclamation"></i>外反母趾や内反小趾</span>などの足の悩みがある人</li>
+                        <li>もっと<span class="keyword"><i class="fa-solid fa-face-smile"></i>快適に歩き</span>たい人</li>
+                        <li>足本来の<span class="keyword"><i class="fa-solid fa-gears"></i>機能</span>を意識したい人</li>
+                    </ul>
+                    <div class="divider">
+                        <i class="fa-solid fa-shoe-prints fa-fade"></i>
+                    </div>
+                    <p class="handwritten">
+                        独特な見た目に最初は戸惑うかもしれませんが、
+                        一度足を入れた時の<span class="keyword"><i class="fa-solid fa-unlock"></i>解放感</span>と
+                        <span class="keyword"><i class="fa-solid fa-heart fa-beat"></i>足が喜ぶ感覚</span>を
+                        体験したら、きっとアルトラの虜になるはずです。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <i class="fa-solid fa-quote-left" style="margin-right: 10px; color: var(--color-mystic3);"></i>
+            見た目 ＜＜＜ 快適さ。アルトラで「歩く」が喜びに変わる！
+            <i class="fa-solid fa-quote-right" style="margin-left: 10px; color: var(--color-mystic3);"></i>
+        </div>
+
+        <footer class="footer">
+            <i class="fa-solid fa-book"></i>
+            出典：個人ブログ記事「まさか、この形に沼るとは。YouTubeで出会った「ALTRA（アルトラ）」が、私の日常とウォーキングライフを変えた話。そして、密かなる願い。」
+        </footer>
+    </div>
+</body>
+</html>
