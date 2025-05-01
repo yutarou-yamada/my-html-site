@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プログラミングと早起きの喜び：Python学習で見つけた新しい朝の習慣</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Yomogi', cursive;
+            background-color: #F2F2F2;
+            color: #182D40;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%232E578C' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2E578C;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #BF807A;
+            border-radius: 3px;
+        }
+
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #2E578C;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #2E578C, #BF807A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .title i {
+            margin: 0 10px;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .date {
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-size: 16px;
+            color: #592A2A;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(46, 87, 140, 0.1);
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(46, 87, 140, 0.2);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(46, 87, 140, 0.15);
+        }
+
+        .section-icon {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 4em;
+            color: rgba(46, 87, 140, 0.15);
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: #2E578C;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed #BF807A;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #592A2A;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: #592A2A;
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.4) 40%);
+            padding: 0 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .keyword:hover {
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.8) 40%);
+        }
+
+        .keyword i {
+            font-size: 0.9em;
+            color: #592A2A;
+        }
+
+        .note {
+            background-color: rgba(191, 128, 122, 0.1);
+            border-left: 3px solid #BF807A;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+        }
+
+        .arrow {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2E578C;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .arrow::before,
+        .arrow::after {
+            content: '';
+            height: 2px;
+            background-color: #BF807A;
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2em;
+            color: rgba(46, 87, 140, 0.2);
+        }
+
+        .card-title {
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-weight: bold;
+            color: #2E578C;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            color: #592A2A;
+        }
+
+        .tips-list {
+            list-style-type: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tips-list li i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: #2E578C;
+        }
+
+        .steps-list {
+            list-style-type: none;
+            counter-reset: steps;
+        }
+
+        .steps-list li {
+            margin-bottom: 10px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .steps-list li::before {
+            counter-increment: steps;
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: #2E578C;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .bubble {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent;
+            display: block;
+            width: 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #BF807A;
+            font-size: 14px;
+            text-align: center;
+            color: #592A2A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .highlight-box {
+            border: 2px solid #2E578C;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(46, 87, 140, 0.05);
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: #F2F2F2;
+            padding: 0 10px;
+            font-weight: bold;
+            color: #2E578C;
+        }
+
+        .time-tag {
+            background-color: #BF807A;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .connection-line {
+            height: 50px;
+            width: 2px;
+            background-color: #BF807A;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .connection-line::before,
+        .connection-line::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #592A2A;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .connection-line::before {
+            top: 0;
+        }
+
+        .connection-line::after {
+            bottom: 0;
+        }
+
+        .step-box {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #2E578C;
+            background-color: rgba(46, 87, 140, 0.05);
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #2E578C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        /* アニメーション効果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .section {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+        .section:nth-child(9) { animation-delay: 0.9s; }
+
+        .keyword {
+            animation: pulse 2s infinite;
+        }
+
+        .section-title i {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .arrow i {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-wrapper">
+                <i class="fa-solid fa-code fa-2x fa-bounce" style="color: #2E578C;"></i>
+                <h1 class="title">プログラミングと早起きの喜び<i class="fa-solid fa-sun fa-spin" style="color: #BF807A;"></i>Python学習で見つけた新しい朝の習慣</h1>
+            </div>
+            <div class="date">
+                <i class="fa-solid fa-calendar-day"></i> 2025年5月
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div>
+                <!-- セクション1: はじめに -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-sunrise"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-mug-hot fa-beat"></i> はじめに：思いがけない変化</h2>
+                    <div class="content">
+                        <p>
+                            <span class="keyword"><i class="fa-solid fa-clock"></i> 朝の5時</span>。世界が静寂に包まれる刻。かつては耐え難い苦痛だった早起きが、
+                            <span class="keyword"><i class="fa-brands fa-python"></i> Python学習</span>
+                            をきっかけに、一日で<span class="keyword"><i class="fa-solid fa-heart"></i> 最も心躍る時間</span>に変化しました。
+                        </p>
+                        <div class="bubble">
+                            <i class="fa-solid fa-quote-left fa-lg" style="color: #BF807A;"></i>
+                            温かいコーヒーを淹れ、静かにパソコンの電源を入れる。淡い光を放つ画面に向かい、Pythonのコードを書き始める瞬間が、今では一日の中で最も心躍る時間となりました。
+                            <i class="fa-solid fa-quote-right fa-lg" style="color: #BF807A;"></i>
+                        </div>
+                        <p>
+                            <span class="keyword"><i class="fa-solid fa-arrows-spin"></i> 睡眠サイクルの改善</span>は、
+                            キャリアアップのために始めたプログラミング学習の予期せぬ副産物でした。それはまるで、
+                            <span class="keyword"><i class="fa-solid fa-child"></i> 幼少期</span>
+                            に新しいゲームで遊べる期待だけで早起きできた感覚の再来だったのです。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- セクション2: 好きなことの力 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-fire"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-bolt fa-shake"></i> 好きなことが人を変える力</h2>
+                    <div class="content">
+                        <p>
+                            <span class="keyword"><i class="fa-solid fa-scale-balanced"></i> 義務 vs 情熱</span>
+                            という明確な線引き。同じ「作業」でも、取り組む理由によって時間の流れ方が全く異なります。
+                        </p>
+                        <div class="arrow">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <p>
+                            最初は<span class="keyword"><i class="fa-solid fa-weight-hanging"></i> 義務感</span>だったPython学習。
+                            しかし、<span class="keyword"><i class="fa-solid fa-lightbulb"></i> アイデア</span>を
+                            <span class="keyword"><i class="fa-solid fa-code"></i> コード</span>で具現化できる手応えを感じ始めた頃から変化が…
+                        </p>
+                        <div class="note">
+                            <i class="fa-solid fa-quote-left"></i>
+                            「もし、こんな機能を持つプログラムが作れたら便利だろうな」
+                            <br>
+                            「この問題を解決するツールを自分で開発できたら面白いかもしれない」
+                            <i class="fa-solid fa-quote-right"></i>
+                        </div>
+                        <div class="arrow">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <p>
+                            学習開始から3週間、コードが意図通りに動作した瞬間の
+                            <span class="keyword"><i class="fa-solid fa-face-smile fa-bounce"></i> 喜び</span>
+                            に気づいた時、Pythonは
+                            <span class="keyword"><i class="fa-solid fa-shuffle"></i> 「義務」から「熱中」へ</span>
+                            と変化したのです。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- セクション3: 朝の魔法 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-moon fa-flip"></i> 朝の魔法：静寂が生み出す集中力</h2>
+                    <div class="content">
+                        <p>
+                            <span class="keyword"><i class="fa-solid fa-clock-five"></i> 朝5時</span>
+                            には特別な魔法が宿っています。外部からの干渉が遮断され、
+                            <span class="keyword"><i class="fa-solid fa-bell-slash"></i> 通知音もなし</span>。
+                            完全に静まり返った世界で、自身の思考だけに向き合える貴重な時間です。
+                        </p>
+                        <div class="card">
+                            <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                            <h3 class="card-title"><i class="fa-solid fa-microscope"></i> 心理学的観点</h3>
+                            <p>
+                                この現象は「<span class="keyword"><i class="fa-solid fa-arrows-to-dot"></i> 拡散的思考</span>」と
+                                「<span class="keyword"><i class="fa-solid fa-compress"></i> 集中的思考</span>」の切り替えと説明されます。
+                                睡眠中に脳は問題を多角的に処理し続け、朝には既に解決の糸口を見つけています。
+                            </p>
+                        </div>
+                        <div class="highlight-box">
+                            夜に数時間かけても解決できなかった難解なバグが、朝の清澄な頭脳で向き合うと、
+                            驚くほど<span class="keyword"><i class="fa-solid fa-wand-sparkles"></i> あっさりと解決</span>
+                            することも少なくありません。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2カラム -->
+            <div>
+                <!-- セクション4: 学生時代の記憶 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-graduation-cap fa-bounce"></i> 学生時代の記憶：ゲームと早起きの不思議な関係</h2>
+                    <div class="content">
+                        <p>
+                            この感覚は遠い記憶の扉を開きました。中学生の頃、待ちに待った
+                            <span class="keyword"><i class="fa-solid fa-gamepad"></i> 新作ゲーム</span>
+                            を手に入れた翌朝、興奮のあまり遅くまで眠れなかったにもかかわらず、
+                            <span class="keyword"><i class="fa-solid fa-sun-bright"></i> 日の出前</span>
+                            に自然と目が覚めたのです。
+                        </p>
+                        <div class="connection-line"></div>
+                        <p>
+                            大人になるにつれ、そのような
+                            <span class="keyword"><i class="fa-solid fa-person-running"></i> 自発的な早起き</span>
+                            の経験は薄れていきました。しかしPythonの学習を始めてから、
+                            <span class="keyword"><i class="fa-solid fa-child-reaching"></i> 子供の頃の純粋なワクワク感</span>
+                            が蘇ってきたのです。
+                        </p>
+                        <div class="bubble">
+                            <i class="fa-solid fa-quote-left fa-lg" style="color: #BF807A;"></i>
+                            夜、眠りにつく前に「明日はあの関数のロジックを改善しよう」「新しいクラスを設計してみよう」と考えるようになりました。そして、その強い思いが、翌朝の自然な目覚めへと繋がっているのです。
+                            <i class="fa-solid fa-quote-right fa-lg" style="color: #BF807A;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- セクション5: モチベーションの科学 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-flask fa-shake"></i> モチベーションの科学：内発的動機づけの力</h2>
+                    <div class="content">
+                        <p>
+                            心理学者の<span class="keyword"><i class="fa-solid fa-user-graduate"></i> ミハイ・チクセントミハイ</span>は、
+                            この没頭状態を「<span class="keyword"><i class="fa-solid fa-water"></i> フロー</span>」と名付けました。
+                            活動そのものが報酬となり、時間の感覚が麻痺するほど深く集中できる、最適な精神状態です。
+                        </p>
+                        <div class="card">
+                            <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <h3 class="card-title"><i class="fa-solid fa-code-compare"></i> モチベーションの2種類</h3>
+                            <div class="content">
+                                <div class="step-box">
+                                    <div class="step-title"><i class="fa-solid fa-medal"></i> 外発的動機づけ</div>
+                                    <p>給与や昇進といった外部からの報酬を目的とする</p>
+                                </div>
+                                <div class="step-box">
+                                    <div class="step-title"><i class="fa-solid fa-heart"></i> 内発的動機づけ</div>
+                                    <p>活動そのものから得られる楽しさや満足感が原動力となる</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Pythonの学習は、<span class="keyword"><i class="fa-solid fa-briefcase"></i> キャリアアップ</span>という
+                            外発的な動機から、<span class="keyword"><i class="fa-solid fa-puzzle-piece"></i> 純粋な知的好奇心</span>という
+                            内発的な動機へと変化。これが早起きという新習慣を支える根源的な力なのです。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- セクション6: 日常生活に好きなことを -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-star fa-beat"></i> 日常生活に好きなことを組み込む重要性</h2>
+                    <div class="content">
+                        <p>
+                            この経験から得た最も<span class="keyword"><i class="fa-solid fa-lightbulb"></i> 重要な学び</span>は、
+                            日々の生活の中に「<span class="keyword"><i class="fa-solid fa-heart"></i> 好きなこと</span>」や
+                            「<span class="keyword"><i class="fa-solid fa-fire"></i> 夢中になれること</span>」を
+                            意識的に取り入れることの重要性です。
+                        </p>
+                        <div class="note">
+                            <i class="fa-solid fa-quote-left"></i>
+                            大人になると、仕事や家庭における責任や義務に追われ、純粋に楽しむための時間がどうしても削られがちです。
+                            <i class="fa-solid fa-quote-right"></i>
+                        </div>
+                        <p>
+                            心から楽しめる活動を生活の一部とすることで、日々の<span class="keyword"><i class="fa-solid fa-battery-full"></i> エネルギーレベル</span>や
+                            <span class="keyword"><i class="fa-solid fa-face-smile"></i> 生活の満足度</span>が飛躍的に向上します。
+                        </p>
+                        <div class="card">
+                            <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+                            <h3 class="card-title"><i class="fa-solid fa-list-check"></i> あなたの好きなことの例</h3>
+                            <ul class="tips-list">
+                                <li><i class="fa-solid fa-book"></i> 読書</li>
+                                <li><i class="fa-solid fa-palette"></i> 絵画</li>
+                                <li><i class="fa-solid fa-music"></i> 楽器演奏</li>
+                                <li><i class="fa-solid fa-seedling"></i> ガーデニング</li>
+                                <li><i class="fa-solid fa-utensils"></i> 料理</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3カラム -->
+            <div>
+                <!-- セクション7: 「好き」を見つける旅 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-compass"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-map fa-bounce"></i> 「好き」を見つける旅：試行錯誤の大切さ</h2>
+                    <div class="content">
+                        <p>
+                            自身が本当に夢中になれることを見つける道のりは、必ずしも平坦ではありません。
+                            <span class="keyword"><i class="fa-solid fa-person-running"></i> 早朝のジョギング</span>や
+                            <span class="keyword"><i class="fa-solid fa-book-open"></i> 朝の読書</span>など、
+                            様々な活動を試みるも長続きしなかった経験も…
+                        </p>
+                        <div class="highlight-box">
+                            <i class="fa-solid fa-circle-exclamation fa-lg" style="color: #592A2A;"></i>
+                            重要なのは、諦めずに様々なことに積極的に<span class="keyword"><i class="fa-solid fa-arrow-right-arrow-left"></i> 挑戦し続けること</span>です。
+                            本当に心を惹かれるものは、意外な場所で、予期せぬ形で発見されることが多いものです。
+                        </div>
+                        <p>
+                            論理的な思考を要する<span class="keyword"><i class="fa-solid fa-code"></i> プログラミング</span>が、
+                            これほどまでに魅力的なものになるとは、学習を始める前には想像もしていませんでした。
+                        </p>
+                        <div class="bubble">
+                            <i class="fa-solid fa-quote-left fa-lg" style="color: #BF807A;"></i>
+                            興味の種は、私たちの内側に無数に眠っています。それらの種が芽を出し、美しい花を咲かせるためには、多様な刺激と機会が必要なのです。
+                            <i class="fa-solid fa-quote-right fa-lg" style="color: #BF807A;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- セクション8: 早起きのための実践的アドバイス -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-clipboard-check fa-bounce"></i> 早起きのための実践的アドバイス</h2>
+                    <div class="content">
+                        <p>
+                            無理なく自然に早起きできるようになるための、いくつかの具体的なアドバイスを共有します。
+                        </p>
+                        <ul class="tips-list">
+                            <li>
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span class="keyword"><i class="fa-solid fa-calendar-check"></i> 具体的な計画</span>を立てる：
+                                「明日は〇〇機能を実装する」といった具体的な目標を設定
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <span class="keyword"><i class="fa-solid fa-calendar-week"></i> 最初の一週間</span>は意識的な努力を：
+                                新しい習慣を確立するまでは、目覚まし時計などを活用
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-glass-water"></i>
+                                朝起きたらすぐに<span class="keyword"><i class="fa-solid fa-droplet"></i> 水を飲む</span>：
+                                夜間の脱水状態を解消し、脳を速やかに活性化
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-sun"></i>
+                                <span class="keyword"><i class="fa-solid fa-cloud-sun"></i> 朝日を浴びる</span>：
+                                自然光は体内時計をリセットし、幸福感をもたらすセロトニンの分泌を促進
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-moon"></i>
+                                <span class="keyword"><i class="fa-solid fa-bed"></i> 夜のルーティン</span>も大切に：
+                                質の高い睡眠のために、就寝前のスマホ使用を制限
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- セクション9: 小さな成功体験 -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-award fa-beat"></i> 小さな成功体験の積み重ね</h2>
+                    <div class="content">
+                        <p>
+                            <span class="keyword"><i class="fa-solid fa-stairs"></i> 小さな成功体験</span>の積み重ねが、
+                            モチベーションを持続させるための重要な鍵です。プログラミングは特にこの点で優れています。
+                        </p>
+                        <div class="card">
+                            <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                            <h3 class="card-title"><i class="fa-solid fa-layer-group"></i> 段階的な学習ステップ</h3>
+                            <ol class="steps-list">
+                                <li>基本的な文法の理解</li>
+                                <li>簡単な四則演算プログラムの作成</li>
+                                <li>テキストファイルの読み書き</li>
+                                <li>ウェブスクレイピングの実装</li>
+                                <li>取得したデータの分析</li>
+                            </ol>
+                        </div>
+                        <p>
+                            各ステップで「<span class="keyword"><i class="fa-solid fa-face-smile-beam"></i> できた！</span>」という小さな喜びを感じることで、
+                            次のより困難な課題への挑戦意欲が自然と湧いてきます。この小さな成功体験の連続こそが、
+                            <span class="keyword"><i class="fa-solid fa-alarm-clock"></i> 毎朝5時</span>に自然と目が覚めるための、
+                            強力な推進力となっていたのです。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- セクション10: おわりに -->
+                <div class="section">
+                    <div class="section-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                    <h2 class="section-title"><i class="fa-solid fa-door-open fa-bounce"></i> おわりに：自分だけの「朝活」を見つけよう</h2>
+                    <div class="content">
+                        <p>
+                            もしかしたら、あなたも自分にとっての理想的な「<span class="keyword"><i class="fa-solid fa-sun-bright"></i> 朝活</span>」を
+                            探し求めているのかもしれません。最も大切なのは、あなた自身が
+                            <span class="keyword"><i class="fa-solid fa-heart"></i> 心の底から楽しめる活動</span>であるということです。
+                        </p>
+                        <div class="highlight-box">
+                            <i class="fa-solid fa-lightbulb fa-lg" style="color: #592A2A;"></i>
+                            朝早く起きることを目標とするのではなく、
+                            「あの楽しい活動のために、自然と早起きしてしまう」という順番が重要なのです。
+                        </div>
+                        <div class="bubble">
+                            <i class="fa-solid fa-quote-left fa-lg" style="color: #BF807A;"></i>
+                            情熱を傾けられる何かがあれば、早起きは苦痛な行為ではなく、一日の中で最も充実した、かけがえのない時間へと変わります。
+                            <i class="fa-solid fa-quote-right fa-lg" style="color: #BF807A;"></i>
+                        </div>
+                        <p>
+                            毎朝5時、キーボードを叩きながら、この偶然の出会いに深い感謝の念を抱いています。
+                            <span class="keyword"><i class="fa-solid fa-magnifying-glass-heart"></i> あなたの「5時に目覚める理由」</span>
+                            は何になるでしょうか？ぜひ、その探求の旅を楽しんでください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <i class="fa-solid fa-book"></i>
+            グラフィックレコーディング風インフォグラフィック by Claude | 2025年5月
+        </div>
+    </div>
+</body>
+</html>
