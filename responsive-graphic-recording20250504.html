@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初ランチで後輩と「いい関係」を築くための会話術</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
+    :root {
+      --color-1: #2E578C;
+      --color-2: #182D40;
+      --color-3: #BF807A;
+      --color-4: #592A2A;
+      --color-5: #F2F2F2;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition-speed: 0.3s;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Zen Kurenaido', sans-serif;
+      background-color: var(--color-5);
+      color: var(--color-2);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+    
+    .pattern-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    
+    .pattern-bg i {
+      position: absolute;
+      font-size: 1.5rem;
+      color: var(--color-1);
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .pattern-bg i:nth-child(odd) {
+        animation: float 15s infinite alternate ease-in-out;
+      }
+      
+      .pattern-bg i:nth-child(even) {
+        animation: float 20s infinite alternate-reverse ease-in-out;
+      }
+      
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0);
+        }
+        100% {
+          transform: translateY(20px) rotate(10deg);
+        }
+      }
+    }
+    
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(1rem, 3vw, 2rem);
+    }
+    
+    /* Header Styles */
+    header {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--color-3);
+      position: relative;
+    }
+    
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    
+    .title-icon {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--color-1);
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .title-icon.fa-utensils {
+        animation: fa-bounce 2s infinite;
+      }
+      
+      .title-icon.fa-comments {
+        animation: fa-shake 3s infinite;
+      }
+    }
+    
+    h1 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--color-1), var(--color-3));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+    
+    .subtitle {
+      font-family: 'Yomogi', cursive;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      text-align: center;
+      color: var(--color-3);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    /* Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: clamp(1rem, 3vw, 2rem);
+    }
+    
+    /* Card Styles */
+    .card {
+      background-color: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: clamp(1rem, 3vw, 1.5rem);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .card-number {
+      position: absolute;
+      top: -5px;
+      right: 10px;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-family: 'Kaisei Decol', serif;
+      color: var(--color-1);
+      opacity: 0.1;
+      pointer-events: none;
+      font-weight: bold;
+    }
+    
+    .section-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--color-1);
+      opacity: 0.2;
+      transition: all var(--transition-speed);
+    }
+    
+    .card:hover .section-icon {
+      transform: scale(1.2);
+      opacity: 0.4;
+    }
+    
+    h2 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      color: var(--color-1);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px dashed var(--color-3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    h2 i {
+      color: var(--color-1);
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      h2 i {
+        animation: fa-beat 2s infinite;
+      }
+    }
+    
+    .info-block {
+      background-color: rgba(46, 87, 140, 0.05);
+      border-left: 3px solid var(--color-1);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    
+    .info-block-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      color: var(--color-1);
+      margin-bottom: 0.5rem;
+      font-family: 'Kaisei Decol', serif;
+    }
+    
+    .info-block-content {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    
+    .keyword {
+      color: var(--color-1);
+      font-weight: bold;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    
+    .keyword::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--color-3);
+      opacity: 0.3;
+      border-radius: 2px;
+    }
+    
+    .keyword i {
+      font-size: 0.8em;
+    }
+    
+    .example {
+      background-color: rgba(191, 128, 122, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      margin: 1rem 0;
+      position: relative;
+      font-family: 'Yomogi', cursive;
+    }
+    
+    .example::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      border-width: 0 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent rgba(191, 128, 122, 0.1) transparent;
+    }
+    
+    .example-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-3);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .speech {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .speech i {
+      min-width: 1rem;
+      margin-top: 0.25rem;
+    }
+    
+    .speech-junior i {
+      color: var(--color-3);
+    }
+    
+    .speech-senior i {
+      color: var(--color-1);
+    }
+    
+    .speech-content {
+      flex: 1;
+    }
+    
+    .highlight {
+      color: var(--color-1);
+      font-weight: bold;
+    }
+    
+    .strikethrough {
+      text-decoration: line-through;
+      color: var(--color-4);
+    }
+    
+    .connector {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+    }
+    
+    .connector-line {
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--color-3), var(--color-3) 5px, transparent 5px, transparent 10px);
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .connector-line {
+        animation: flowLine 3s infinite linear;
+      }
+      
+      @keyframes flowLine {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 20px 0;
+        }
+      }
+    }
+    
+    .connector i {
+      color: var(--color-3);
+      margin: 0 0.5rem;
+    }
+    
+    .call-to-action {
+      background: linear-gradient(45deg, var(--color-1), var(--color-3));
+      color: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .call-to-action h3 {
+      font-family: 'Kaisei Decol', serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      margin-bottom: 1rem;
+    }
+    
+    .call-to-action i {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .call-to-action i {
+        animation: fa-bounce 2s infinite;
+      }
+    }
+    
+    .summary-list {
+      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    
+    .summary-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      border-left: 3px solid var(--color-1);
+      transition: transform var(--transition-speed);
+    }
+    
+    .summary-item:hover {
+      transform: translateY(-3px);
+    }
+    
+    .summary-item i {
+      color: var(--color-1);
+      font-size: 1.25rem;
+      min-width: 1.25rem;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .summary-item i {
+        animation: fa-beat-fade 2s infinite;
+      }
+    }
+    
+    .final-message {
+      text-align: center;
+      font-weight: bold;
+      margin: 2rem 0;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background-color: white;
+      box-shadow: var(--shadow-md);
+      font-family: 'Yomogi', cursive;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+    
+    .final-message i {
+      color: var(--color-3);
+      margin: 0 0.5rem;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--color-1);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      color: var(--color-2);
+      opacity: 0.8;
+    }
+    
+    footer i {
+      color: var(--color-3);
+      margin: 0 0.5rem;
+    }
+    
+    /* Animation triggers on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .connector-line {
+        max-width: 100px;
+      }
+      
+      .speech {
+        flex-direction: column;
+      }
+      
+      .speech i {
+        margin-bottom: 0.25rem;
+      }
+    }
+    
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        transition: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .card:hover,
+      .summary-item:hover {
+        transform: none;
+      }
+      
+      .connector-line {
+        animation: none;
+      }
+      
+      .title-icon.fa-utensils,
+      .title-icon.fa-comments,
+      h2 i,
+      .call-to-action i,
+      .summary-item i {
+        animation: none;
+      }
+      
+      .pattern-bg i {
+        animation: none;
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: white;
+      }
+      
+      .pattern-bg {
+        display: none;
+      }
+      
+      .container {
+        padding: 0;
+      }
+      
+      .card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #eee;
+      }
+      
+      .fade-in {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Pattern -->
+  <div class="pattern-bg" aria-hidden="true">
+    <!-- Patterns will be added via JavaScript -->
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="title-container">
+        <i class="fa-solid fa-utensils title-icon"></i>
+        <h1>初ランチで後輩と「いい関係」を築くための会話術</h1>
+        <i class="fa-solid fa-comments title-icon"></i>
+      </div>
+      <div class="subtitle">
+        <i class="fa-solid fa-arrow-right"></i>
+        聴き方・話し方のステップ
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    </header>
+
+    <div class="grid-container">
+      <!-- Card 1: Introduction -->
+      <div class="card fade-in">
+        <div class="section-icon"><i class="fa-solid fa-question-circle"></i></div>
+        <h2><i class="fa-solid fa-lightbulb"></i> なぜ初ランチの会話が大切なのか？</h2>
+        <p>
+          職場の<span class="keyword"><i class="fa-solid fa-people-group"></i>人間関係</span>は、<span class="keyword"><i class="fa-solid fa-bolt"></i>業務効率</span>や<span class="keyword"><i class="fa-solid fa-hand-fist"></i>チームワーク</span>、そして何より<span class="keyword"><i class="fa-solid fa-heart"></i>働きがい</span>に大きく影響します。
+        </p>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-circle-exclamation"></i> 重要ポイント
+          </div>
+          <div class="info-block-content">
+            ランチタイムのリラックスした雰囲気での会話は、業務中には見えにくいお互いの<span class="keyword"><i class="fa-solid fa-user"></i>人となり</span>を知る絶好のチャンスです。ここで心地よいコミュニケーションが取れれば、<span class="keyword"><i class="fa-solid fa-handshake"></i>信頼感</span>や<span class="keyword"><i class="fa-solid fa-shield"></i>安心感</span>につながります。
+          </div>
+        </div>
+        
+        <div class="connector">
+          <i class="fa-solid fa-arrow-down"></i>
+          <div class="connector-line"></div>
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+      </div>
+
+      <!-- Card 2: Step 1 -->
+      <div class="card fade-in">
+        <div class="card-number">1</div>
+        <div class="section-icon"><i class="fa-solid fa-ear-listen"></i></div>
+        <h2><i class="fa-solid fa-headphones"></i> まずは「聴く」ことに徹する</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-couch"></i> 話しやすい環境を作る
+          </div>
+          <div class="info-block-content">
+            席に着いたら、まずは<span class="keyword"><i class="fa-solid fa-cloud-sun"></i>天気の話</span>や<span class="keyword"><i class="fa-solid fa-utensils"></i>ランチのメニュー</span>について軽く話すなど、本題に入る前に<span class="keyword"><i class="fa-solid fa-face-smile"></i>緊張をほぐす</span>ような会話を挟みましょう。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-question"></i> 質問は「オープンクエスチョン」で
+          </div>
+          <div class="info-block-content">
+            「はい」「いいえ」で答えられる<span class="keyword"><i class="fa-solid fa-lock"></i>クローズドクエスチョン</span>ではなく、<span class="keyword"><i class="fa-solid fa-unlock"></i>オープンクエスチョン</span>を使いましょう。
+          </div>
+          
+          <div class="example">
+            <div class="example-title">
+              <i class="fa-solid fa-lightbulb"></i> 例えば
+            </div>
+            <p>「<span class="strikethrough">出身はどこですか？</span>」より</p>
+            <p>「出身は〇〇なんですね。<span class="highlight">どんなところですか？</span>」</p>
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-headphones"></i> 相手の話に耳を傾ける姿勢
+          </div>
+          <div class="info-block-content">
+            相手が話し始めたら、<span class="keyword"><i class="fa-solid fa-ban"></i>途中で遮らず</span>、最後までしっかりと耳を傾けましょう。あなたが知っている話題でも、まずは<span class="keyword"><i class="fa-solid fa-check-double"></i>相手の話を聞き切る</span>ことが大切です。
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Step 2 -->
+      <div class="card fade-in">
+        <div class="card-number">2</div>
+        <div class="section-icon"><i class="fa-solid fa-comments"></i></div>
+        <h2><i class="fa-solid fa-comment-dots"></i> 効果的な「リアクション」</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-head-side-nod"></i> 「うなずき」と「相づち」
+          </div>
+          <div class="info-block-content">
+            相手が話している間、定期的に<span class="keyword"><i class="fa-solid fa-comment"></i>相づち</span>を挟み、大きく<span class="keyword"><i class="fa-solid fa-face-smile"></i>頷く</span>ことで、「あなたの話を理解しようとしていますよ」という意思表示になります。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-face-laugh"></i> 表情も大切
+          </div>
+          <div class="info-block-content">
+            <span class="keyword"><i class="fa-regular fa-face-smile"></i>笑顔</span>や<span class="keyword"><i class="fa-regular fa-face-thinking"></i>真剣な表情</span>など、話の内容に合わせた表情を見せることも重要です。楽しそうに話している時は一緒に笑顔になったり、少し困っているような話であれば心配そうな表情を浮かべたりすることで、共感や理解を示せます。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-repeat"></i> 話のポイントを繰り返す
+          </div>
+          <div class="info-block-content">
+            相手が言ったことの中から重要なキーワードやフレーズを<span class="keyword"><i class="fa-solid fa-arrow-rotate-right"></i>繰り返す</span>のも効果的なリアクションです。「〇〇なんですね」と繰り返すことで、相手は「ちゃんと伝わっている」と感じて安心します。
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Step 3 -->
+      <div class="card fade-in">
+        <div class="card-number">3</div>
+        <div class="section-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <h2><i class="fa-solid fa-heart-circle-check"></i> 相手の「興味・関心」を引き出す</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-bullseye"></i> 具体的な質問を投げかける
+          </div>
+          <div class="info-block-content">
+            オープンクエスチョンから一歩進んで、より<span class="keyword"><i class="fa-solid fa-arrows-to-dot"></i>具体的な質問</span>をしてみましょう。
+          </div>
+          
+          <div class="example">
+            <div class="example-title">
+              <i class="fa-solid fa-lightbulb"></i> 例えば
+            </div>
+            <div class="speech speech-senior">
+              <i class="fa-solid fa-user"></i>
+              <div class="speech-content">「休日は何をしていますか？」</div>
+            </div>
+            <div class="speech speech-junior">
+              <i class="fa-solid fa-user-graduate"></i>
+              <div class="speech-content">「家でゴロゴロしています」</div>
+            </div>
+            <div class="speech speech-senior">
+              <i class="fa-solid fa-user"></i>
+              <div class="speech-content"><span class="highlight">「そうなんですね！何か好きな映画とかありますか？」</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-link"></i> 共通点を探す
+          </div>
+          <div class="info-block-content">
+            話を聞く中で、あなた自身との<span class="keyword"><i class="fa-solid fa-handshake"></i>共通点</span>がないかを探しましょう。出身地、大学、趣味、好きな食べ物など、どんな小さなことでも構いません。共通点が見つかったら「私も〇〇好きなんです！」と伝え、そこから会話を広げましょう。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-circle-question"></i> 「なぜ？」を問いかける
+          </div>
+          <div class="info-block-content">
+            「なぜそれに興味を持ったんですか？」と<span class="keyword"><i class="fa-solid fa-arrows-to-circle"></i>理由</span>を問いかけることで、相手の<span class="keyword"><i class="fa-solid fa-seedling"></i>価値観</span>や<span class="keyword"><i class="fa-solid fa-user-heart"></i>内面</span>に触れることができます。ただし、尋問のようにならないように、自然な流れで質問しましょう。
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Step 4 -->
+      <div class="card fade-in">
+        <div class="card-number">4</div>
+        <div class="section-icon"><i class="fa-solid fa-plus"></i></div>
+        <h2><i class="fa-solid fa-face-smile"></i> 常に「ポジティブ」な話題を心がける</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-rocket"></i> 未来や楽しい経験に焦点を当てる
+          </div>
+          <div class="info-block-content">
+            <span class="keyword"><i class="fa-solid fa-forward"></i>未来への期待</span>や<span class="keyword"><i class="fa-solid fa-bullseye"></i>ポジティブな目標</span>に関する話題は盛り上がりやすいです。
+          </div>
+          
+          <div class="example">
+            <div class="example-title">
+              <i class="fa-solid fa-lightbulb"></i> 例えば
+            </div>
+            <p>「これから会社でどんなことに挑戦してみたい？」</p>
+            <p>「入社前に楽しみにしていたことは？」</p>
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-building"></i> 会社や仕事のポジティブな側面に触れる
+          </div>
+          <div class="info-block-content">
+            会社の<span class="keyword"><i class="fa-solid fa-thumbs-up"></i>良いところ</span>、<span class="keyword"><i class="fa-solid fa-masks-theater"></i>面白い文化</span>、自分が仕事で<span class="keyword"><i class="fa-solid fa-hand-peace"></i>やりがいを感じる瞬間</span>などについて話すのも良いでしょう。ただし、無理に会社を美化するのは避け、等身大のポジティブさを伝えることが大切です。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-magnifying-glass-plus"></i> 日常の中の小さな「良いね」を見つける
+          </div>
+          <div class="info-block-content">
+            ランチの<span class="keyword"><i class="fa-solid fa-utensils"></i>美味しさ</span>、お店の<span class="keyword"><i class="fa-solid fa-shop"></i>雰囲気</span>、今日の<span class="keyword"><i class="fa-solid fa-sun"></i>天気</span>など、日常の中にある小さなポジティブなことにも目を向け、話題にすると、自然と明るい雰囲気になります。
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Step 5 -->
+      <div class="card fade-in">
+        <div class="card-number">5</div>
+        <div class="section-icon"><i class="fa-solid fa-ban"></i></div>
+        <h2><i class="fa-solid fa-arrow-right-arrow-left"></i> ネガティブな話題や噂話への対処法</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-thumbs-down"></i> 愚痴や不満への対応：安易な同意は避ける
+          </div>
+          <div class="info-block-content">
+            後輩が仕事の難しさやちょっとした不満を口にすることがあるかもしれません。ここで<span class="keyword"><i class="fa-solid fa-ban"></i>安易に同意</span>したり、さらにネガティブな話を付け加えたりするのは避けましょう。
+          </div>
+          
+          <div class="example">
+            <div class="example-title">
+              <i class="fa-solid fa-lightbulb"></i> 良い例
+            </div>
+            <div class="speech speech-junior">
+              <i class="fa-solid fa-user-graduate"></i>
+              <div class="speech-content">「この仕事、思ったより大変で…」</div>
+            </div>
+            <div class="speech speech-senior">
+              <i class="fa-solid fa-user"></i>
+              <div class="speech-content"><span class="highlight">「そうなんですね、初めての経験だと戸惑うこともありますよね。でも、その分新しい知識やスキルが身につくチャンスでもありますよね！〇〇さんなら、きっとすぐに慣れて活躍できるようになると思いますよ。」</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-whisper"></i> 会社の噂話への対応：関わらず、話題を変える
+          </div>
+          <div class="info-block-content">
+            会社の人間関係や特定の人に関する<span class="keyword"><i class="fa-solid fa-comment-slash"></i>噂話</span>になった場合は、<span class="keyword"><i class="fa-solid fa-ban"></i>一切乗らない</span>ことが鉄則です。噂話は不確実な情報が多く、あなたがそれに加わることで、後輩に「この人は噂話が好きなんだ」というネガティブな印象を与えかねません。
+          </div>
+          
+          <div class="example">
+            <div class="example-title">
+              <i class="fa-solid fa-lightbulb"></i> 良い例
+            </div>
+            <div class="speech speech-junior">
+              <i class="fa-solid fa-user-graduate"></i>
+              <div class="speech-content">「〇〇さんって、実は△△らしいですよ。」</div>
+            </div>
+            <div class="speech speech-senior">
+              <i class="fa-solid fa-user"></i>
+              <div class="speech-content"><span class="highlight">「へぇ、そうなんですね。…あっ！そういえば、来週の△△のイベント、もう申し込みましたか？すごく面白そうですよね！」</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Step 6 -->
+      <div class="card fade-in">
+        <div class="card-number">6</div>
+        <div class="section-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h2><i class="fa-solid fa-balance-scale"></i> バランス感覚と心地よい距離感</h2>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-right-left"></i> 話す：聴くのバランス
+          </div>
+          <div class="info-block-content">
+            あなただけが一方的に質問攻めにするのも後輩を疲れさせてしまいます。あなた自身の話も<span class="keyword"><i class="fa-solid fa-scale-balanced"></i>適度に織り交ぜる</span>ことで、会話はより自然で対等なものになります。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-user-lock"></i> プライベートに踏み込みすぎない
+          </div>
+          <div class="info-block-content">
+            初ランチでいきなり<span class="keyword"><i class="fa-solid fa-magnifying-glass"></i>根掘り葉掘り</span>プライベートなことを聞き出すのは避けましょう。相手が話したい範囲に留め、<span class="keyword"><i class="fa-solid fa-shield-halved"></i>パーソナルな領域</span>への踏み込みは、関係性が深まってからにしましょう。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-solid fa-building-columns"></i> 会社の情報提供は慎重に
+          </div>
+          <div class="info-block-content">
+            会社のルールや文化について聞かれた場合は、<span class="keyword"><i class="fa-solid fa-check-double"></i>正確</span>かつ<span class="keyword"><i class="fa-solid fa-scale-balanced"></i>公平</span>な情報を提供するよう心がけましょう。個人的な主観やネガティブな意見は、事実と分けて伝えるか、できればポジティブな側面を強調する方が良いです。
+          </div>
+        </div>
+        
+        <div class="info-block">
+          <div class="info-block-title">
+            <i class="fa-regular fa-clock"></i> ランチタイムの終了時間も意識
+          </div>
+          <div class="info-block-content">
+            ランチタイムは限られています。会話に夢中になりすぎて、<span class="keyword"><i class="fa-solid fa-hourglass-end"></i>休憩時間をオーバー</span>しないように気をつけましょう。時間管理も、相手への配慮の一つです。
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Card -->
+      <div class="card fade-in">
+        <div class="section-icon"><i class="fa-solid fa-list-check"></i></div>
+        <h2><i class="fa-solid fa-check-double"></i> まとめ：大切なポイント</h2>
+        
+        <div class="call-to-action">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <h3>心地よい時間は、良好な関係の礎</h3>
+          <p>
+            後輩との初ランチでの会話は、単なる情報交換の場ではありません。それは、お互いの人間性を知り、安心感を共有し、今後の良好な人間関係の礎を築くための大切な時間です。
+          </p>
+        </div>
+        
+        <div class="summary-list">
+          <div class="summary-item">
+            <i class="fa-solid fa-ear-listen"></i>
+            <p>まずはしっかり「<span class="keyword">聴く</span>」こと</p>
+          </div>
+          <div class="summary-item">
+            <i class="fa-solid fa-comments"></i>
+            <p>適切な「<span class="keyword">リアクション</span>」で「聴いてますよ」を伝えること</p>
+          </div>
+          <div class="summary-item">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <p>「<span class="keyword">興味・関心</span>」を引き出す質問で会話を深めること</p>
+          </div>
+          <div class="summary-item">
+            <i class="fa-solid fa-plus"></i>
+            <p>常に「<span class="keyword">ポジティブ</span>」な話題を選ぶこと</p>
+          </div>
+          <div class="summary-item">
+            <i class="fa-solid fa-ban"></i>
+            <p>ネガティブや噂話は「<span class="keyword">同意せず、話題を転換</span>」すること</p>
+          </div>
+          <div class="summary-item">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <p>会話の<span class="keyword">バランス</span>と心地よい<span class="keyword">距離感</span>を保つこと</p>
+          </div>
+        </div>
+        
+        <div class="final-message">
+          <i class="fa-solid fa-face-smile"></i> 完璧な会話を目指す必要はありません。一番大切なのは、相手に対する敬意を持ち、心を開いてコミュニケーションを取ろうとするあなたの気持ちです。 <i class="fa-solid fa-face-smile"></i>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <i class="fa-solid fa-book"></i> 出典：初ランチで後輩と「いい関係」を築くための会話術 ～聴き方・話し方のステップ～
+        <i class="fa-solid fa-calendar"></i> 2025年5月
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Create background pattern
+    document.addEventListener('DOMContentLoaded', function() {
+      const patternBg = document.querySelector('.pattern-bg');
+      const icons = [
+        'fa-solid fa-comments',
+        'fa-solid fa-users',
+        'fa-solid fa-mug-hot',
+        'fa-solid fa-utensils',
+        'fa-solid fa-lightbulb',
+        'fa-solid fa-heart',
+        'fa-solid fa-handshake',
+        'fa-solid fa-face-smile',
+        'fa-solid fa-shapes'
+      ];
+      
+      // Create 50 random icons in the background
+      for (let i = 0; i < 50; i++) {
+        const icon = document.createElement('i');
+        icon.className = icons[Math.floor(Math.random() * icons.length)];
+        icon.style.left = `${Math.random() * 100}%`;
+        icon.style.top = `${Math.random() * 100}%`;
+        icon.style.opacity = `${0.1 + Math.random() * 0.3}`;
+        icon.style.fontSize = `${0.5 + Math.random() * 2}rem`;
+        patternBg.appendChild(icon);
+      }
+      
+      // Set up fade-in animation on scroll
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      fadeElements.forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Ensure all elements are visible even if scrolling doesn't happen
+      setTimeout(() => {
+        fadeElements.forEach(element => {
+          if (!element.classList.contains('active')) {
+            element.classList.add('active');
+          }
+        });
+      }, 1000);
+      
+      // Check if reduced motion is preferred
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      // Apply simpler animations if reduced motion is preferred
+      if (prefersReducedMotion) {
+        document.body.classList.add('reduced-motion');
+      }
+      
+      // Check if it's a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      
+      // If mobile, reduce the number of background icons for better performance
+      if (isMobile) {
+        const allIcons = patternBg.querySelectorAll('i');
+        allIcons.forEach((icon, index) => {
+          if (index > 15) { // Keep only 15 icons on mobile
+            icon.remove();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
