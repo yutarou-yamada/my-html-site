@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フードコートの席取り問題と解決策</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: #334155;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M32 32c17.7 0 32 14.3 32 32v32h320V64c0-17.7 14.3-32 32-32s32 14.3 32 32v32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H448v352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160H96v320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160H0c-17.7 0-32-14.3-32-32s14.3-32 32-32H32V64c0-17.7 14.3-32 32-32z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            text-align: right;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dashed var(--MysticLibrary-3);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .content-item i {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--MysticLibrary-4);
+            text-decoration: underline;
+            text-decoration-color: var(--MysticLibrary-3);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, rgba(191, 128, 122, 0.3) 40%);
+            padding: 0 3px;
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .arrow {
+            position: relative;
+            margin: 20px 0;
+            text-align: center;
+            color: var(--MysticLibrary-1);
+            font-size: 24px;
+        }
+
+        .note {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 4px solid var(--MysticLibrary-3);
+            margin: 15px 0;
+        }
+
+        .info-box {
+            border: 2px dashed var(--MysticLibrary-1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(46, 87, 140, 0.05);
+        }
+
+        .connection {
+            position: relative;
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .connection:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--MysticLibrary-3);
+            background: linear-gradient(to bottom, 
+                var(--MysticLibrary-3) 0%, 
+                var(--MysticLibrary-1) 100%);
+        }
+
+        .connection i {
+            position: absolute;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--MysticLibrary-1);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--MysticLibrary-3);
+            background: linear-gradient(to bottom, 
+                var(--MysticLibrary-1) 0%, 
+                var(--MysticLibrary-3) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--MysticLibrary-1);
+        }
+
+        .hand-drawn-box {
+            border: 3px solid;
+            border-color: var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        .icon-lg {
+            font-size: 1.33em;
+        }
+
+        .icon-2x {
+            font-size: 2em;
+        }
+
+        .icon-3x {
+            font-size: 3em;
+            text-align: center;
+            display: block;
+            margin: 10px auto;
+            color: var(--MysticLibrary-1);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            padding-top: 10px;
+            border-top: 1px solid var(--MysticLibrary-1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .solution-card {
+            background-color: rgba(46, 87, 140, 0.08);
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-card {
+            background-color: rgba(191, 128, 122, 0.08);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pros-cons {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .pros, .cons {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .pros {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-left: 4px solid var(--MysticLibrary-1);
+        }
+
+        .cons {
+            background-color: rgba(191, 128, 122, 0.1);
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .slideIn {
+            animation-name: slideIn;
+        }
+
+        .pulse {
+            animation-name: pulse;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+
+        /* Background patterns using Font Awesome */
+        .bg-pattern {
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            z-index: -1;
+        }
+        
+        .bg-pattern-1 {
+            top: 10%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+        
+        .bg-pattern-2 {
+            bottom: 5%;
+            left: 5%;
+            transform: rotate(-10deg);
+        }
+        
+        .bg-pattern-3 {
+            top: 40%;
+            left: 40%;
+            transform: rotate(5deg);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Background pattern icons -->
+        <i class="fa-solid fa-utensils bg-pattern bg-pattern-1"></i>
+        <i class="fa-solid fa-chair bg-pattern bg-pattern-2"></i>
+        <i class="fa-solid fa-ticket bg-pattern bg-pattern-3"></i>
+        
+        <!-- Header -->
+        <div class="header animated fadeIn">
+            <div class="header-title">
+                <i class="fa-solid fa-3x fa-chair-office fa-bounce" style="color: var(--MysticLibrary-1);"></i>
+                <h1 class="title">フードコートの席取り問題と解決策</h1>
+                <i class="fa-solid fa-3x fa-ticket-simple fa-bounce" style="color: var(--MysticLibrary-3); margin-left: 15px;"></i>
+            </div>
+            <div class="date">
+                <i class="fa-solid fa-calendar-day"></i> 2025年5月5日
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Column 1 -->
+            <div class="column animated slideIn" style="animation-delay: 0.2s;">
+                <div class="card">
+                    <i class="fa-solid fa-eye card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-binoculars fa-bounce"></i>
+                        問題の発見
+                    </h2>
+                    
+                    <div class="bubble">
+                        <i class="fa-solid fa-quote-left icon-lg" style="color: var(--MysticLibrary-3);"></i>
+                        <p>水族館のフードコートで、席取りをめぐるトラブルを目撃しました。</p>
+                        <p><span class="keyword">席を離れた隙に</span>別の家族が座り、<span class="highlight">お互いに譲らない</span>状況に。</p>
+                        <i class="fa-solid fa-quote-right icon-lg" style="float: right; color: var(--MysticLibrary-3);"></i>
+                    </div>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-face-sad-tear fa-shake"></i>
+                        楽しいはずの時間が台無しに...
+                    </div>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-lightbulb fa-beat"></i>
+                        これは<span class="keyword">構造的な課題</span>なのでは？
+                    </div>
+                    
+                    <i class="fa-solid fa-people-arrows icon-3x fa-spin" style="animation-duration: 10s;"></i>
+                </div>
+                
+                <div class="card">
+                    <i class="fa-solid fa-magnifying-glass card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-triangle-exclamation fa-shake"></i>
+                        なぜ問題が起きるのか
+                    </h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-scale-unbalanced fa-fade"></i> <span class="keyword">需要と供給のアンバランス</span></p>
+                            <p>休日やランチタイムに利用者が集中</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-clock fa-spin" style="animation-duration: 10s;"></i> <span class="keyword">席確保のタイミングの曖昧さ</span></p>
+                            <p>先に席を取る人と、注文後に席を探す人が混在</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-bag-shopping fa-bounce"></i> <span class="keyword">「仮押さえ」の有効性の不明確さ</span></p>
+                            <p>荷物を置いての席確保がどこまで有効か？</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-book fa-flip"></i> <span class="keyword">ルールの周知徹底の難しさ</span></p>
+                            <p>施設のルールよりも各自の常識を優先しがち</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-user-tie fa-shake"></i> <span class="keyword">スタッフの介入の難しさ</span></p>
+                            <p>座席エリアに常駐するスタッフがほとんどいない</p>
+                        </div>
+                    </div>
+                    
+                    <div class="note">
+                        <i class="fa-solid fa-circle-exclamation fa-fade"></i>
+                        これらが<span class="highlight">複合的に絡み合い</span>、席を早めに確保しようとする行動が他の利用者の不満を生む<span class="highlight">悪循環</span>を生んでいます。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 2 -->
+            <div class="column animated slideIn" style="animation-delay: 0.4s;">
+                <div class="card">
+                    <i class="fa-solid fa-ticket-simple card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-wand-magic-sparkles fa-flip"></i>
+                        解決策：番号札システム
+                    </h2>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-lightbulb fa-beat" style="color: #FFD700;"></i>
+                        <span class="keyword">番号札システム</span>の導入を提案します！
+                    </div>
+                    
+                    <div class="hand-drawn-box">
+                        <div style="text-align: center;">
+                            <i class="fa-solid fa-ticket-alt fa-3x" style="color: var(--MysticLibrary-1);"></i>
+                            <p style="font-weight: bold; margin-top: 10px;">注文後に番号札を受け取り、希望の席に置く</p>
+                            <i class="fa-solid fa-arrow-down fa-2x fa-bounce" style="margin: 10px 0; color: var(--MysticLibrary-3);"></i>
+                            <p style="font-weight: bold;">食事後に番号札を返却</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-circle-check fa-fade"></i>
+                        番号札は<span class="keyword">正規の手続き（注文）を済ませた証明</span>の役割を果たします
+                    </div>
+                    
+                    <div class="info-box">
+                        <p><i class="fa-solid fa-award icon-lg"></i> <span style="font-weight: bold;">システム導入のメリット</span></p>
+                        <div class="timeline" style="margin-top: 10px;">
+                            <div class="timeline-item">
+                                <p><i class="fa-solid fa-link fa-fade"></i> <span class="keyword">購入意思と席の確保の明確な紐付け</span></p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fa-solid fa-check-double fa-bounce"></i> <span class="keyword">席の有効性の明確化</span></p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fa-solid fa-handshake fa-shake"></i> <span class="keyword">トラブル発生率の低減</span></p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fa-solid fa-clipboard-list fa-flip"></i> <span class="keyword">施設側の管理のしやすさ</span></p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fa-solid fa-face-smile fa-pulse"></i> <span class="keyword">利用者のストレス軽減</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fa-solid fa-clipboard-question card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-circle-question fa-spin" style="animation-duration: 10s;"></i>
+                        導入時の課題と対策
+                    </h2>
+                    
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <p><i class="fa-solid fa-thumbs-up fa-bounce"></i> <span style="font-weight: bold; color: var(--MysticLibrary-1);">導入時の課題</span></p>
+                        </div>
+                        <div class="cons">
+                            <p><i class="fa-solid fa-lightbulb fa-beat"></i> <span style="font-weight: bold; color: var(--MysticLibrary-3);">対策</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="problem-card">
+                        <p><i class="fa-solid fa-coins fa-shake"></i> <span class="keyword">導入コストと運用の手間</span></p>
+                        <div class="arrow">
+                            <i class="fa-solid fa-arrow-down fa-fade"></i>
+                        </div>
+                        <div class="solution-card">
+                            <p><i class="fa-solid fa-wrench fa-flip"></i> シンプルで耐久性のある番号札の選定</p>
+                            <p><i class="fa-solid fa-map-signs fa-bounce"></i> 取得・返却場所の分かりやすい設置</p>
+                        </div>
+                    </div>
+                    
+                    <div class="problem-card">
+                        <p><i class="fa-solid fa-users fa-shake"></i> <span class="keyword">利用者の理解と慣れ</span></p>
+                        <div class="arrow">
+                            <i class="fa-solid fa-arrow-down fa-fade"></i>
+                        </div>
+                        <div class="solution-card">
+                            <p><i class="fa-solid fa-signs-post fa-flip"></i> 多言語対応の案内表示の設置</p>
+                            <p><i class="fa-solid fa-image fa-bounce"></i> イラストやピクトグラムの活用</p>
+                        </div>
+                    </div>
+                    
+                    <div class="note">
+                        <i class="fa-solid fa-circle-exclamation fa-fade"></i>
+                        これらの課題に対して事前に対策を講じることで、<span class="highlight">システムの有効性を高める</span>ことが可能です。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="column animated slideIn" style="animation-delay: 0.6s;">
+                <div class="card">
+                    <i class="fa-solid fa-puzzle-piece card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-sliders fa-flip"></i>
+                        複合的なアプローチ
+                    </h2>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-gears fa-spin" style="animation-duration: 10s;"></i>
+                        番号札システム<span class="keyword">だけでなく</span>、他の方法と<span class="highlight">組み合わせる</span>ことで効果的に！
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-signs-post fa-beat"></i> <span class="keyword">分かりやすい案内表示の強化</span></p>
+                            <p>複数言語でルールを明示</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-user-tie fa-flip"></i> <span class="keyword">スタッフによる巡回と声かけ</span></p>
+                            <p>ピーク時のサポートとトラブル防止</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-table-cells fa-bounce"></i> <span class="keyword">座席レイアウトの工夫</span></p>
+                            <p>グループ席と少人数席の分離など</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-clock fa-fade"></i> <span class="keyword">ピークタイムの分散促進</span></p>
+                            <p>時間帯別の特典やメニュー提供</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bubble">
+                        <i class="fa-solid fa-lightbulb fa-2x fa-beat" style="color: #FFD700; float: left; margin-right: 10px;"></i>
+                        <p>番号札システムを<span class="keyword">核</span>として、案内表示でルールを明確にし、必要に応じてスタッフがサポートするといった<span class="highlight">複合的なアプローチ</span>が効果的です！</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fa-solid fa-heart card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-2x fa-hands-holding-circle fa-flip"></i>
+                        心地よい空間のために
+                    </h2>
+                    
+                    <div class="content-item">
+                        <i class="fa-solid fa-couch fa-beat"></i>
+                        フードコートは<span class="keyword">憩いの場</span>であるべきです
+                    </div>
+                    
+                    <div class="glass-card pulse">
+                        <div style="text-align: center;">
+                            <i class="fa-solid fa-seedling fa-3x" style="color: var(--MysticLibrary-1);"></i>
+                            <p style="font-weight: bold; margin-top: 10px; font-size: 18px;">小さな改善が大きな価値を生む</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-face-smile fa-bounce"></i> <span class="keyword">利用者のストレス軽減</span></p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-handshake-angle fa-shake"></i> <span class="keyword">トラブルの減少</span></p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <p><i class="fa-solid fa-building fa-fade"></i> <span class="keyword">施設のイメージ向上</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="note">
+                        <i class="fa-solid fa-star fa-spin" style="animation-duration: 10s;"></i>
+                        心地よい空間は、こうした<span class="highlight">小さな工夫の積み重ね</span>から生まれるのです。
+                    </div>
+                </div>
+                
+                <div class="bubble" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 30px;">
+                    <i class="fa-solid fa-quote-left fa-2x" style="color: var(--MysticLibrary-3); float: left; margin-right: 10px;"></i>
+                    <p style="font-size: 16px;">水族館のようなレジャー施設は、<span class="keyword">非日常の楽しい体験</span>を提供することが目的です。</p>
+                    <p style="font-size: 16px;">食事をする空間も、その<span class="highlight">体験の一部</span>として非常に重要です。</p>
+                    <i class="fa-solid fa-quote-right fa-2x" style="color: var(--MysticLibrary-3); float: right; margin-left: 10px;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <i class="fa-solid fa-pen-fancy"></i>
+            席取り問題から考える、心地よい空間のための提案
+            <i class="fa-solid fa-calendar"></i>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make animations more lively on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .hand-drawn-box, .glass-card, .problem-card, .solution-card');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // If element is in viewport
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'pulse 1s';
+                            
+                            // Remove animation after it completes
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 1000);
+                        }
+                    }
+                });
+            };
+            
+            // Run on load and scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Add hover effects to icons
+            const icons = document.querySelectorAll('.fa-solid:not(.bg-pattern)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if(!this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-bounce') && 
+                       !this.classList.contains('fa-spin') && 
+                       !this.classList.contains('fa-shake') && 
+                       !this.classList.contains('fa-flip') &&
+                       !this.classList.contains('fa-fade')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if(this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-beat-fade')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
