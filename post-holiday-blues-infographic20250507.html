@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>連休明け仕事復帰ガイド | グラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="%232E578C" d="M234.5 5.7c13.9-5 29.1-5 43.1 0l192 68.6C495 83.4 512 107.5 512 134.6V377.4c0 27-17 51.2-42.5 60.3l-192 68.6c-13.9 5-29.1 5-43.1 0l-192-68.6C17 428.6 0 404.5 0 377.4V134.6c0-27 17-51.2 42.5-60.3l192-68.6zM256 66L82.3 128 256 190l173.7-62L256 66zm32 368.6l160-57.1v-188L288 246.6v188z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 10px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--MysticLibrary-3);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            animation: fa-bounce 2s infinite;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 2px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight i.highlight-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            z-index: 2;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 3;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            border: 2px solid var(--MysticLibrary-1);
+            animation: fa-spin 6s linear infinite;
+        }
+
+        .note {
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            margin-top: 15px;
+            padding: 12px;
+            border: 1px dashed var(--MysticLibrary-3);
+            border-radius: 10px;
+            background-color: rgba(191, 128, 122, 0.1);
+        }
+
+        .note i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 48px;
+            margin: 0 auto 20px;
+            color: var(--MysticLibrary-1);
+            display: block;
+            text-align: center;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 25px 0;
+            font-family: 'Yomogi', cursive;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: var(--MysticLibrary-3) transparent;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 51px;
+            border-width: 14px 14px 0;
+            border-style: solid;
+            border-color: white transparent;
+            z-index: 1;
+        }
+
+        .tip-box {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-left: 4px solid var(--MysticLibrary-1);
+            padding: 12px 15px;
+            margin: 15px 0;
+            position: relative;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .tip-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reason-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--MysticLibrary-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .reason-box:hover {
+            background-color: rgba(46, 87, 140, 0.05);
+            transform: translateX(5px);
+        }
+
+        .reason-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            min-width: 28px;
+        }
+
+        .reason-content {
+            flex: 1;
+        }
+
+        .reason-title {
+            font-weight: bold;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-message {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .big-quote {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 24px;
+            line-height: 1.6;
+            color: var(--MysticLibrary-1);
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        .big-quote::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 24px;
+            color: var(--MysticLibrary-3);
+            opacity: 0.5;
+        }
+
+        .big-quote::after {
+            content: '\f10e';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 24px;
+            color: var(--MysticLibrary-3);
+            opacity: 0.5;
+        }
+
+        .handdrawn-arrow {
+            text-align: center;
+            font-size: 36px;
+            color: var(--MysticLibrary-3);
+            margin: 20px 0;
+            animation: upDown 2s ease-in-out infinite;
+        }
+
+        /* アニメーション定義 */
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        @keyframes upDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .main-content {
+                gap: 20px;
+            }
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 15px;
+            }
+            .title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-mug-hot fa-3x fa-bounce" style="color: var(--MysticLibrary-3);"></i>
+                <h1 class="title">連休明け、仕事に行きたくないあなたへ</h1>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月7日</span>
+                <span><i class="fas fa-pen-fancy"></i> グラフィックレコーディング</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-heart-crack card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-face-sad-tear fa-2x"></i>その気持ち、自然なものです</h2>
+                    <div class="card-content">
+                        <i class="fas fa-quote-left icon-lg"></i>
+                        <p>大型連休明け、「<span class="keyword">仕事に行きたくない<i class="fas fa-bed"></i></span>」と感じるのはごく自然なこと。それは連休を<span class="keyword">心から満喫できた証<i class="fas fa-check-circle"></i></span>であり、しっかり休息を取れた証拠です。</p>
+                        
+                        <div class="speech-bubble">
+                            <i class="fas fa-comment-dots fa-lg" style="color: var(--MysticLibrary-3);"></i>
+                            <p>まずは深呼吸して、心の中でつぶやいてみましょう。「ああ、私、仕事に行きたくないんだな」と。</p>
+                        </div>
+                        
+                        <p><i class="fas fa-users icon-lg"></i> 多くの人が連休明けに同じ<span class="keyword">「仕事に行きたくないブルー」<i class="fas fa-cloud-rain"></i></span>や<span class="keyword">「五月病」<i class="fas fa-virus"></i></span>を感じています。あなただけではありません。</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-magnifying-glass card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-brain fa-2x"></i>なぜ「行きたくない」と感じるのか？</h2>
+                    <div class="card-content">
+                        <p>この気持ちの背景には、いくつかの理由があります。自分の気持ちを理解することで、少し心が楽になります。</p>
+                        
+                        <div class="reason-box">
+                            <div class="reason-icon">
+                                <i class="fas fa-moon fa-beat"></i>
+                            </div>
+                            <div class="reason-content">
+                                <div class="reason-title">生活リズムの激変</div>
+                                <p>連休中の自由な生活リズムから、規則正しい仕事モードへの<span class="keyword">急激な変化<i class="fas fa-bolt"></i></span>に体が追いついていません。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-box">
+                            <div class="reason-icon">
+                                <i class="fas fa-unlock fa-beat"></i>
+                            </div>
+                            <div class="reason-content">
+                                <div class="reason-title">「自由」から「束縛」への回帰</div>
+                                <p>連休中の<span class="keyword">解放感<i class="fas fa-dove"></i></span>から、規則や決まりごとに囲まれる仕事環境が「束縛」のように感じられます。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-box">
+                            <div class="reason-icon">
+                                <i class="fas fa-scale-balanced fa-beat"></i>
+                            </div>
+                            <div class="reason-content">
+                                <div class="reason-title">理想と現実のギャップ</div>
+                                <p>連休中にやり残したことや、「連休明けからは頑張ろう！」という<span class="keyword">意気込み<i class="fas fa-fire"></i></span>と現実のギャップが生じています。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> これらの感情は人間として<span class="keyword">自然な反応<i class="fas fa-leaf"></i></span>です。自分を責める必要はありません。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-arrows-turn-to-dots card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-person-walking fa-2x"></i>小さな一歩から始めよう</h2>
+                    <div class="card-content">
+                        <i class="fas fa-lightbulb icon-xl fa-bounce"></i>
+                        
+                        <div class="big-quote">
+                            一気に気持ちを180度変えるのは難しい。でも、<span class="keyword">ほんの少しだけ<i class="fas fa-seedling"></i></span>、「行ってよかった」と思える瞬間を増やすことはできます。
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-star fa-beat highlight-icon"></i>
+                            <p>今日から実践できる具体的なステップを見ていきましょう。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-list-check card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-wand-magic-sparkles fa-2x"></i>心の切り替えステップ</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <strong><i class="fas fa-temperature-low"></i> 完璧を目指さない</strong>
+                                <p>連休明けはまず<span class="keyword">「ウォーミングアップ期間」<i class="fas fa-dumbbell"></i></span>と割り切りましょう。最初は最小限のタスクから始め、休憩も多めに取ります。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <strong><i class="fas fa-shirt"></i> 物理的に「仕事モード」に切り替える</strong>
+                                <p>前日からの準備、睡眠時間の確保、デスク周りの整理など、<span class="keyword">環境を整える<i class="fas fa-broom"></i></span>ことで気持ちも自然と切り替わります。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <strong><i class="fas fa-magnifying-glass-chart"></i> 「行きたくない」気持ちを分解する</strong>
+                                <p>漠然とした不安を具体化し、仕事の中の<span class="keyword">小さな楽しみ<i class="fas fa-face-smile"></i></span>や「これだけは頑張ろう」と思える部分を見つけましょう。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <strong><i class="fas fa-gift"></i> 仕事以外の楽しみに焦点を当てる</strong>
+                                <p>仕事終わりの<span class="keyword">ご褒美<i class="fas fa-ice-cream"></i></span>を計画する、プライベートと仕事の境界線を意識するなど、オンとオフの切り替えを大切にします。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <strong><i class="fas fa-people-group"></i> 周囲との繋がりを大切にする</strong>
+                                <p>一人で抱え込まず、<span class="keyword">同僚や友人と気持ちを共有<i class="fas fa-comments"></i></span>することで心が軽くなります。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-star-half-stroke card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-toolkit fa-2x"></i>実践的なヒント集</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-lightbulb fa-lg fa-fade" style="color: var(--MysticLibrary-3);"></i> 具体的に実践できる小さなアクションを集めました。できることから少しずつ試してみましょう。</p>
+                        
+                        <div class="tip-box">
+                            <div class="tip-icon"><i class="fas fa-check"></i></div>
+                            <p><span class="keyword">最初は最小限のタスクから<i class="fas fa-list-check"></i></span>：メールチェック、簡単な事務処理など、負荷の低い作業から始めましょう。</p>
+                        </div>
+                        
+                        <div class="tip-box">
+                            <div class="tip-icon"><i class="fas fa-mug-hot"></i></div>
+                            <p><span class="keyword">休憩を多めに<i class="fas fa-chair"></i></span>：いつもより意識的に休憩時間を増やし、短い時間でもリフレッシュする時間を作りましょう。</p>
+                        </div>
+                        
+                        <div class="tip-box">
+                            <div class="tip-icon"><i class="fas fa-comments"></i></div>
+                            <p><span class="keyword">周囲の人と話す<i class="fas fa-user-friends"></i>
