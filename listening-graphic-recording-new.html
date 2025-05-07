@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社の休憩スペースで「聞く」ということ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--MysticLibrary-1);
+            margin: 0;
+        }
+
+        .date-info {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .date-info div {
+            margin-bottom: 5px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            gap: 10px;
+        }
+
+        .corner-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-3);
+            opacity: 0.5;
+        }
+
+        .content-block {
+            margin-bottom: 15px;
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--MysticLibrary-4);
+            position: relative;
+            padding: 0 2px;
+            display: inline;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .highlight-box {
+            background-color: rgba(191, 128, 122, 0.1);
+            border-left: 4px solid var(--MysticLibrary-3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+
+        .info-icon {
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            flex-shrink: 0;
+        }
+
+        .quote-box {
+            background-color: rgba(46, 87, 140, 0.05);
+            border-radius: 15px;
+            border: 2px solid var(--MysticLibrary-1);
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            font-family: 'Yomogi', cursive;
+        }
+
+        .quote-box:before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: var(--MysticLibrary-1) transparent;
+        }
+
+        .quote-box:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 32px;
+            border-width: 13px 13px 0;
+            border-style: solid;
+            border-color: rgba(46, 87, 140, 0.05) transparent;
+        }
+
+        .timeline {
+            margin: 20px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+        }
+
+        .timeline-item {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--MysticLibrary-1);
+        }
+
+        .steps {
+            counter-reset: step;
+            margin: 20px 0;
+            padding-left: 10px;
+        }
+
+        .step {
+            counter-increment: step;
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 15px;
+        }
+
+        .step::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .conclusion {
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .conclusion h2 {
+            font-family: 'Kaisei Decol', serif;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .icon-lg {
+            font-size: 24px;
+        }
+
+        .icon-xl {
+            font-size: 32px;
+        }
+
+        .icon-2x {
+            font-size: 48px;
+        }
+
+        .list-with-icons {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .list-with-icons li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .list-with-icons li i {
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .content-with-icon {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .content-with-icon i {
+            margin-right: 10px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date-info {
+                margin-top: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-container">
+                <i class="fas fa-ear-listen fa-2x" style="color: var(--MysticLibrary-1);"></i>
+                <h1 class="title">会社の休憩スペースで「聞く」ということ</h1>
+            </div>
+            <div class="date-info">
+                <div><i class="fas fa-calendar-alt"></i> 2025年5月</div>
+                <div><i class="fas fa-user"></i> 先輩にしかできない大きな仕事</div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1セクション -->
+            <div class="section">
+                <i class="fas fa-cloud-sun corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-day"></i>
+                    五月という時期
+                </h2>
+                
+                <div class="content-with-icon">
+                    <i class="fas fa-wind info-icon"></i>
+                    <div>
+                        新しい年度が始まり、希望に胸を膨らませる4月が過ぎ、会社には<span class="keyword">五月の穏やかな風</span>が吹いています。
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    この時期は<span class="keyword">新しい環境や役割への適応疲れ</span>、理想と現実のギャップから、心が少し重くなる人も少なくありません。
+                </div>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-heart-crack info-icon"></i>
+                    <div>
+                        <span class="keyword">「五月病」</span>という言葉が示すように、心身のバランスを崩しやすい時期でもあります。
+                    </div>
+                </div>
+
+                <div class="hand-drawn-box">
+                    <h3 style="text-align: center; margin-bottom: 10px; color: var(--MysticLibrary-1);">五月によく見られる症状</h3>
+                    <ul class="list-with-icons">
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>理想と現実のギャップ</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>新環境への適応疲れ</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>期待に応えようとする無理</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>心身のバランスの崩れ</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 第2セクション -->
+            <div class="section">
+                <i class="fas fa-user-friends corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    後輩との出会い
+                </h2>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-female info-icon"></i>
+                    <div>
+                        私のチームにいる、入社数年目の女性の後輩「<span class="keyword">優花さん</span>」は明るく話好きな<span class="keyword">ムードメーカー</span>でした。
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    真面目で仕事熱心な努力家、感情豊かで自分の考えや日常の出来事を周りの人に話すのがとても好きなタイプ
+                </div>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-award info-icon"></i>
+                    <div>
+                        今年度、初めて<span class="keyword">重要なプロジェクトでサブリーダー</span>を任され、大きなチャンスを得ました。
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    しかし五月に入ってから、<span class="keyword">様子がおかしく</span>なっていました。
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">快活さが消えた</div>
+                    <div class="timeline-item">一人で考え込む時間が増えた</div>
+                    <div class="timeline-item">顔色が冴えない</div>
+                    <div class="timeline-item">話しかけても上の空</div>
+                    <div class="timeline-item">質問や意見が減った</div>
+                </div>
+            </div>
+
+            <!-- 第3セクション -->
+            <div class="section">
+                <i class="fas fa-mug-hot corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    声をかける決断
+                </h2>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-comments info-icon"></i>
+                    <div>
+                        沈む優花さんを見て、<span class="keyword">どう声をかけるべきか迷いました</span>。忙しい彼女の邪魔をしたくない気持ちもありました。
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    ある日、共有スペースで彼女が人目を避けるように、<span class="keyword">深々と、本当に辛そうな溜息</span>をついているのを見てしまいました
+                </div>
+
+                <div class="highlight-box">
+                    これは、<span class="keyword">おしゃべり好きな優花さんでも、一人で抱えきれない何か</span>があるのだ」と確信しました。
+                </div>
+
+                <div class="steps">
+                    <div class="step">休憩時間になったタイミングで、優花さんにそっと近づきました</div>
+                    <div class="step">「優花さん、ちょっといい？少し話せる時間ある？」と声をかけました</div>
+                    <div class="step">彼女は少し驚いたようでしたが、すぐに頷いてくれました</div>
+                    <div class="step">会社の休憩スペースへと一緒に向かいました</div>
+                </div>
+            </div>
+
+            <!-- 第4セクション -->
+            <div class="section">
+                <i class="fas fa-headphones-alt corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-ear-listen"></i>
+                    「聞く」という行為
+                </h2>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-couch info-icon"></i>
+                    <div>
+                        休憩スペースは<span class="keyword">少し離れた場所</span>にあり、社員が<span class="keyword">ホッと一息</span>つける空間です。
+                    </div>
+                </div>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-eye info-icon"></i>
+                    <div>
+                        私は無理に明るく振る舞うことなく、ただ彼女の目を見て、<span class="keyword">「最近、ちょっと大変そうだね」</span>と静かに語りかけました。
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    すると、<span class="keyword">堰を切ったかのように話し始めました</span>。心の中に溜め込んだものを言葉にするのは、それほど難しいことではなかったのかもしれません。
+                </div>
+
+                <div class="hand-drawn-box">
+                    <h3 style="text-align: center; margin-bottom: 10px; color: var(--MysticLibrary-1);">優花さんが抱えていた悩み</h3>
+                    <ul class="list-with-icons">
+                        <li>
+                            <i class="fas fa-project-diagram" style="color: var(--MysticLibrary-3);"></i>
+                            <span>プロジェクトの全体像が掴めない</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tasks" style="color: var(--MysticLibrary-3);"></i>
+                            <span>タスク管理がうまくいかない</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-users-cog" style="color: var(--MysticLibrary-3);"></i>
+                            <span>チームメンバーを動かす難しさ</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>自分の至らなさへの焦り</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-weight-hanging" style="color: var(--MysticLibrary-3);"></i>
+                            <span>上司からの期待によるプレッシャー</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 第5セクション -->
+            <div class="section">
+                <i class="fas fa-clock corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-hourglass"></i>
+                    「聞く」時間の価値
+                </h2>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-heart info-icon"></i>
+                    <div>
+                        私は、ただただ、彼女の話を<span class="keyword">「聞く」ことに徹しました</span>。
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    彼女の言葉一つ一つに耳を傾け、時折短い相槌を打ちながら、<span class="keyword">彼女が話し続けるのを促しました</span>。
+                </div>
+
+                <div class="steps">
+                    <div class="step">言葉をそのまま<span class="keyword">否定せず</span>受け止める</div>
+                    <div class="step">感情が込み上げてきた時は<span class="keyword">静かに隣にいる</span></div>
+                    <div class="step">判断せず、ただ<span class="keyword">「聞く」という形で受け止める</span></div>
+                </div>
+
+                <div class="content-with-icon">
+                    <i class="fas fa-hourglass-end info-icon"></i>
+                    <div>
+                        時間が経つのを忘れていました。気づけば、<span class="keyword">優に1時間を超えていました</span>。
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    「話してみて、どうだった？」と尋ねると、話す前とは<span class="keyword">見違えるほど、彼女の顔色は明るくなっていました</span>
+                </div>
+            </div>
+
+            <!-- 第6セクション -->
+            <div class="section">
+                <i class="fas fa-lightbulb corner-icon"></i>
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    先輩にしかできない大きな仕事
+                </h2>
+
+                <div class="quote-box">
+                    <span class="keyword">心が軽くなりました</span>。頭の中で一人で考えてるだけだと、どんどん悪い方にばかり行っちゃって...声に出して話したら、なんだか整理できたっていうか。先輩に、こんなに時間をかけて、じっくり聞いてもらえたのが初めてで...なんだか、<span class="keyword">一人じゃないんだって、すごく安心しました</span>。
+                </div>
+
+                <div class="highlight-box">
+                    私は彼女のプロジェクトの問題を解決したわけではありません。<span class="keyword">ただ「聞く」という行為</span>をしただけなのに、彼女は明らかに変わりました。
+                </div>
+
+                <div class="hand-drawn-box">
+                    <h3 style="text-align: center; margin-bottom: 10px; color: var(--MysticLibrary-1);">「聞く」ことの価値</h3>
+                    <div class="icon-container">
+                        <i class="fas fa-ear-listen icon-2x" style="color: var(--MysticLibrary-3);"></i>
+                    </div>
+                    <ul class="list-with-icons">
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>悩みを<span class="keyword">客観的に見つめる</span>助けになる</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>内面を<span class="keyword">整理する</span>機会を与える</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span><span class="keyword">自己肯定感を回復</span>させる</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span><span class="keyword">「一人ではない」</span>という安心感</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--MysticLibrary-3);"></i>
+                            <span>困難に立ち向かう<span class="keyword">エネルギー</span>を与える</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>「聞くこと」の真の意味</h2>
+            <p>「<span style="font-weight: bold; text-decoration: underline;">聞くこと</span>」。それは、特別なスキルや技術を必要とするものではありません。しかし、相手への<span style="font-weight: bold; text-decoration: underline;">深い敬意と共感</span>、そして何よりも、自分の時間と心を相手のために割くという、静かで、しかし最も<span style="font-weight: bold; text-decoration: underline;">パワフルな行為</span>です。</p>
+            <div class="icon-container">
+                <i class="fas fa-ear-listen icon-2x"></i>
+            </div>
+            <p>特に、<span style="font-weight: bold; text-decoration: underline;">新しい環境や役割への適応に苦労</span>し、期待に応えようと無理をしがちな五月という時期に、後輩が心の内の声を安心して話せる先輩がいることは極めて重要です。</p>
+            <p style="margin-top: 10px;">会社の休憩スペースという、いつものデスクから少し離れた場所で、彼らの話に心を込めて耳を傾けることで、「<span style="font-weight: bold; text-decoration: underline;">あなたは一人ではない</span>」という無言のメッセージを伝えることができるのです。</p>
+        </div>
+
+        <div class="footer">
+            <p>「聞くこと」は、他の業務を一時的に中断してまで優先すべき、「先輩にしかできない大きな仕事」です。</p>
+        </div>
+    </div>
+</body>
+</html>
