@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己理解と探求の旅：未知なる9割の可能性を拓く</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.4;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%232E578C" d="M184 48H328c4.4 0 8 3.6 8 8V96H176V56c0-4.4 3.6-8 8-8zm-56 8V96H64C28.7 96 0 124.7 0 160v96H192 320 512V160c0-35.3-28.7-64-64-64H384V56c0-30.9-25.1-56-56-56H184c-30.9 0-56 25.1-56 56zM512 288H320v32c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32V288H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V288z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: var(--MysticLibrary-3);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            animation: fa-bounce 2s infinite;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 2px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight i {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .iceberg {
+            position: relative;
+            margin: 20px auto;
+            width: 85%;
+            text-align: center;
+        }
+
+        .iceberg-top {
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+
+        .iceberg-top i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .iceberg-bottom {
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 100px 100px;
+            position: relative;
+            z-index: 1;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .iceberg-bottom i {
+            margin: 10px;
+            font-size: 24px;
+            opacity: 0.8;
+        }
+
+        .iceberg-percent {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .iceberg-percent.top {
+            top: 10px;
+            right: 10px;
+        }
+
+        .iceberg-percent.bottom {
+            bottom: 50px;
+            right: 10px;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: var(--MysticLibrary-1);
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .step-title i {
+            margin-right: 10px;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            border: 2px solid var(--MysticLibrary-1);
+            animation: fa-spin 6s linear infinite;
+        }
+
+        .benefit-bubble {
+            background-color: white;
+            border: 2px dashed var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefit-bubble i {
+            font-size: 24px;
+            color: var(--MysticLibrary-3);
+            margin-right: 15px;
+            min-width: 24px;
+        }
+
+        .benefit-bubble:hover {
+            background-color: rgba(191, 128, 122, 0.1);
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+
+        .method-box {
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .method-box-title {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background-color: white;
+            padding: 0 10px;
+            color: var(--MysticLibrary-1);
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            display: flex;
+            align-items: center;
+        }
+
+        .method-box-title i {
+            margin-right: 5px;
+        }
+
+        .practice-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 10px 0;
+        }
+
+        .practice-step i {
+            color: var(--MysticLibrary-3);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .note {
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 5px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .mindset-cloud {
+            background-color: white;
+            border-radius: 30px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mindset-cloud::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50px;
+            width: 30px;
+            height: 15px;
+            background-color: white;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            color: var(--MysticLibrary-1);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .mindset-title i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, rgba(46, 87, 140, 0.1), rgba(191, 128, 122, 0.1));
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .conclusion-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conclusion-title i {
+            margin: 0 10px;
+            animation: fa-beat 2s infinite;
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 32px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+        }
+
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-compass fa-3x fa-spin" style="color: var(--MysticLibrary-1); animation-duration: 10s;"></i>
+                <h1 class="title">自己理解と探求の旅：未知なる9割の可能性を拓く</h1>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月9日</span>
+                <span><i class="fas fa-feather"></i> グラフィックレコーディング</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-question-circle card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-map-marked-alt fa-2x fa-bounce"></i>自己理解とは何か？</h2>
+                    <div class="card-content">
+                        <p>「自分のことは自分が一番よくわかっている」—実はそうではないかもしれません。</p>
+                        
+                        <div class="iceberg">
+                            <div class="iceberg-top">
+                                <span>意識している自分</span>
+                                <span class="iceberg-percent top">1割</span>
+                            </div>
+                            <div class="iceberg-bottom">
+                                <i class="fas fa-brain fa-fade"></i>
+                                <i class="fas fa-heart fa-beat"></i>
+                                <i class="fas fa-puzzle-piece fa-flip"></i>
+                                <span>未知の可能性を秘めた自分</span>
+                                <span class="iceberg-percent bottom">9割</span>
+                            </div>
+                        </div>
+                        
+                        <p>自己理解とは、自分の<span class="keyword">価値観<i class="fas fa-gem"></i></span>、<span class="keyword">感情パターン<i class="fas fa-chart-line"></i></span>、<span class="keyword">思考の癖<i class="fas fa-brain"></i></span>、<span class="keyword">強みや弱み<i class="fas fa-balance-scale"></i></span>を多角的に認識し、受け入れることです。</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-binoculars card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-question-circle fa-2x fa-shake"></i>なぜ9割は未知なのか？</h2>
+                    <div class="card-content">
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-key"></i>4つの理由</div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-moon fa-lg fa-fade"></i>
+                                <div>
+                                    <strong>無意識の領域</strong>：心の中には意識できない広大な無意識の領域が存在し、過去の経験や抑圧された感情が蓄積されています。
+                                </div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-theater-masks fa-lg fa-flip"></i>
+                                <div>
+                                    <strong>社会的期待と役割</strong>：様々なコミュニティの中で役割を演じて生きる中で、本当の自分の感情や欲求に蓋をしてしまうことがあります。
+                                </div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-microscope fa-lg fa-bounce"></i>
+                                <div>
+                                    <strong>認知バイアス</strong>：無意識のうちに特定の思考パターンを用いることで、客観的な自己評価が歪んでしまいます。
+                                </div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-mountain fa-lg fa-beat"></i>
+                                <div>
+                                    <strong>変化への恐れ</strong>：新しい自分を発見することは、これまでの価値観や生き方を変える必要があり、その変化を無意識に避けてしまうことがあります。
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>しかし、この「9割の未知」は<span class="keyword">可能性の宝庫</span>です。まだ見ぬ自分の可能性、成長の伸びしろが眠っています！</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-star card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-rocket fa-2x fa-shake"></i>自己理解の重要性</h2>
+                    <div class="card-content">
+                        <p>自己理解を深めることは、私たちの人生に大きな恩恵をもたらします：</p>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-route fa-beat"></i>
+                            <div>より良い<span class="keyword">意思決定<i class="fas fa-check-circle"></i></span>ができるようになり、人生の岐路でより自分らしい選択ができる</div>
+                        </div>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-users fa-bounce"></i>
+                            <div><span class="keyword">人間関係<i class="fas fa-heart"></i></span>が円滑になり、誤解やすれ違いが減る</div>
+                        </div>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-shield-alt fa-flip"></i>
+                            <div><span class="keyword">ストレス対処能力<i class="fas fa-dumbbell"></i></span>が向上し、感情のコントロールがしやすくなる</div>
+                        </div>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-heart fa-beat"></i>
+                            <div><span class="keyword">自己肯定感<i class="fas fa-thumbs-up"></i></span>が高まり、ありのままの自分を肯定できるようになる</div>
+                        </div>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-bullseye fa-spin"></i>
+                            <div><span class="keyword">目標達成<i class="fas fa-flag-checkered"></i></span>の可能性が高まり、自分に合った目標を設定できる</div>
+                        </div>
+                        
+                        <div class="benefit-bubble">
+                            <i class="fas fa-smile-beam fa-bounce"></i>
+                            <div>人生の<span class="keyword">満足度と幸福感<i class="fas fa-sun"></i></span>が向上する</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-tools card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-seedling fa-2x fa-beat"></i>自己理解を深める方法</h2>
+                    <div class="card-content">
+                        <p>どうすれば「9割の未知なる自分」に出会い、自己理解を深めることができるでしょうか？</p>
+                        
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-meditation"></i>マインドフルネス瞑想</div>
+                            
+                            <p><span class="keyword">今、ここに意識を向ける<i class="fas fa-clock"></i></span>ことで、自分の思考や感情を客観的に観察できるようになります。</p>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-1 fa-fw"></i>
+                                <div>静かな場所で、楽な姿勢で座ります。</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-2 fa-fw"></i>
+                                <div>自分の自然な呼吸に意識を向けます。</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-3 fa-fw"></i>
+                                <div>思考や感情が浮かんできても、それを追いかけたり評価したりせず、再び呼吸に意識を戻します。</div>
+                            </div>
+                            
+                            <div class="note">
+                                <i class="fas fa-info-circle fa-fade"></i> 最初は5分程度から始め、徐々に時間を延ばしていきましょう。
+                            </div>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-pen-fancy"></i>ジャーナリング</div>
+                            
+                            <p><span class="keyword">書く瞑想<i class="fas fa-book-open"></i></span>とも呼ばれ、頭に浮かんだことをノートに書き出すことで自己対話を深めます。</p>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-pen-nib fa-fw"></i>
+                                <div><strong>自由記述</strong>：頭に浮かぶことをひたすら書き出します。</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-list fa-fw"></i>
+                                <div><strong>テーマ設定</strong>：特定のテーマについて深掘りして書きます。</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-heart fa-fw"></i>
+                                <div><strong>感情の記録</strong>：特定の感情に焦点を当て、その感情がいつ、どこで、なぜ生まれたのかを記録します。</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-smile fa-fw"></i>
+                                <div><strong>感謝日記</strong>：日々の小さな感謝を書き出すことも効果的です。</div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-comments"></i>他者からのフィードバック</div>
+                            
+                            <p><span class="keyword">自分では見えない鏡<i class="fas fa-eye"></i></span>として、信頼できる他者からの客観的な意見を求めましょう。</p>
+                            
+                            <div class="highlight">
+                                <i class="fas fa-lightbulb fa-beat"></i>
+                                <p>「ジョハリの窓」という考え方では、<span class="keyword">盲点の窓</span>（自分は気づいていないが、他人は気づいている側面）を小さくするのに役立ちます。</p>
+                            </div>
+                            
+                            <div class="note">
+                                <i class="fas fa-info-circle fa-fade"></i> すべてのフィードバックを鵜呑みにする必要はありません。あくまで参考として受け止め、自分自身で吟味しましょう。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-compass card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-search fa-2x fa-flip"></i>さらなる自己発見の方法</h2>
+                    <div class="card-content">
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-chart-pie"></i>心理テストやツール</div>
+                            
+                            <p>MBTI、ストレングスファインダー、エニアグラムなどの<span class="keyword">性格診断テスト<i class="fas fa-clipboard-check"></i></span>を活用することで、客観的な視点から自分の特性を知ることができます。</p>
+                            
+                            <div class="note">
+                                <i class="fas fa-exclamation-circle"></i> テスト結果はあくまで傾向を示すもので、絶対的なものではありません。自分を型にはめずに参考情報として活用しましょう。
+                            </div>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="method-box">
+                            <div class="method-box-title"><i class="fas fa-hiking"></i>新しい経験への挑戦</div>
+                            
+                            <p><span class="keyword">コンフォートゾーン<i class="fas fa-couch"></i></span>（安心できる領域）から一歩踏み出すことで、予期せぬ自分の能力や感情、価値観に気づくことがあります。</p>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-palette fa-fw fa-bounce"></i>
+                                <div>新しい趣味を始める</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-plane fa-fw fa-shake"></i>
+                                <div>行ったことのない場所へ旅をする</div>
+                            </div>
+                            
+                            <div class="practice-step">
+                                <i class="fas fa-trophy fa-fw fa-beat"></i>
+                                <div>これまで避けてきたことに挑戦する</div>
+                            </div>
+                            
+                            <div class="highlight">
+                                <i class="fas fa-lightbulb fa-beat"></i>
+                                <p>困難な状況や失敗も、自己理解を深める<span class="keyword">貴重な機会</span>です。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-heart card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-leaf fa-2x fa-bounce"></i>自己理解の心構え</h2>
+                    <div class="card-content">
+                        <div class="mindset-cloud">
+                            <div class="mindset-title">
+                                <i class="fas fa-hand-holding-heart fa-bounce"></i>
+                                <span>自己受容の精神</span>
+                            </div>
+                            <p>自分の良いところも悪いところも、強みも弱みも、すべて含めて「これが自分なんだ」とありのままに受け入れましょう。</p>
+                        </div>
+                        
+                        <div class="mindset-cloud">
+                            <div class="mindset-title">
+                                <i class="fas fa-search fa-shake"></i>
+                                <span>好奇心を持つ</span>
+                            </div>
+                            <p>未知なる自分を探求することを楽しむ気持ちを持ちましょう。「なぜ自分はこう感じるのだろう？」と自分自身に問いかけることが発見の第一歩です。</p>
+                        </div>
+                        
+                        <div class="mindset-cloud">
+                            <div class="mindset-title">
+                                <i class="fas fa-hourglass-half fa-spin"></i>
+                                <span>焦らず、継続する</span>
+                            </div>
+                            <p>自己理解は一朝一夕に達成できるものではありません。日々の小さな積み重ねが大切です。</p>
+                        </div>
+                        
+                        <div class="mindset-cloud">
+                            <div class="mindset-title">
+                                <i class="fas fa-seedling fa-fade"></i>
+                                <span>変化を恐れない</span>
+                            </div>
+                            <p>自己理解が深まると、これまでの価値観や考え方が変わることがあります。それは成長の証です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-map card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-compass fa-2x fa-spin"></i>自己理解の旅のステップ</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-title">
+                                    <i class="fas fa-eye fa-beat"></i>
+                                    <span>気づき</span>
+                                </div>
+                                <p>自分の思考、感情、行動パターンを観察し、気づくことからスタートします。マインドフルネスが特に有効です。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">
+                                    <i class="fas fa-pencil-alt fa-shake"></i>
+                                    <span>記録と振り返り</span>
+                                </div>
+                                <p>ジャーナリングや日記を通じて、気づいたことを記録し、定期的に振り返ります。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title">
+                                    <i class="fas fa-users fa-bounce"></i>
+                                    <span>フィードバックと対話</span>
+                                </div>
+                                <p>信頼できる他者からのフィードバックを求め、自分では気づかない視点を取り入れます。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title">
+                                    <i class="fas fa-flask fa-flip"></i>
+                                    <span>実験と挑戦</span>
+                                </div>
+                                <p>新しい環境や経験にチャレンジし、自分の反応や感情を観察します。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <div class="step-title">
+                                    <i class="fas fa-heart fa-beat"></i>
+                                    <span>受容と統合</span>
+                                </div>
+                                <p>発見した自分の側面を受け入れ、自己イメージに統合していきます。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">6</div>
+                                <div class="step-title">
+                                    <i class="fas fa-arrows-alt-h fa-fade"></i>
+                                    <span>行動の変容</span>
+                                </div>
+                                <p>新たな自己理解に基づき、より自分らしい選択や行動をとります。</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">7</div>
+                                <div class="step-title">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                    <span>継続と深化</span>
+                                </div>
+                                <p>自己理解は一生続くプロセスです。常に好奇心を持ち、探求を続けます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-sun card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-star fa-2x fa-flip"></i>自己理解の先にあるもの</h2>
+                    <div class="card-content">
+                        <div class="glass-card">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <i class="fas fa-user-circle fa-3x" style="color: var(--MysticLibrary-1);"></i>
+                                <h3 style="color: var(--MysticLibrary-1); margin-top: 10px;">本当の自分らしさで生きる</h3>
+                            </div>
+                            
+                            <p>自己理解を深める旅の先には、<span class="keyword">「本当の自分らしさ」<i class="fas fa-fingerprint"></i></span>で生きることができるようになります。</p>
+                            
+                            <div class="benefit-bubble">
+                                <i class="fas fa-balance-scale fa-fade"></i>
+                                <div><span class="keyword">自分軸<i class="fas fa-ruler-vertical"></i></span>がしっかりと定まり、他人の評価や社会的な期待に振り回されにくくなります。</div>
+                            </div>
+                            
+                            <div class="benefit-bubble">
+                                <i class="fas fa-hands-helping fa-bounce"></i>
+                                <div>他者に対してより<span class="keyword">寛容<i class="fas fa-dove"></i></span>になり、<span class="keyword">共感力<i class="fas fa-heart"></i></span>が高まります。</div>
+                            </div>
+                            
+                            <div class="benefit-bubble">
+                                <i class="fas fa-smile-beam fa-beat"></i>
+                                <div>心からの<span class="keyword">満足感と幸福感<i class="fas fa-sun"></i></span>を感じながら、自分だけの人生を創造できます。</div>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>9割の未知なる可能性が開花すると、<span class="keyword">想像を超える未来</span>が拓けていきます。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="conclusion">
+                    <h2 class="conclusion-title">
+                        <i class="fas fa-map-signs fa-beat"></i>
+                        内なる冒険を始めよう
+                        <i class="fas fa-compass fa-beat"></i>
+                    </h2>
+                    
+                    <p>自己理解を深めることは、自分自身への最高の投資です。時間がかかり、時に勇気が必要かもしれませんが、その先に待っているのは、より自由で、より豊かで、より自分らしい人生です。</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <i class="fas fa-quote-left fa-2x" style="color: var(--MysticLibrary-3); opacity: 0.5;"></i>
+                        <p style="font-size: 18px; font-style: italic; margin: 10px 0;">あなたの内なる宇宙には、まだ見ぬ星々が輝いています。</p>
+                        <i class="fas fa-quote-right fa-2x" style="color: var(--MysticLibrary-3); opacity: 0.5; float: right;"></i>
+                    </div>
+                    
+                    <p>今日、この瞬間から、小さな一歩を踏み出してみませんか？</p>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button style="background-color: var(--MysticLibrary-1); color: white; border: none; padding: 10px 20px; border-radius: 30px; font-family: 'Zen Kurenaido', sans-serif; font-size: 16px; cursor: pointer;">
+                            <i class="fas fa-walking"></i> 自己探求の旅を始める
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <i class="fas fa-book"></i>
+            自己理解と探求のグラフィックレコーディング
+            <i class="fas fa-pen-fancy"></i>
+            2025年5月9日
+            <i class="fas fa-copyright"></i>
+        </div>
+    </div>
+
+    <script>
+        // 要素のアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            // スクロールに応じたアニメーション
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .method-box, .benefit-bubble, .mindset-cloud, .step, .glass-card');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // 要素が画面内に入ったら
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'fadeIn 0.5s ease-in-out';
+                            
+                            // アニメーション終了後にスタイルを削除
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 500);
+                        }
+                    }
+                });
+            };
+            
+            // 初回実行とスクロールイベントの登録
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // アイコンのホバーエフェクト
+            const icons = document.querySelectorAll('.fa-lg, .fa-2x, .fa-3x, .card-icon');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if(!this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-bounce') && 
+                       !this.classList.contains('fa-spin') && 
+                       !this.classList.contains('fa-shake') && 
+                       !this.classList.contains('fa-flip') &&
+                       !this.classList.contains('fa-fade')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if(this.classList.contains('fa-beat') && 
+                       !this.classList.contains('animate-always')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+            
+            // カードのホバーエフェクト強化
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseover', function() {
+                    const icon = this.querySelector('.card-icon');
+                    if(icon) {
+                        icon.style.opacity = '1';
+                        icon.style.transform = 'scale(1.2) rotate(15deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseout', function() {
+                    const icon = this.querySelector('.card-icon');
+                    if(icon) {
+                        icon.style.opacity = '0.3';
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
