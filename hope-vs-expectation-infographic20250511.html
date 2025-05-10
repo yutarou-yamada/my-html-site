@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>期待を手放し、希望を抱く：徒然草第103段に学ぶ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --mystic-library-1: #2E578C;
+            --mystic-library-2: #182D40;
+            --mystic-library-3: #BF807A;
+            --mystic-library-4: #592A2A;
+            --mystic-library-5: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background: linear-gradient(45deg, var(--mystic-library-5) 0%, #f8f8f8 100%);
+            color: #334155;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 背景パターン */
+        .bg-pattern {
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.03;
+            z-index: -1;
+            animation: gradientChange 20s ease infinite;
+        }
+
+        @keyframes gradientChange {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+
+        /* ヘッダー */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--mystic-library-3);
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--mystic-library-1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(46, 87, 140, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(46, 87, 140, 0.5); }
+        }
+
+        .title i {
+            margin: 0 10px;
+            color: var(--mystic-library-3);
+        }
+
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 18px;
+            color: var(--mystic-library-2);
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: var(--mystic-library-3);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: var(--mystic-library-3);
+            opacity: 0.7;
+        }
+
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--mystic-library-1);
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dashed var(--mystic-library-3);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--mystic-library-4);
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--mystic-library-4);
+            position: relative;
+            padding: 0 2px;
+            border-bottom: 3px solid rgba(191, 128, 122, 0.3);
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 50%, rgba(191, 128, 122, 0.3) 50%);
+            padding: 0 3px;
+        }
+
+        .quote-box {
+            background-color: rgba(46, 87, 140, 0.05);
+            border-left: 4px solid var(--mystic-library-1);
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-box:before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--mystic-library-3);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .story-flow {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 40px;
+        }
+
+        .story-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .story-number {
+            position: absolute;
+            left: -30px;
+            top: 10px;
+            width: 25px;
+            height: 25px;
+            background-color: var(--mystic-library-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .story-line {
+            position: absolute;
+            left: -18px;
+            top: 35px;
+            bottom: -5px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--mystic-library-1), var(--mystic-library-3));
+        }
+
+        .vs-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .vs-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .vs-center {
+            width: 60px;
+            height: 60px;
+            background: var(--mystic-library-4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--mystic-library-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--mystic-library-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature-list i {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 18px;
+            color: var(--mystic-library-3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .wisdom-box {
+            background: linear-gradient(45deg, var(--mystic-library-1), var(--mystic-library-3));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wisdom-box:before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 120px;
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--mystic-library-2);
+            padding-top: 20px;
+            border-top: 3px dashed var(--mystic-library-3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--mystic-library-3);
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .column {
+                flex: 100%;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 背景パターン -->
+        <i class="fa-solid fa-scroll bg-pattern" style="top: 10%; right: 5%;"></i>
+        <i class="fa-solid fa-heart bg-pattern" style="bottom: 5%; left: 5%;"></i>
+        <i class="fa-solid fa-brain bg-pattern" style="top: 40%; left: 40%;"></i>
+        
+        <!-- ヘッダー -->
+        <div class="header">
+            <h1 class="title">
+                <i class="fas fa-3x fa-hand-holding-heart fa-beat"></i>
+                期待を手放し、希望を抱く
+                <i class="fas fa-3x fa-dove fa-beat-fade"></i>
+            </h1>
+            <div class="date">
+                <i class="fas fa-calendar-day"></i> 2025年5月11日
+            </div>
+        </div>
+        
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- Column 1: 物語の流れ -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-book-open card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-clock-rotate-left fa-bounce"></i>
+                        ある昼下がりの出来事
+                    </h2>
+                    
+                    <div class="story-flow">
+                        <div class="story-item">
+                            <div class="story-number">1</div>
+                            <div class="story-line"></div>
+                            <i class="fas fa-utensils fa-lg"></i>
+                            <strong>三人での楽しいランチ</strong>
+                            <p>同僚との心温まる会話、<span class="keyword">深い専門分野の対話</span>、笑い声が絶えない<span class="highlight">幸せな時間</span></p>
+                        </div>
+                        
+                        <div class="story-item">
+                            <div class="story-number">2</div>
+                            <div class="story-line"></div>
+                            <i class="fas fa-comment-dots fa-lg"></i>
+                            <strong>親しみを込めたメッセージ</strong>
+                            <p>午後、話題の続きを共有。<span class="keyword">「期待」</span>を胸に送信</p>
+                        </div>
+                        
+                        <div class="story-item">
+                            <div class="story-number">3</div>
+                            <div class="story-line"></div>
+                            <i class="fas fa-comment-slash fa-lg"></i>
+                            <strong>そっけない返信</strong>
+                            <p>「ありがとうございます。確認します。」<br>
+                            たった<span class="highlight">七文字</span>の衝撃</p>
+                        </div>
+                        
+                        <div class="story-item">
+                            <div class="story-number">4</div>
+                            <i class="fas fa-heart-crack fa-lg"></i>
+                            <strong>心の動揺</strong>
+                            <p><span class="keyword">落胆</span>、<span class="keyword">困惑</span>、<span class="keyword">寂しさ</span>が<br>胸の中で渦巻く</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-user-friends card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-cloud-rain fa-beat-fade"></i>
+                        期待が生み出す苦しみ
+                    </h2>
+                    
+                    <div class="bubble">
+                        <i class="fas fa-exclamation-triangle fa-lg" style="color: var(--mystic-library-4);"></i>
+                        なぜ私は、たった七文字のチャット返信で、<br>これほどまでに心を乱されてしまったのか？
+                    </div>
+                    
+                    <p><i class="fas fa-puzzle-piece fa-lg"></i> その答えは、私が相手の振る舞いに<span class="keyword">「期待」</span>を抱いていたから。</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-chain"></i>昼間の温かさがそのまま続くはず</li>
+                        <li><i class="fas fa-hand-holding-heart"></i>感情のこもった返事が来るはず</li>
+                        <li><i class="fas fa-comments"></i>会話が継続するはず</li>
+                    </ul>
+                    
+                    <p>これらの<span class="keyword">期待</span>が裏切られたことで、心が大きく乱れたのです。</p>
+                </div>
+            </div>
+            
+            <!-- Column 2: 徒然草の教え -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-scroll card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-torii-gate fa-bounce"></i>
+                        徒然草 第103段の教え
+                    </h2>
+                    
+                    <div class="quote-box">
+                        <h3 style="margin-top: 0;">
+                            <i class="fas fa-quote-left"></i> 
+                            人のふるまひ、思ふにたがへば、いとど心乱る。
+                        </h3>
+                        <p>（人の振る舞いが、こちらの思っていることと違っていると、ひどく心が乱れる。）</p>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <p><i class="fas fa-lightbulb fa-2x fa-beat" style="color: var(--mystic-library-3);"></i> 兼好法師は、何百年も前から、<span class="keyword">「期待」と「心乱れ」</span>の関係を見抜いていたのです。</p>
+                    </div>
+                    
+                    <div class="quote-box">
+                        <h3 style="margin-top: 0;">
+                            <i class="fas fa-quote-left"></i>
+                            然れども、かくこそあれと悟るは、智なり。
+                        </h3>
+                        <p>（しかしながら、人間とはそういうものなのだと悟るのが、知恵である。）</p>
+                    </div>
+                    
+                    <div class="wisdom-box">
+                        <i class="fas fa-3x fa-brain fa-spin" style="margin-bottom: 10px;"></i>
+                        <h3>兼好法師の「智」</h3>
+                        <p>現実をありのままに受け入れる<br>
+                        <span style="font-size: 20px;">「かくこそあれ」の悟り</span></p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-balance-scale card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-yin-yang fa-spin"></i>
+                        期待 vs 希望
+                    </h2>
+                    
+                    <div class="vs-box">
+                        <div class="vs-item">
+                            <h3><i class="fas fa-chain-broken fa-2x"></i> 期待</h3>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-times-circle"></i>他者への要求</li>
+                                <li><i class="fas fa-lock"></i>未来への決めつけ</li>
+                                <li><i class="fas fa-fist-raised"></i>ある種の傲慢さ</li>
+                                <li><i class="fas fa-heart-crack"></i>裏切られると苦しい</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="vs-center">VS</div>
+                        
+                        <div class="vs-item">
+                            <h3><i class="fas fa-dove fa-2x"></i> 希望</h3>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i>前向きな願い</li>
+                                <li><i class="fas fa-unlock"></i>不確実性の受容</li>
+                                <li><i class="fas fa-hands-open"></i>柔らかな態度</li>
+                                <li><i class="fas fa-heart"></i>叶わなくても穏やか</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 3: 新しい生き方 -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-compass card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-seedling fa-beat-fade"></i>
+                        新しい心のあり方
+                    </h2>
+                    
+                    <div class="glass-card">
+                        <p><i class="fas fa-hand-holding-heart fa-2x"></i> これからは、「期待」を手放し、「希望」を抱いて生きていく。</p>
+                    </div>
+                    
+                    <div class="bubble">
+                        <h4><i class="fas fa-star"></i> 実践の例</h4>
+                        <p>メッセージを送る時：<br>
+                        × 「温かい返事が来るはずだ」（期待）<br>
+                        ○ 「温かい返事が来たら嬉しいな」（希望）</p>
+                    </div>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-double"></i>「そっけない」返事も、その人の真実として受け入れる</li>
+                        <li><i class="fas fa-hands-praying"></i>相手の状況や性格を尊重する</li>
+                        <li><i class="fas fa-peace"></i>心の平穏を保つ</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-magic card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-sparkles fa-shake"></i>
+                        希望がもたらす奇跡
+                    </h2>
+                    
+                    <div class="wisdom-box">
+                        <i class="fas fa-3x fa-star-shooting fa-beat-fade" style="margin-bottom: 10px;"></i>
+                        <p>期待を超えた振る舞いは<br>
+                        <span style="font-size: 24px;">「奇跡」</span><br>
+                        として感謝できる</p>
+                    </div>
+                    
+                    <p><i class="fas fa-gift fa-lg"></i> 希望以上の反応が返ってきた時、それは当たり前ではない特別な贈り物。</p>
+                    
+                    <div class="quote-box">
+                        <p><i class="fas fa-heart fa-beat"></i> あの三人で笑い合った時間も、そっけないチャットも、どちらも真実。それぞれを「かくこそあれ」として受け入れ、未来には「希望」という名の、軽く、柔らかな光を灯す。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-sun card-icon"></i>
+                    <h2 class="section-title">
+                        <i class="fas fa-2x fa-graduation-cap fa-bounce"></i>
+                        学びの結実
+                    </h2>
+                    
+                    <div class="feature-list">
+                        <li><i class="fas fa-book-reader"></i>徒然草の教えから「智」を得た</li>
+                        <li><i class="fas fa-key"></i>「期待」と「希望」の違いを理解した</li>
+                        <li><i class="fas fa-peace"></i>心の平穏を保つ方法を学んだ</li>
+                        <li><i class="fas fa-infinity"></i>人との関わりに新しい視点を持った</li>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <i class="fas fa-3x fa-hands fa-beat" style="color: var(--mystic-library-3);"></i>
+                        <h3>期待を手放し、希望を抱く</h3>
+                        <p>それが、心の平穏を得る道</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <div class="footer">
+            <i class="fas fa-book"></i>
+            徒然草 第103段より
+            <i class="fas fa-citation"></i>
+            兼好法師の智慧
+        </div>
+    </div>
+
+    <script>
+        // アニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            // スクロールアニメーション
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .story-item, .glass-card, .wisdom-box');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'fadeIn 1s';
+                        }
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+            
+            // アイコンのホバー効果
+            const icons = document.querySelectorAll('.fa-solid:not(.bg-pattern)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if(!this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-bounce') && 
+                       !this.classList.contains('fa-spin') && 
+                       !this.classList.contains('fa-shake') && 
+                       !this.classList.contains('fa-pulse')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if(this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-beat-fade')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
