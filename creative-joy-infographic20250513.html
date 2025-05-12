@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリエイティブの喜び：毎日のnote投稿が紡ぐワクワクの旅</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.4;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M384 32H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H398.4c-5.2 25.8-22.9 47.1-46.4 57.3V448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H320 128c-17.7 0-32-14.3-32-32s14.3-32 32-32H288V153.3c-23.5-10.3-41.2-31.6-46.4-57.3H128c-17.7 0-32-14.3-32-32s14.3-32 32-32H256c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            animation: fa-bounce 2s infinite;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 2px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight i {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            border: 2px solid var(--MysticLibrary-1);
+            animation: fa-spin 6s linear infinite;
+        }
+
+        .note {
+            font-size: 12px;
+            color: var(--MysticLibrary-4);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 5px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 32px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+            animation: fa-bounce 3s infinite;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 12px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .quote-bubble {
+            position: relative;
+            background-color: rgba(46, 87, 140, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .quote-bubble::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            border-width: 0 15px 15px 15px;
+            border-style: solid;
+            border-color: transparent transparent rgba(46, 87, 140, 0.1) transparent;
+        }
+
+        .hand-drawn-box {
+            border: 3px solid;
+            border-color: var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .circle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 80px;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--MysticLibrary-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            transition: transform 0.3s;
+        }
+
+        .circle:hover {
+            transform: scale(1.2);
+        }
+
+        .circle i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .circle-label {
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .emotion-meter {
+            height: 10px;
+            background: linear-gradient(to right, #3498db, #2ecc71, #f1c40f, #e74c3c);
+            border-radius: 5px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .emotion-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .animated-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--MysticLibrary-4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.05);}
+            100% {transform: scale(1);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-pencil-alt fa-3x" style="color: var(--MysticLibrary-1);"></i>
+                <h1 class="title">クリエイティブこそ、人生の輝き！</h1>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月13日</span>
+                <span><i class="fas fa-edit"></i> note毎日投稿の記録</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-magic card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-star fa-2x"></i>クリエイティブな喜びとは</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-quote-left icon-lg"></i>クリエイティブな活動に没頭する時間ほど、<span class="keyword">人生を鮮やかに彩り<i class="fas fa-palette"></i></span>、魂を震わせるものはない。</p>
+                        
+                        <div class="quote-bubble">
+                            <div style="text-align: center; font-family: 'Yomogi', cursive;">
+                                <i class="fas fa-heart fa-2x fa-beat" style="color: var(--MysticLibrary-3);"></i>
+                                <p style="font-size: 18px;"><span class="keyword">毎日ワクワクしながら書いています<i class="fas fa-smile-beam"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>書くことの喜び：</p>
+                            <ul>
+                                <li><span class="keyword">白紙の画面に向き合う時のときめき</span></li>
+                                <li><span class="keyword">考えや感情が言葉として現れる高揚感</span></li>
+                                <li><span class="keyword">記事を書き終えた後の達成感</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 朝起きて「今日は何について書こうかな？」と考える瞬間から、もうワクワクが始まっています。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-seedling card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-heart fa-2x"></i>クリエイティブの根源的喜び</h2>
+                    <div class="card-content">
+                        <p>なぜクリエイティブな活動は私たちを惹きつけるのか？</p>
+                        
+                        <div class="circle-container">
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="circle-label">新しい価値を生み出す</div>
+                            </div>
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <div class="circle-label">内面との深い繋がり</div>
+                            </div>
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="circle-label">新たな発見</div>
+                            </div>
+                        </div>
+                        
+                        <p><i class="fas fa-hourglass icon-lg"></i> そして何よりも、クリエイティブな活動に没頭している時の<span class="keyword">フロー状態<i class="fas fa-wave-square"></i></span>。</p>
+                        
+                        <div class="hand-drawn-box">
+                            <div style="text-align: center;">
+                                <i class="fas fa-clock fa-2x fa-spin" style="color: var(--MysticLibrary-1);"></i>
+                                <p>時間や周囲の音、日常の些末な悩みが全て消え去り、<br>ただひたすらに目の前の創作に集中する<br><span class="keyword">至福の時間<i class="fas fa-dove"></i></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-calendar-check card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-calendar-day fa-2x"></i>「毎日書く」のマジック</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-wand-magic-sparkles icon-lg"></i> 「毎日書く」という行為そのものには、特別なマジックがあります。</p>
+                        
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><span class="keyword">習慣化の力<i class="fas fa-sync-alt"></i></span></p>
+                                <p>書くことへの心理的ハードルが驚くほど下がる</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><span class="keyword">完璧主義からの解放<i class="fas fa-unlock"></i></span></p>
+                                <p>「完璧でなくてもいい」という許容が、自由に書くことを可能に</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><span class="keyword">日常の気づきを捉える力<i class="fas fa-eye"></i></span></p>
+                                <p>些細な出来事が輝きを放ち始める</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <p><span class="keyword">書く筋肉を鍛える<i class="fas fa-dumbbell"></i></span></p>
+                                <p>文章力は実際に書き続けることでしか磨かれない</p>
+                            </div>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-random"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <p style="text-align: center;"><i class="fas fa-surprise icon-lg"></i> <span class="keyword">予測不能な面白さ<i class="fas fa-dice"></i></span></p>
+                        <p style="text-align: center;">「毎日何について書くか、<br>その日になってみないと分からない」</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-fire card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-bolt fa-2x"></i>「ワクワク」の源泉</h2>
+                    <div class="card-content">
+                        <p>毎日noteを書く中で感じる「ワクワク」は様々な要因から生まれています。</p>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p><span class="keyword">新しいテーマへの挑戦</span></p>
+                            <p>未知への挑戦は、常に新鮮な刺激と期待感を与えてくれます</p>
+                        </div>
+                        
+                        <p><i class="fas fa-gamepad icon-lg"></i> 書くこと自体が<span class="keyword">「遊び」になる感覚<i class="fas fa-puzzle-piece"></i></span></p>
+                        <p>言葉遊びをしたり、文章のリズムを楽しんだり、まるでパズルを組み立てるように思考を整理したり。</p>
+                        
+                        <div class="emotion-meter"></div>
+                        <div class="emotion-labels">
+                            <span><i class="fas fa-meh"></i> 義務感</span>
+                            <span><i class="fas fa-smile"></i> 楽しさ</span>
+                            <span><i class="fas fa-grin-stars"></i> ワクワク感</span>
+                        </div>
+                        
+                        <p><i class="fas fa-clock fa-spin icon-lg"></i> <span class="keyword">過去の自分との対話<i class="fas fa-comments"></i></span></p>
+                        <p>初期の頃の記事を読み返すと、様々な発見があります。そこに自分の成長を感じると、次へのモチベーションが生まれます。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-mountain card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-arrows-up-to-line fa-2x"></i>壁にぶつかった時の捉え方</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-pause-circle icon-lg"></i> 時には「今日は何も書くことがないな」「筆が進まないな」と感じる日も。</p>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; margin: 20px 0;">
+                            <div style="width: 45%; padding: 10px; background-color: rgba(231, 76, 60, 0.1); border-radius: 8px;">
+                                <p style="text-align: center;"><i class="fas fa-times-circle" style="color: #e74c3c;"></i><br>以前の捉え方</p>
+                                <p>「書けない自分はダメだ」</p>
+                                <p>「無理やり絞り出そう」</p>
+                            </div>
+                            <div style="width: 45%; padding: 10px; background-color: rgba(46, 204, 113, 0.1); border-radius: 8px;">
+                                <p style="text-align: center;"><i class="fas fa-check-circle" style="color: #2ecc71;"></i><br>今の捉え方</p>
+                                <p>「書けない日は充電期間」</p>
+                                <p>「スランプもプロセスの一部」</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <div style="text-align: center;">
+                                <i class="fas fa-quote-right fa-2x" style="color: var(--MysticLibrary-3);"></i>
+                                <p>noteは私の表現の場であり、<span class="keyword">ありのままの自分を映し出す鏡<i class="fas fa-mirror"></i></span>のようなもの。<br>完璧な自分だけを見せる必要はない。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 書けない日があるからこそ、書ける日の喜びがより一層大きくなります。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-gift card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-sun fa-2x"></i>noteがもたらした変化</h2>
+                    <div class="card-content">
+                        <p>noteでの毎日投稿が私の人生にもたらしてくれたもの：</p>
+                        
+                        <div class="circle-container">
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </div>
+                                <div class="circle-label">自己肯定感の向上</div>
+                            </div>
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="circle-label">日々の充実感</div>
+                            </div>
+                            <div class="circle-item">
+                                <div class="circle">
+                                    <i class="fas fa-binoculars"></i>
+                                </div>
+                                <div class="circle-label">新しい視点や発見</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-bubble">
+                            <p style="text-align: center;"><i class="fas fa-ship icon-lg fa-bounce"></i></p>
+                            <p style="text-align: center;"><span class="keyword">人生を主体的に生きる感覚<i class="fas fa-route"></i></span></p>
+                            <p>自分の内側から湧き上がる声に耳を傾け、それを形にする。この能動的な営みが、自分自身の人生の舵を握っているという確かな実感に繋がっています。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>毎日クリエイティブに生きることで、人生そのものが<span class="keyword">豊かな色彩</span>で満たされていきます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-paper-plane card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-rocket fa-2x"></i>これからも書き続ける</h2>
+                    <div class="card-content">
+                        <div class="hand-drawn-box">
+                            <div style="text-align: center;">
+                                <i class="fas fa-pencil-alt fa-3x fa-beat" style="color: var(--MysticLibrary-3);"></i>
+                                <p style="font-family: 'Yomogi', cursive; font-size: 18px;">さあ、今日も私は書く。<br>自分自身の喜びのために。<br>そして、ワクワクする未来を創るために。</p>
+                            </div>
+                        </div>
+                        
+                        <p><i class="fas fa-lightbulb-on icon-lg"></i> 白紙の画面に向き合うたびに、<span class="keyword">新しい自分と出会う<i class="fas fa-user-plus"></i></span></p>
+                        
+                        <p><i class="fas fa-feather icon-lg"></i> 言葉を紡ぎ出すたびに、<span class="keyword">世界の見え方が変わる<i class="fas fa-globe"></i></span></p>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <p style="text-align: center;">もしあなたが、何かを「創りたい」という気持ちを持っているなら、<br><span class="keyword">その衝動に素直に従ってみてください<i class="fas fa-wind"></i></span></p>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 完璧を目指す必要はありません。ただ、あなたの内側から湧き上がるものを、小さな一歩でもいいから形にしてみてください。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <i class="fas fa-feather-alt"></i>
+            クリエイティブな活動があなたの人生を彩りますように
+            <i class="fas fa-heart"></i>
+            <span style="margin-left: 10px;">2025年5月13日</span>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animation for handdrawn elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make animations more lively on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .hand-drawn-box, .circle');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // If element is in viewport
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'pulse 1s';
+                            
+                            // Remove animation after it completes
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 1000);
+                        }
+                    }
+                });
+            };
+            
+            // Run on load and scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Add hover effects to icons
+            const icons = document.querySelectorAll('.fa-solid:not(.bg-pattern), .fas');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if(!this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-bounce') && 
+                       !this.classList.contains('fa-spin') && 
+                       !this.classList.contains('fa-shake') && 
+                       !this.classList.contains('fa-flip') &&
+                       !this.classList.contains('fa-fade')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if(this.classList.contains('fa-beat') && 
+                       !this.classList.contains('fa-beat-fade')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
