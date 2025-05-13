@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>もっとボーッとしよう - グラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            color: var(--MysticLibrary-1);
+            margin-left: 15px;
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.3;
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 2px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight i {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-3x {
+            font-size: 3em;
+            text-align: center;
+            display: block;
+            margin: 15px auto;
+            color: var(--MysticLibrary-1);
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .definition-box {
+            border: 2px dashed var(--MysticLibrary-1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: rgba(46, 87, 140, 0.05);
+        }
+
+        .note {
+            font-size: 15px;
+            color: var(--MysticLibrary-4);
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(242, 242, 242, 0.7);
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 5px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--MysticLibrary-3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--MysticLibrary-1);
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-cloud-sun fa-3x" style="color: var(--MysticLibrary-1);"></i>
+                <h1 class="title">もっとボーッとしよう。今、私たちに必要な「何もしない時間」の価値</h1>
+            </div>
+            <div class="date-source">
+                <div><i class="fas fa-calendar-alt"></i> 2025年5月14日</div>
+                <div><i class="fas fa-feather"></i> グラフィックレコーディング</div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-hourglass card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-exclamation-circle fa-2x"></i>現代社会の問題</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-mobile-alt icon-lg"></i> <span class="keyword">情報過多<i class="fas fa-chart-line"></i></span>の社会で、私たちは常に「何かをしていないといけない」というプレッシャーに囲まれています。</p>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb"></i>
+                            <p><span class="keyword">「生産性」や「効率」</span>が美徳とされ、<span class="keyword">「ボーッとする時間」</span>はサボりや無駄だと敬遠されがちです。</p>
+                        </div>
+                        
+                        <i class="fas fa-brain icon-3x"></i>
+                        
+                        <p><i class="fas fa-clock icon-lg"></i> 空いた時間をすべて「有益」な活動で埋めようとしていませんか？</p>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left"></i> あらゆる隙間を<span class="keyword">スキルアップ<i class="fas fa-arrow-up"></i></span>や<span class="keyword">自己投資<i class="fas fa-coins"></i></span>で埋めようとしていた <i class="fas fa-quote-right"></i></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-plug card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-bolt fa-2x"></i>常に「オン」の状態がもたらす疲弊</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-phone icon-lg"></i> スマートフォンの登場により、私たちは<span class="keyword">常に「オン」の状態<i class="fas fa-power-off"></i></span>になっています。</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <p><span class="keyword">集中力の低下<i class="fas fa-low-vision"></i></span><br>
+                                絶えず注意があちこちに分散されるため、一つのことに深く集中するのが難しくなります。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">疲労感の蓄積<i class="fas fa-tired"></i></span><br>
+                                脳は膨大な情報を処理し続けることで疲弊し、体全体の倦怠感につながります。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">ストレスと不安の増大<i class="fas fa-head-side-virus"></i></span><br>
+                                常に最新情報やスキルアップへのプレッシャーで、知らず知らずにストレスが蓄積されます。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">創造性の枯渇<i class="fas fa-battery-empty"></i></span><br>
+                                新しいアイデアが生まれるための「余白」が失われてしまいます。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><i class="fas fa-car-crash icon-lg"></i> まるで<span class="keyword">アクセルを踏みっぱなし<i class="fas fa-tachometer-alt"></i></span>の車のように、心と体は消耗し続けています</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-question-circle card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-cloud fa-2x"></i>「ボーッとする」ことへの誤解を解く</h2>
+                    <div class="card-content">
+                        <div class="note">
+                            <i class="fas fa-exclamation-circle"></i> 「ボーッとする」≠「サボり」「怠惰」「時間の無駄」
+                        </div>
+                        
+                        <p><i class="fas fa-feather icon-lg"></i> <span class="keyword">「ボーッとする時間」<i class="fas fa-cloud"></i></span>とは何か？</p>
+                        
+                        <div class="definition-box">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--MysticLibrary-1); margin-right: 10px;"></i>
+                                <span><span class="keyword">意図的な「何もしない」選択<i class="fas fa-hand-paper"></i></span></span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--MysticLibrary-1); margin-right: 10px;"></i>
+                                <span><span class="keyword">目的を持たない心のさまよい<i class="fas fa-compass"></i></span></span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center;">
+                                <i class="fas fa-check-circle" style="color: var(--MysticLibrary-1); margin-right: 10px;"></i>
+                                <span><span class="keyword">受動的な感覚への開放<i class="fas fa-eye"></i></span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p style="text-align: center;"><i class="fas fa-laptop icon-lg"></i> コンピューターで言えば、<span class="keyword">無数のアプリケーションを閉じて<i class="fas fa-window-close"></i></span>、バックグラウンドプロセスにリソースを解放するようなもの</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-microscope card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-flask fa-2x"></i>科学が語る「ボーッとする時間」の効果</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-brain icon-lg"></i> 近年、脳科学の分野でも「ボーッとする時間」の重要性が注目されています。</p>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center; font-weight: bold; font-size: 18px;">
+                                <i class="fas fa-network-wired icon-lg"></i> 
+                                <span class="keyword">デフォルト・モード・ネットワーク（DMN）<i class="fas fa-sitemap"></i></span>
+                            </p>
+                            <p style="text-align: center;">
+                                「ボーッとしている」ときに活発になる脳の神経回路
+                            </p>
+                        </div>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <p><span class="keyword">情報の整理と統合<i class="fas fa-folder-open"></i></span><br>
+                                膨大な情報を無意識のうちに整理し、既存の知識や経験と結びつけます。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">自己に関する思考<i class="fas fa-user-circle"></i></span><br>
+                                自分自身の感情や思考、価値観について内省する時間になります。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">将来のシミュレーション<i class="fas fa-forward"></i></span><br>
+                                過去の経験を基に、将来起こりうる状況をシミュレーションします。</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><span class="keyword">新しいアイデアの創出<i class="fas fa-lightbulb"></i></span><br>
+                                一見無関係な情報同士が結びつき、ひらめきや創造的なアイデアが生まれます。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left"></i> <span class="keyword">「ボーッとする時間」は単なる休息ではなく<i class="fas fa-bed"></i></span>、脳が最も創造的かつ統合的な仕事をしている時間なのです <i class="fas fa-quote-right"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-tools card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-hand-holding-heart fa-2x"></i>「ボーッとする時間」の取り入れ方</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-clock icon-lg"></i> 「ボーッとする時間」は、<span class="keyword">長時間である必要はありません<i class="fas fa-hourglass-half"></i></span>。日常のちょっとした隙間時間でも効果があります。</p>
+                        
+                        <div class="hand-drawn-box">
+                            <div style="text-align: center; margin-bottom: 10px;">
+                                <i class="fas fa-list-alt fa-2x" style="color: var(--MysticLibrary-1);"></i>
+                                <p style="font-weight: bold; font-size: 18px; color: var(--MysticLibrary-1);">具体的な方法</p>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-mobile-alt fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">デジタルデトックス<i class="fas fa-power-off"></i></span>：スマホやPCから離れる時間</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-couch fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">ただ座って外を眺める<i class="fas fa-cloud"></i></span>：何も考えない</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-walking fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">目的のない散歩<i class="fas fa-tree"></i></span>：五感を使う</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-coffee fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">お茶をゆっくり飲む<i class="fas fa-mug-hot"></i></span>：味わう</span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-bath fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">お風呂にゆっくり浸かる<i class="fas fa-water"></i></span></span>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fas fa-om fa-lg" style="color: var(--MysticLibrary-3); margin-right: 10px;"></i>
+                                <span><span class="keyword">瞑想や呼吸法<i class="fas fa-lungs"></i></span>：呼吸に意識を向ける</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-lightbulb"></i> まずは<span class="keyword">一つでも<i class="fas fa-hand-point-right"></i></span>、できそうなものから日常に取り入れてみましょう！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-crown card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-star fa-2x"></i>結論：最高のパフォーマンスは「何もしない時間」から生まれる</h2>
+                    <div class="card-content">
+                        <i class="fas fa-infinity icon-3x"></i>
+                        
+                        <p><i class="fas fa-walking icon-lg"></i> 私たちは、常に何かを<span class="keyword">「すること」<i class="fas fa-tasks"></i></span>で自分の価値を証明しようとしがちです。</p>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center; font-size: 18px; font-weight: bold; color: var(--MysticLibrary-4);">
+                                しかし、<span class="keyword">質の高い仕事や豊かな人生<i class="fas fa-gem"></i></span>は、「何もしない時間」から生まれることが多いのです。
+                            </p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb"></i>
+                            <p><span class="keyword">立ち止まり</span>、<span class="keyword">焦点を外し</span>、<span class="keyword">心と体を解放する</span>「ボーッとする時間」</p>
+                        </div>
+                        
+                        <p><i class="fas fa-map icon-lg"></i> それは、現代社会を生きる私たちにとって、最も欠けており、そして<span class="keyword">最も必要な時間<i class="fas fa-hourglass"></i></span>なのかもしれません。</p>
+                        
+                        <div class="note">
+                            <i class="fas fa-quote-left"></i> 今日から、少しだけ「ボーッとする」時間を自分にプレゼントしてみませんか？その小さな一歩が、きっとあなたの未来をより豊かに彩ってくれるはずです。 <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <i class="fas fa-feather"></i>
+            グラフィックレコーディング
+            <i class="fas fa-copyright"></i>
+            2025年5月
+            <i class="fas fa-cloud"></i>
+        </div>
+    </div>
+</body>
+</html>
