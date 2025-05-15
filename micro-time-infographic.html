@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「マイクロタイム」で拓く学びの世界 - 耳読・耳勉のグラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 248c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm-24 56c0 22.1-17.9 40-40 40s-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 2px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight i {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--MysticLibrary-1);
+            z-index: 2;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .note {
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(191, 128, 122, 0.1);
+            border-left: 3px solid var(--MysticLibrary-4);
+        }
+
+        .note i {
+            margin-right: 5px;
+            color: var(--MysticLibrary-4);
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 36px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-2x {
+            font-size: 32px;
+        }
+
+        .icon-3x {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            color: var(--MysticLibrary-1);
+        }
+
+        .time-places {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .time-place {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex: 0 0 calc(50% - 10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .time-place:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-place i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .benefit {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex: 0 0 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--MysticLibrary-1);
+            border: 2px solid white;
+        }
+
+        .tool-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px dashed var(--MysticLibrary-3);
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .tool-icon {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--MysticLibrary-5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: var(--MysticLibrary-4);
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-icon i {
+            margin-right: 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .tool-content {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .tool-content i {
+            font-size: 36px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .hand-drawn {
+            border: 3px solid;
+            border-color: var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        .versus {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .versus::after {
+            content: 'VS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--MysticLibrary-3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .versus-item {
+            width: 45%;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .bubble {
+            position: relative;
+            background-color: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 30px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: var(--MysticLibrary-1) transparent transparent var(--MysticLibrary-1);
+            transform: rotate(10deg);
+        }
+
+        .bubble-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--MysticLibrary-1);
+            display: flex;
+            align-items: center;
+        }
+
+        .bubble-title i {
+            margin-right: 10px;
+        }
+
+        .recommendation {
+            background-color: rgba(46, 87, 140, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid var(--MysticLibrary-1);
+        }
+
+        .recommendation-title {
+            font-weight: bold;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .recommendation-title i {
+            margin-right: 10px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 5px;
+            color: var(--MysticLibrary-3);
+        }
+
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+            .time-place {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+            .versus {
+                flex-direction: column;
+            }
+            .versus-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .versus::after {
+                top: 50%;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-headphones-alt fa-3x fa-bounce" style="color: var(--MysticLibrary-1);"></i>
+                <h1 class="title">「マイクロタイム」で拓く学びの世界</h1>
+                <i class="fas fa-graduation-cap fa-3x fa-bounce" style="color: var(--MysticLibrary-3); margin-left: 15px;"></i>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月16日</span>
+                <span><i class="fas fa-user"></i> 10年の耳読経験者</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-clock fa-2x fa-spin" style="animation-duration: 10s;"></i>時間不足の現代人</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-running icon-lg"></i>現代社会に生きる私たちは、常に<span class="keyword">時間に追われています<i class="fas fa-stopwatch"></i></span></p>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>「<span class="keyword">自分のために使える時間がない</span>」と感じている人が多いのではないでしょうか</p>
+                        </div>
+                        
+                        <p><i class="fas fa-brain icon-lg"></i>そんな中でも<span class="keyword">知的欲求<i class="fas fa-book"></i></span>は満たしたい</p>
+                        
+                        <div class="bubble">
+                            <div class="bubble-title">
+                                <i class="fas fa-exclamation-circle"></i>典型的な悩み
+                            </div>
+                            <p>「<span class="keyword">勉強したい<i class="fas fa-pencil-alt"></i></span>」</p>
+                            <p>「<span class="keyword">新しい知識を身につけたい<i class="fas fa-lightbulb"></i></span>」</p>
+                            <p>「<span class="keyword">読書を通じて視野を広げたい<i class="fas fa-globe"></i></span>」</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-search card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-key fa-2x fa-bounce"></i>解決の鍵：「隙間時間」</h2>
+                    <div class="card-content">
+                        <i class="fas fa-magic icon-3x fa-shake"></i>
+                        
+                        <p>従来の勉強法だけでは<span class="keyword">時間が足りない<i class="fas fa-hourglass-end"></i></span>という焦燥感</p>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>注目したのが<span class="keyword">「隙間時間」の活用</span></p>
+                        </div>
+                        
+                        <p><i class="fas fa-tools icon-lg"></i>2つの強力なツール：</p>
+                        
+                        <div class="tool-box">
+                            <div class="tool-icon">
+                                <i class="fas fa-toolbox"></i>ツール
+                            </div>
+                            <div class="tool-content">
+                                <i class="fas fa-headphones fa-flip"></i>
+                                <div>
+                                    <p><span class="keyword">社労士24<i class="fas fa-book-reader"></i></span></p>
+                                    <p>社労士試験用音声教材</p>
+                                </div>
+                            </div>
+                            <div class="tool-content">
+                                <i class="fas fa-book-open fa-flip"></i>
+                                <div>
+                                    <p><span class="keyword">Audible<i class="fas fa-volume-up"></i></span></p>
+                                    <p>10年愛用のオーディオブック</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-history card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-route fa-2x fa-pulse"></i>耳読の歴史</h2>
+                    <div class="card-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <p><i class="fas fa-hourglass-start fa-lg"></i> <span class="keyword">約10年前<i class="fas fa-calendar-alt"></i></span>からAudibleを開始</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fas fa-question-circle fa-lg"></i> 最初は<span class="keyword">「本当に頭に入るのだろうか？」<i class="fas fa-brain"></i></span>と疑問</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fas fa-play-circle fa-lg"></i> 通勤電車の中で<span class="keyword">イヤホンをつけて聞く<i class="fas fa-headphones"></i></span></p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fas fa-check-circle fa-lg"></i> <span class="keyword">聞き慣れない単語<i class="fas fa-language"></i></span>は何度も聞き直し</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <p><i class="fas fa-thumbs-up fa-lg"></i> 10年間で<span class="keyword">コンテンツは驚くほど増加<i class="fas fa-chart-line"></i></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-certificate card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-medal fa-2x fa-shake"></i>社労士試験への挑戦</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-trophy icon-lg"></i>社労士試験は<span class="keyword">広範な法律知識<i class="fas fa-balance-scale"></i></span>が必要</p>
+                        
+                        <div class="hand-drawn">
+                            <p style="text-align: center; font-weight: bold;">【合格に必要な学習時間】</p>
+                            <p style="text-align: center; font-size: 24px; margin: 10px 0;">
+                                <i class="fas fa-clock fa-spin" style="color: var(--MysticLibrary-1);"></i>
+                                <span class="keyword">800〜1000時間以上<i class="fas fa-exclamation"></i></span>
+                            </p>
+                        </div>
+                        
+                        <p><i class="fas fa-search icon-lg"></i>「<span class="keyword">社労士24<i class="fas fa-headphones"></i></span>」を発見</p>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>「<span class="keyword">全範囲24時間</span>」の特徴と「<span class="keyword">耳学</span>」重視</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 講義音声は<span class="keyword">細かくチャプター分け<i class="fas fa-puzzle-piece"></i></span>されており、短いものは<span class="keyword">数分<i class="fas fa-stopwatch"></i></span>で完結！
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-map-marked-alt card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-map fa-2x fa-beat"></i>マイクロタイムの発見</h2>
+                    <div class="card-content">
+                        <i class="fas fa-gem icon-3x fa-pulse"></i>
+                        
+                        <p>「<span class="keyword">ながら時間<i class="fas fa-tasks"></i></span>」を徹底活用</p>
+                        
+                        <div class="time-places">
+                            <div class="time-place">
+                                <i class="fas fa-train fa-bounce"></i>
+                                <p><span class="keyword">通勤時間<i class="fas fa-clock"></i></span></p>
+                            </div>
+                            <div class="time-place">
+                                <i class="fas fa-broom fa-shake"></i>
+                                <p><span class="keyword">家事の時間<i class="fas fa-home"></i></span></p>
+                            </div>
+                            <div class="time-place">
+                                <i class="fas fa-walking fa-pulse"></i>
+                                <p><span class="keyword">運動の時間<i class="fas fa-heartbeat"></i></span></p>
+                            </div>
+                            <div class="time-place">
+                                <i class="fas fa-moon fa-fade"></i>
+                                <p><span class="keyword">寝る前<i class="fas fa-bed"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-exclamation-triangle fa-fade"></i> <span class="keyword">エレベーターの待ち時間<i class="fas fa-sort"></i></span>のような本当に短い時間には聞かない方が良い！
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>手や目は別の作業をしていても、<span class="keyword">耳は完全に空いている</span></p>
+                        </div>
+                        
+                        <p><i class="fas fa-magic icon-lg"></i>これまでの「<span class="keyword">作業時間<i class="fas fa-tools"></i></span>」が「<span class="keyword">学習時間<i class="fas fa-graduation-cap"></i></span>」に変わる魔法</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-sync-alt card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-redo-alt fa-2x fa-spin"></i>繰り返しの力</h2>
+                    <div class="card-content">
+                        <p><i class="fas fa-bullseye icon-lg"></i>社労士24では<span class="keyword">繰り返し聞く<i class="fas fa-history"></i></span>ことを意識</p>
+                        
+                        <div class="bubble">
+                            <div class="bubble-title">
+                                <i class="fas fa-lightbulb"></i>繰り返しの効果
+                            </div>
+                            <p>法律の条文や定義、重要な論点が<span class="keyword">歌のように自然と耳に馴染む<i class="fas fa-music"></i></span></p>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-link fa-spin"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <p><i class="fas fa-fast-forward icon-lg"></i>Audibleには<span class="keyword">倍速再生機能<i class="fas fa-tachometer-alt"></i></span>がある</p>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 10年近く耳読を続けると<span class="keyword">等速では物足りなく<i class="fas fa-snail"></i></span>なる！今では<span class="keyword">1.5〜2倍速<i class="fas fa-forward"></i></span>で聞くことが多い
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-star fa-2x fa-pulse"></i>耳活用の効果</h2>
+                    <div class="card-content">
+                        <i class="fas fa-rocket icon-3x fa-shake"></i>
+                        
+                        <div class="benefits">
+                            <div class="benefit">
+                                <i class="fas fa-clock fa-spin"></i>
+                                <p><span class="keyword">学習時間と読書時間の爆発的増加<i class="fas fa-chart-line"></i></span></p>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-brain fa-pulse"></i>
+                                <p><span class="keyword">知識の定着率と理解度の向上<i class="fas fa-arrow-up"></i></span></p>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-hourglass-half fa-flip"></i>
+                                <p><span class="keyword">可処分時間の創出<i class="fas fa-plus-circle"></i></span></p>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-fire fa-burn"></i>
+                                <p><span class="keyword">モチベーションの維持<i class="fas fa-battery-full"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <i class="fas fa-lightbulb fa-beat"></i>
+                            <p>「<span class="keyword">塵も積もれば山となる</span>」を体現！</p>
+                        </div>
+                        
+                        <p><i class="fas fa-comment-dots icon-lg"></i><span class="keyword">耳からの情報と目からの情報<i class="fas fa-eye"></i></span>、そして実体験が結びつく</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-exclamation-triangle card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-shield-alt fa-2x fa-bounce"></i>注意点と限界</h2>
+                    <div class="card-content">
+                        <div class="versus">
+                            <div class="versus-item">
+                                <p style="text-align: center;"><i class="fas fa-thumbs-down fa-2x" style="color: var(--MysticLibrary-3);"></i></p>
+                                <p><i class="fas fa-wind fa-lg"></i> <span class="keyword">聞き流しのリスク<i class="fas fa-ghost"></i></span></p>
+                                <p><i class="fas fa-chart-bar fa-lg"></i> <span class="keyword">図やグラフは理解が難しい<i class="fas fa-chart-pie"></i></span></p>
+                                <p><i class="fas fa-calculator fa-lg"></i> <span class="keyword">複雑な計算問題<i class="fas fa-not-equal"></i></span></p>
+                            </div>
+                            <div class="versus-item">
+                                <p style="text-align: center;"><i class="fas fa-thumbs-up fa-2x" style="color: var(--MysticLibrary-1);"></i></p>
+                                <p><i class="fas fa-redo fa-lg"></i> <span class="keyword">集中途切れたら巻き戻す<i class="fas fa-backward"></i></span></p>
+                                <p><i class="fas fa-book fa-lg"></i> <span class="keyword">テキストと併用する<i class="fas fa-sync"></i></span></p>
+                                <p><i class="fas fa-puzzle-piece fa-lg"></i> <span class="keyword">目と耳の学習を補完する<i class="fas fa-handshake"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 耳勉・耳読は、テキスト学習や問題演習を<span class="keyword">補完するもの<i class="fas fa-puzzle-piece"></i></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-user-check card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-users fa-2x fa-beat"></i>向いている人</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-business-time fa-lg"></i> <span class="keyword">忙しくて時間確保が難しい人<i class="fas fa-running"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-ear fa-lg"></i> <span class="keyword">聴覚優位な人<i class="fas fa-volume-up"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-eye-slash fa-lg"></i> <span class="keyword">文章を読むのが苦手な人<i class="fas fa-book-dead"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <p><i class="fas fa-database fa-lg"></i> <span class="keyword">インプット量を増やしたい人<i class="fas fa-sort-amount-up"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <p><i class="fas fa-tasks fa-lg"></i> <span class="keyword">「ながら学習」に抵抗がない人<i class="fas fa-check-double"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation">
+                            <div class="recommendation-title">
+                                <i class="fas fa-bullhorn"></i>おすすめ
+                            </div>
+                            <p>「<span class="keyword">耳<i class="fas fa-headphones"></i></span>」を活用することで、あなたの<span class="keyword">忙しい毎日<i class="fas fa-calendar-day"></i></span>が、<span class="keyword">学びと成長の喜び<i class="fas fa-seedling"></i></span>で満たされます</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <div class="footer">
+            <i class="fas fa-ear"></i>
+            「耳活」のすすめ：細切れの時間を積み重ねていくことで、確実に学習時間や読書時間は増えていきます
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+    </div>
+
+    <script>
+        // アニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            // カードの出現アニメーション
+            const cards = document.querySelectorAll('.card');
+            
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            function checkCards() {
+                cards.forEach(card => {
+                    if (isInViewport(card) && !card.classList.contains('animated')) {
+                        card.classList.add('animated');
+                        card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        setTimeout(() => {
+                            card.style.animation = '';
+                        }, 500);
+                    }
+                });
+            }
+            
+            // 初期チェック
+            checkCards();
+            
+            // スクロール時のチェック
+            window.addEventListener('scroll', checkCards);
+            
+            // アイコンのホバー効果
+            const icons = document.querySelectorAll('.icon-lg, .icon-xl, .card-icon');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if (!this.classList.contains('fa-spin') && 
+                        !this.classList.contains('fa-beat') && 
+                        !this.classList.contains('fa-bounce') && 
+                        !this.classList.contains('fa-shake') && 
+                        !this.classList.contains('fa-pulse') && 
+                        !this.classList.contains('fa-flip')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if (this.classList.contains('fa-beat') && 
+                        !this.classList.contains('fa-beat-fade')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+            
+            // キーワードのハイライト効果
+            const keywords = document.querySelectorAll('.keyword');
+            keywords.forEach(keyword => {
+                keyword.addEventListener('mouseover', function() {
+                    this.style.color = 'var(--MysticLibrary-3)';
+                    this.style.transition = 'color 0.3s';
+                });
+                
+                keyword.addEventListener('mouseout', function() {
+                    this.style.color = 'var(--MysticLibrary-4)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
