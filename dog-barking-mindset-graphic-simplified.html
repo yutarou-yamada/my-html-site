@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>犬が吠えると捉える思考法</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --primary: #2E578C;
+            --secondary: #182D40;
+            --accent: #BF807A;
+            --accent-dark: #592A2A;
+            --light: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--accent);
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: var(--accent-dark);
+            margin-top: 8px;
+        }
+
+        .date-info {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--accent);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+        }
+
+        .card-content {
+            font-size: 16px;
+        }
+
+        .item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .item i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--accent);
+        }
+
+        .keyword {
+            font-weight: bold;
+            color: var(--accent-dark);
+            padding: 0 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--accent) transparent;
+        }
+
+        .steps {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .steps:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary);
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .versus {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .versus-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid;
+            border-radius: 10px;
+        }
+
+        .versus-left {
+            border-color: var(--accent-dark);
+            margin-right: 10px;
+        }
+
+        .versus-right {
+            border-color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .versus-middle {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .note {
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--accent);
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+        }
+
+        .center-icon {
+            text-align: center;
+            font-size: 36px;
+            margin: 15px 0;
+            color: var(--primary);
+        }
+
+        .dog-bark {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .dog-icon {
+            font-size: 36px;
+            color: var(--accent-dark);
+            margin-right: 10px;
+        }
+
+        .bark-bubble {
+            background-color: white;
+            border: 2px solid var(--accent-dark);
+            border-radius: 10px;
+            padding: 8px 12px;
+            position: relative;
+        }
+
+        .bark-bubble:before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 10px 8px 0;
+            border-style: solid;
+            border-color: transparent var(--accent-dark) transparent transparent;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 3px dashed var(--accent);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* アニメーション */
+        .fa-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        .fa-shake {
+            animation: shake 1s infinite;
+        }
+
+        .fa-spin {
+            animation: spin 3s linear infinite;
+        }
+
+        .fa-beat {
+            animation: beat 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes shake {
+            0%, 100% {transform: rotate(-5deg);}
+            50% {transform: rotate(5deg);}
+        }
+
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes beat {
+            0%, 100% {transform: scale(1);}
+            50% {transform: scale(1.1);}
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date-info {
+                margin-top: 10px;
+                text-align: left;
+            }
+            
+            .versus {
+                flex-direction: column;
+            }
+            
+            .versus-item {
+                margin: 10px 0;
+            }
+            
+            .versus-left, .versus-right {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="title-container">
+                <i class="fas fa-dog fa-3x fa-shake" style="color: var(--primary);"></i>
+                <div>
+                    <h1 class="title">「犬が吠える」と捉える思考法</h1>
+                    <p class="subtitle"><i class="fas fa-lightbulb"></i> 忘年会のビンゴで役職者に目をつけられた夜の教訓</p>
+                </div>
+            </div>
+            <div class="date-info">
+                <p><i class="fas fa-calendar-alt"></i> 2025年5月17日</p>
+                <p><i class="fas fa-feather"></i> 心の平穏を保つ思考法</p>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-glass-cheers fa-2x fa-bounce"></i> 忘年会での出来事</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-quote-left"></i>
+                            <p>一年の労をねぎらう<span class="keyword">和やかな忘年会</span>での出来事</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><i class="fas fa-trophy"></i> 私がビンゴ大会で<span class="keyword">一番になった</span>ことに対し、他部署の<span class="keyword">役職者</span>から<span class="keyword">敵意ある態度</span>と<span class="keyword">棘のある言葉</span>を浴びせられる</p>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-heart-crack"></i>
+                            <p>楽しかった気分は一瞬で吹き飛び、<span class="keyword">困惑と不快感</span>でいっぱいに</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-question-circle"></i> 「なぜあんなことを言われたんだろう」<br>「私が何か悪いことをしたのか？」</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-question-circle fa-2x fa-beat"></i> 心の中の疑問</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-quote-right"></i>
+                            <p><span class="keyword">他人の理不尽な言動</span>によって、なぜこんなにも<span class="keyword">自分の心が乱される</span>のだろうか？</p>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-question"></i>
+                            <p>どうすれば、こうした<span class="keyword">不愉快な出来事</span>に、もっと<span class="keyword">冷静に対処</span>できるのか？</p>
+                        </div>
+                        
+                        <div class="center-icon">
+                            <i class="fas fa-lightbulb fa-bounce"></i>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-book"></i>
+                            <p>ふと手に取った<span class="keyword">ひろゆき氏の本</span>で出会った考え方</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-quote-left fa-2x fa-flip"></i> 「バカは相手にするな」</h2>
+                    <div class="card-content">
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left"></i> <span class="keyword">「犬が吠えているくらいに思っておけばいい」</span></p>
+                        </div>
+                        
+                        <div class="dog-bark">
+                            <i class="fas fa-dog dog-icon fa-shake"></i>
+                            <div class="bark-bubble">
+                                <p>ワン！ワン！</p>
+                                <p style="font-size: 12px;">（怒って吠えている）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-circle-info"></i>
+                            <p>最初は乱暴な言い方と感じたが、深く考えるうちに<span class="keyword">腑に落ちる</span>ものがあった</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> 
+                            ここでの「バカ」とは、<span class="keyword">理性的でない人</span>、自分の感情や偏見に突き動かされて論理的ではない人のこと
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-paw fa-2x fa-shake"></i> 犬が吠えるとは？</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-walking"></i>
+                            <p>道を歩いていて、通りすがりの家の犬が突然<span class="keyword">吠え始めた</span>とします</p>
+                        </div>
+                        
+                        <div class="versus">
+                            <div class="versus-item versus-left">
+                                <h3><i class="fas fa-face-sad-tear"></i> <span class="keyword">気にする</span></h3>
+                                <p>「なぜ私に吠える？」<br>「何か気に食わない？」</p>
+                            </div>
+                            
+                            <div class="versus-middle">VS</div>
+                            
+                            <div class="versus-item versus-right">
+                                <h3><i class="fas fa-face-smile"></i> <span class="keyword">スルーする</span></h3>
+                                <p>「うるさいな」<br>「犬だから吠えるだけ」</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><i class="fas fa-lightbulb"></i> 私たちは知っています：<span class="keyword">犬が吠えるのは</span>、犬自身の<span class="keyword">本能や感情</span>、あるいは外部の刺激に対する<span class="keyword">反応</span>であって、私たちの<span class="keyword">人間としての価値</span>に対する評価ではない</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-lightbulb"></i> 犬の<span class="keyword">吠え声</span>に<span class="keyword">自己肯定感が傷つく</span>ことはない</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-rotate fa-2x fa-spin"></i> 視点の転換</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>忘年会での役職者の言動を<span class="keyword">「吠えている犬」</span>と同じだと考えてみる</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><i class="fas fa-brain"></i> <strong>相手の内側にある感情</strong></p>
+                            <ul>
+                                <li><i class="fas fa-fire"></i> <span class="keyword">嫉妬</span></li>
+                                <li><i class="fas fa-hand-fist"></i> <span class="keyword">負けず嫌い</span></li>
+                                <li><i class="fas fa-bolt"></i> <span class="keyword">日頃の鬱憤</span></li>
+                                <li><i class="fas fa-random"></i> <span class="keyword">単なる気まぐれ</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left"></i> 先輩の言葉は、私の価値とは無関係な<span class="keyword">「ノイズ」</span>に過ぎない</p>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-face-smile"></i>
+                            <p>この視点に立った瞬間、あれほど<span class="keyword">心を離さなかった嫌な気持ち</span>が、すっと<span class="keyword">薄れていく</span>のを感じた</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-expand-alt fa-2x fa-beat"></i> 様々な場面での応用</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-briefcase"></i>
+                            <p>この「犬が吠える」と捉える思考法は、<span class="keyword">日常生活や職場</span>で遭遇する様々な不愉快な出来事にも応用可能</p>
+                        </div>
+                        
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-thumbs-down"></i> <span class="keyword">根拠のない批判</span>をしてくる人</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-user-secret"></i> <span class="keyword">陰で悪口</span>を言う人</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-arrows-spin"></i> <span class="keyword">気分次第で態度</span>を変える人</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <p><i class="fas fa-trophy"></i> <span class="keyword">手柄を横取り</span>する人</p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-exclamation-circle"></i> 
+                            多くの「困った人たち」の言動も、突き詰めれば<span class="keyword">その人自身の内面的問題</span>や<span class="keyword">歪んだ感情</span>から来る「吠え声」であることが多い
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-scale-balanced fa-2x fa-flip"></i> 取捨選択の重要性</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-check-circle"></i>
+                            <p><span class="keyword">真摯なフィードバック</span>や<span class="keyword">正当な批判</span>には耳を傾け、学ぶ必要あり</p>
+                        </div>
+                        
+                        <div class="center-icon">
+                            <i class="fas fa-xmark fa-beat"></i>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-ban"></i>
+                            <p><span class="keyword">悪意や理不尽</span>からくる「吠え声」に<span class="keyword">心を煩わせ</span>、<span class="keyword">エネルギーを浪費</span>する必要はない</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><i class="fas fa-exclamation"></i> これは<span class="keyword">全てのハラスメント</span>や理不尽な扱いに耐えろという意味ではない</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-triangle-exclamation"></i> <span class="keyword">深刻な人権侵害</span>や<span class="keyword">パワーハラスメント</span>には<span class="keyword">毅然とした対応</span>が必要</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> 
+                            「犬が吠える」という比喩は、あくまで<span class="keyword">「自分の心の受け止め方」</span>を変えるための思考ツール
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-umbrella fa-2x fa-bounce"></i> 心のプロテクター</h2>
+                    <div class="card-content">
+                        <div class="item">
+                            <i class="fas fa-circle-info"></i>
+                            <p>日々の生活で遭遇する、<span class="keyword">理不尽な言動</span>に対して非常に有効な考え方</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><i class="fas fa-quote-right"></i> 他人の<span class="keyword">ネガティブな感情のゴミ箱</span>に、自分の心まで引きずり込まれないための<span class="keyword">強力なプロテクター</span></p>
+                        </div>
+                        
+                        <div class="center-icon">
+                            <i class="fas fa-face-smile fa-bounce"></i>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-check-circle"></i>
+                            <p>この思考法を実践してから、<span class="keyword">以前よりもずっと楽に</span>生きられるように</p>
+                        </div>
+                        
+                        <div class="item">
+                            <i class="fas fa-check-circle"></i>
+                            <p><span class="keyword">他人の理不尽な言動</span>に振り回されることが減り、<span class="keyword">感情のコントロール</span>がしやすくなった</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-walking fa-2x fa-bounce"></i> 実践のステップ</h2>
+                    <div class="card-content">                        
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-dog"></i> 理不尽な言動を<span class="keyword">「犬の吠え声」</span>と捉える</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-arrows-alt-h"></i> <span class="keyword">一歩引いた視点</span>で状況を見る</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-heart-pulse"></i> 自分の<span class="keyword">心を守る</span>ことを優先する</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <p><i class="fas fa-battery-full"></i> <span class="keyword">大切なことに</span>エネルギーを使う</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-lightbulb"></i> <span class="keyword">「あぁ、また犬が吠えてるな」</span>と一歩引いた視点で見ることで、<span class="keyword">不要な心の重荷</span>を下ろせる</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-heart"></i> 
+                            あなたの心は、もっと<span class="keyword">穏やかで</span>、もっと<span class="keyword">創造的で</span>、もっと<span class="keyword">幸せな感情</span>で満たされるべき場所
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <p><i class="fas fa-dog"></i> 「他人の理不尽な吠え声に、あなたの貴重な心を支配されないで」 <i class="fas fa-heart"></i></p>
+        </footer>
+    </div>
+</body>
+</html>
