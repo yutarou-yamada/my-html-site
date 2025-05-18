@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>騒音を自然の音でかき消す魔法 - テレワークの体験談</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M144.7 96c-28.5 0-54.5 12.3-72.6 32h145.2c-18.1-19.7-44.1-32-72.6-32zm-39.9-32c13-13.4 31-21.8 51.3-21.8h-2.8c-19.5 0-37.5 8.4-50.5 21.8zM136 256c-22.1 0-40-17.9-40-40s17.9-40 40-40s40 17.9 40 40s-17.9 40-40 40zm408-40c0 108.4-86.6 196.3-194.9 198l-153.7-153.7c-3.1-3.1-8.2-3.1-11.3 0l-11.3 11.3c-3.1 3.1-3.1 8.2 0 11.3l160.9 160.9c-92.5-8.2-173.7-61.4-214.7-134.1-5.5 1.8-11.4 2.9-17.5 3.4C157.4 390.5 229.5 432 310 435.2L384.9 510c3.1 3.1 8.2 3.1 11.3 0l11.3-11.3c3.1-3.1 3.1-8.2 0-11.3l-69-69c103-2.8 186.5-87.5 186.5-191.4c0-13.3-1.3-26.3-3.9-38.9c-6.1 5.6-13.2 10.1-21.1 13.4c1.9 8.3 3 16.8 3 25.5zM520 216c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: #475569;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .subtitle i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.5;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .content-item i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 3px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .vs-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .vs-item {
+            flex: 1;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            border: 2px solid;
+            position: relative;
+            text-align: center;
+        }
+
+        .vs-left {
+            border-color: var(--MysticLibrary-1);
+            margin-right: 20px;
+        }
+
+        .vs-right {
+            border-color: var(--MysticLibrary-3);
+            margin-left: 20px;
+        }
+
+        .vs-icon {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .vs-left .vs-icon {
+            color: var(--MysticLibrary-1);
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .vs-right .vs-icon {
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+        }
+
+        .vs-middle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--MysticLibrary-4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            border-left: 3px solid var(--MysticLibrary-3);
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            border: 2px solid var(--MysticLibrary-1);
+            font-size: 18px;
+        }
+
+        .note {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 32px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-center {
+            display: block;
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+            color: var(--MysticLibrary-1);
+        }
+
+        .sound-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .sound-item {
+            flex: 1 0 calc(50% - 15px);
+            min-width: 120px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 2px solid;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .sound-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .waves-sound {
+            border-color: var(--MysticLibrary-1);
+        }
+
+        .creek-sound {
+            border-color: var(--MysticLibrary-3);
+        }
+
+        .sound-item i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .waves-sound i {
+            color: var(--MysticLibrary-1);
+        }
+
+        .creek-sound i {
+            color: var(--MysticLibrary-3);
+        }
+
+        .sound-item h3 {
+            margin-bottom: 8px;
+            font-family: 'Kaisei Decol', serif;
+        }
+
+        .sound-desc {
+            font-size: 14px;
+        }
+
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .benefit {
+            flex: 1 0 calc(50% - 15px);
+            min-width: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            border: 2px dashed var(--MysticLibrary-3);
+        }
+
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        /* アニメーション */
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.5s;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .wave {
+            animation: wave 8s infinite ease-in-out;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-5px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(5px);
+            }
+        }
+
+        .water-flow {
+            animation: waterFlow 3s infinite linear;
+        }
+
+        @keyframes waterFlow {
+            0% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+            .vs-container {
+                flex-direction: column;
+            }
+            .vs-left, .vs-right {
+                margin: 20px 0;
+            }
+            .vs-middle {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-wand-magic-sparkles fa-3x fa-shake" style="color: var(--MysticLibrary-1);"></i>
+                <div>
+                    <h1 class="title">うるさい車の音をかき消す魔法</h1>
+                    <p class="subtitle"><i class="fas fa-headphones fa-beat"></i>波音・小川のせせらぎで仕事効率が爆上がりした話</p>
+                </div>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月18日</span>
+                <span><i class="fas fa-house-laptop"></i> テレワーク体験談</span>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column animated delay-1">
+                <div class="card">
+                    <i class="fas fa-laptop-house card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-window-maximize fa-2x fa-bounce"></i>そもそもの問題</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-house"></i>
+                            <p>自宅でテレワーク中、<span class="keyword">空気が淀んでいる<i class="fas fa-wind"></i></span>感覚があった</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-temperature-arrow-up"></i>
+                            <p><span class="keyword">暑い日<i class="fas fa-sun"></i></span>だったので、<span class="keyword">窓を開けて換気<i class="fas fa-wind"></i></span>したいと思った</p>
+                        </div>
+                        
+                        <i class="fas fa-window-maximize icon-center"></i>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-exclamation fa-beat"></i></div>
+                            <p>窓を開けたら<span class="keyword">猛烈な騒音<i class="fas fa-volume-high"></i></span>が飛び込んできた！</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-circle-exclamation"></i>
+                            <p>自宅は<span class="keyword">交通量の多い道路<i class="fas fa-road"></i></span>に面している</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 
+                            窓を閉めると二重サッシの効果で音は気にならないが、<span class="keyword">開けると騒音だらけ<i class="fas fa-volume-high"></i></span>になる
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-car card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-volume-high fa-2x fa-shake"></i>騒音の正体</h2>
+                    <div class="card-content">
+                        <div class="sound-comparison">
+                            <div class="sound-item waves-sound">
+                                <i class="fas fa-car-side fa-bounce"></i>
+                                <h3>乗用車</h3>
+                                <p class="sound-desc">ひっきりなしに通り過ぎる</p>
+                            </div>
+                            
+                            <div class="sound-item creek-sound">
+                                <i class="fas fa-truck fa-shake"></i>
+                                <h3>大型トラック</h3>
+                                <p class="sound-desc">地響きを立てる</p>
+                            </div>
+                            
+                            <div class="sound-item waves-sound">
+                                <i class="fas fa-motorcycle fa-bounce"></i>
+                                <h3>バイク</h3>
+                                <p class="sound-desc">甲高いエンジン音</p>
+                            </div>
+                            
+                            <div class="sound-item creek-sound">
+                                <i class="fas fa-volume-off fa-flip"></i>
+                                <h3>静寂</h3>
+                                <p class="sound-desc">全く存在しない</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-face-sad-tear fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            「うるさい…、<span class="keyword">うるさすぎる<i class="fas fa-volume-high"></i></span>…」</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-brain"></i>
+                            <p>騒音が<span class="keyword">集中力を蝕み<i class="fas fa-brain-circuit"></i></span>、仕事の効率が<span class="keyword">見る見る低下<i class="fas fa-chart-line-down"></i></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-lightbulb card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-idea fa-2x fa-flip"></i>ひらめき</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-question-circle"></i>
+                            <p>窓を閉めるべきか？でも…</p>
+                        </div>
+                        
+                        <div class="vs-container">
+                            <div class="vs-left">
+                                <div class="vs-icon"><i class="fas fa-window-maximize"></i></div>
+                                <h3>窓を開ける</h3>
+                                <p>・空気の入れ替え<br>・暑さ対策<br>・解放感</p>
+                            </div>
+                            
+                            <div class="vs-middle">VS</div>
+                            
+                            <div class="vs-right">
+                                <div class="vs-icon"><i class="fas fa-volume-xmark"></i></div>
+                                <h3>騒音に悩む</h3>
+                                <p>・集中力低下<br>・ストレス増加<br>・作業効率ダウン</p>
+                            </div>
+                        </div>
+                        
+                        <i class="fas fa-lightbulb icon-center fa-bounce"></i>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-magic fa-beat"></i></div>
+                            <p><span class="keyword">「音で音を制する」</span>という方法を思いついた！</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-memory"></i>
+                            <p>以前、<span class="keyword">集中力を高める環境音</span>について読んだ記事を思い出した</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column animated delay-2">
+                <div class="card">
+                    <i class="fas fa-volume-high card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-ear-listen fa-2x fa-bounce"></i>環境音の種類</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-sliders"></i>
+                            <p><span class="keyword">ホワイトノイズ</span>：全周波数帯の音を均等に含んだノイズ</p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center; margin-bottom: 10px;"><i class="fas fa-list fa-lg"></i> <strong>試してみたい環境音</strong></p>
+                            <ul>
+                                <li><i class="fas fa-cloud-rain"></i> <span class="keyword">雨の音</span></li>
+                                <li><i class="fas fa-tree"></i> <span class="keyword">森の鳥の声</span></li>
+                                <li><i class="fas fa-fire"></i> <span class="keyword">焚き火の音</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-heart fa-beat"></i></div>
+                            <p>特に惹かれたのは<span class="keyword">「波の音」</span>と<span class="keyword">「小川のせせらぎ」</span></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-circle-info"></i>
+                            <p>これらは<span class="keyword">規則的でありながら単調すぎず</span>、心地よいリズムを持っている</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-water card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-waves fa-2x fa-shake"></i>波の音を試す</h2>
+                    <div class="card-content">
+                        <div class="glass-card">
+                            <p style="text-align: center;"><i class="fas fa-search fa-lg"></i> YouTube検索</p>
+                            <div style="text-align: center; margin: 10px 0; font-family: 'Kaisei Decol', serif; color: var(--MysticLibrary-1);">「波の音 集中」</div>
+                        </div>
+                        
+                        <i class="fas fa-wave-square icon-center wave"></i>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-ear-listen"></i>
+                            <p><span class="keyword">ザァー、ザァー、ザァー</span>…寄せては返す波の音</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-face-surprise fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            不思議だ！<span class="keyword">車の走行音やエンジン音</span>が全く耳に入ってこない</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-magic fa-beat"></i></div>
+                            <p>尖った不快な音が<span class="keyword">丸みを帯びて背景に溶け込む</span>感覚</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i> 
+                            一定のリズムで繰り返される波の音は、驚くほど<span class="keyword">心地よく安心感</span>を与えてくれる
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-stream card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-droplet fa-2x fa-flip"></i>小川のせせらぎを試す</h2>
+                    <div class="card-content">
+                        <div class="glass-card">
+                            <p style="text-align: center;"><i class="fas fa-search fa-lg"></i> YouTube検索</p>
+                            <div style="text-align: center; margin: 10px 0; font-family: 'Kaisei Decol', serif; color: var(--MysticLibrary-3);">「小川 せせらぎ 作業用」</div>
+                        </div>
+                        
+                        <i class="fas fa-water icon-center water-flow"></i>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-ear-listen"></i>
+                            <p>サラサラサラ…チョロチョロ…</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-thumbs-up fa-beat"></i></div>
+                            <p>これも素晴らしい効果！波音とは異なる<span class="keyword">清涼感</span>のある音</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-face-smile"></i>
+                            <p>波音はダイナミックな広がり、せせらぎは繊細で穏やかな感覚</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-check-circle fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            その日は<span class="keyword">「小川のせせらぎ」</span>を選んで仕事を始めることにした</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column animated delay-3">
+                <div class="card">
+                    <i class="fas fa-rocket card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-chart-line fa-2x fa-bounce"></i>驚くべき効果</h2>
+                    <div class="card-content">
+                        <div class="benefits-container">
+                            <div class="benefit">
+                                <i class="fas fa-play-circle fa-bounce"></i>
+                                <h3><span class="keyword">取りかかりやすさ<i class="fas fa-check"></i></span></h3>
+                                <p>すぐに作業に集中できる</p>
+                            </div>
+                            
+                            <div class="benefit">
+                                <i class="fas fa-hourglass fa-flip"></i>
+                                <h3><span class="keyword">集中の持続<i class="fas fa-arrows-to-circle"></i></span></h3>
+                                <p>長時間集中状態が続く</p>
+                            </div>
+                            
+                            <div class="benefit">
+                                <i class="fas fa-ban fa-shake"></i>
+                                <h3><span class="keyword">中断の減少<i class="fas fa-minus"></i></span></h3>
+                                <p>思考が途切れにくい</p>
+                            </div>
+                            
+                            <div class="benefit">
+                                <i class="fas fa-heart-pulse fa-beat"></i>
+                                <h3><span class="keyword">精神的な落ち着き<i class="fas fa-face-smile"></i></span></h3>
+                                <p>イライラや焦りが減少</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-face-surprise fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            気づけば予定よりも<span class="keyword">早くタスクが終わっていた</span>！</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb fa-fade"></i> 
+                            せせらぎの音が外の騒音を<span class="keyword">優しく包み込み</span>、意識の表面に上がらないようにしてくれている
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-question-circle card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-microscope fa-2x fa-shake"></i>なぜ効果があるのか？</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-mask fa-lg"></i> <span class="keyword">マスキング効果<i class="fas fa-layer-group"></i></span></p>
+                                <p>広帯域でランダムな自然音が不快な騒音を覆い隠す</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-brain fa-lg"></i> <span class="keyword">心理的な効果<i class="fas fa-heart"></i></span></p>
+                                <p>生物多様性仮説：人間は遺伝的に自然環境に肯定的反応を示す</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-weight-scale fa-lg"></i> <span class="keyword">認知負荷の軽減<i class="fas fa-brain"></i></span></p>
+                                <p>不快な音を無視するコストが減り、脳のリソースを仕事に使える</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-lightbulb fa-beat"></i></div>
+                            <p>単なる音の置き換えではなく、<span class="keyword">脳の働き方そのものを変える</span>効果がある</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-lightbulb card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-message fa-2x fa-flip"></i>まとめとアドバイス</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-volume-xmark"></i>
+                            <p>周囲の騒音に悩んでいるなら、<span class="keyword">自然の環境音<i class="fas fa-leaf"></i></span>を試してみよう</p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center; margin-bottom: 10px;"><i class="fas fa-wand-magic-sparkles fa-lg"></i> <strong>おすすめの環境音</strong></p>
+                            <ul>
+                                <li><i class="fas fa-water"></i> <span class="keyword">波の音</span></li>
+                                <li><i class="fas fa-stream"></i> <span class="keyword">小川のせせらぎ</span></li>
+                                <li><i class="fas fa-cloud-rain"></i> <span class="keyword">雨の音</span></li>
+                                <li><i class="fas fa-mug-hot"></i> <span class="keyword">カフェの喧騒</span></li>
+                            </ul>
+                        </div>
+                                                                
+                        <div class="content-item">
+                            <i class="fas fa-user"></i>
+                            <p>効果には<span class="keyword">個人差</span>がある。自分に合った音環境を探してみよう</p>
+                        </div>
+                        
+                        <div class="glass-card pulse">
+                            <p style="text-align: center;"><i class="fas fa-quote-left fa-lg"></i> たった一つの小さな工夫が、<span class="keyword">仕事の質を大きく変える</span><i class="fas fa-quote-right fa-lg"></i></p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-magic fa-fade"></i> 
+                            単なる音の置き換えではなく、騒音によるストレスから解放され、脳のリソースを最大限に仕事に注ぎ込める<span class="keyword">「魔法」</span>のような体験
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <i class="fas fa-headphones"></i>
+            「心地よい音環境で、もっと快適に、もっと効率的に」
+            <i class="fas fa-wand-magic-sparkles"></i>
+        </footer>
+    </div>
+
+    <script>
+        // スクロールに連動したアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .hand-drawn-box, .glass-card, .highlight, .bubble, .sound-item, .benefit');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // 要素が画面内に入ったらアニメーション
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'slideIn 0.5s';
+                            
+                            // アニメーション終了後に削除
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 500);
+                        }
+                    }
+                });
+            };
+            
+            // 初期ロード時とスクロール時に実行
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // アイコンのホバーエフェクト
+            const icons = document.querySelectorAll('.fas:not(.fa-beat):not(.fa-bounce):not(.fa-fade):not(.fa-spin):not(.fa-shake):not(.fa-flip):not(.wave):not(.water-flow)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    this.classList.add('fa-beat');
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    this.classList.remove('fa-beat');
+                });
+            });
+            
+            // カードのクリックエフェクト
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.add('pulse');
+                    
+                    setTimeout(() => {
+                        this.classList.remove('pulse');
+                    }, 2000);
+                });
+            });
+            
+            // 音のアイテムクリック効果
+            const soundItems = document.querySelectorAll('.sound-item, .benefit');
+            soundItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        // 現在のアニメーションを保存
+                        const currentAnimation = Array.from(icon.classList).find(cls => 
+                            ['fa-beat', 'fa-bounce', 'fa-fade', 'fa-spin', 'fa-shake', 'fa-flip'].includes(cls)
+                        );
+                        
+                        // 一時的にすべてのアニメーションを削除
+                        ['fa-beat', 'fa-bounce', 'fa-fade', 'fa-spin', 'fa-shake', 'fa-flip'].forEach(cls => {
+                            if (icon.classList.contains(cls)) {
+                                icon.classList.remove(cls);
+                            }
+                        });
+                        
+                        // 新しいアニメーションを追加
+                        icon.classList.add('fa-bounce');
+                        
+                        // 元のアニメーションに戻す
+                        setTimeout(() => {
+                            icon.classList.remove('fa-bounce');
+                            if (currentAnimation) {
+                                icon.classList.add(currentAnimation);
+                            }
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
