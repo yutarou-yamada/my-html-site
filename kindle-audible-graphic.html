@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kindle本をAudible化する方法</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: #475569;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .subtitle i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px;
+        }
+
+        .column {
+            width: 33.333%;
+            padding: 10px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.5;
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .content-item i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline;
+            color: var(--MysticLibrary-4);
+            padding: 0 3px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .vs-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .vs-item {
+            flex: 1;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            border: 2px solid;
+            position: relative;
+            text-align: center;
+        }
+
+        .vs-left {
+            border-color: var(--MysticLibrary-1);
+            margin-right: 20px;
+        }
+
+        .vs-right {
+            border-color: var(--MysticLibrary-3);
+            margin-left: 20px;
+        }
+
+        .vs-icon {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .vs-left .vs-icon {
+            color: var(--MysticLibrary-1);
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .vs-right .vs-icon {
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+        }
+
+        .vs-middle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--MysticLibrary-4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            border-left: 3px solid var(--MysticLibrary-3);
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            border: 2px solid var(--MysticLibrary-1);
+            font-size: 18px;
+        }
+
+        .note {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .icon-lg {
+            font-size: 22px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-center {
+            display: block;
+            text-align: center;
+            font-size: 36px;
+            margin: 15px 0;
+            color: var(--MysticLibrary-1);
+        }
+
+        .activities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .activity {
+            flex: 1 0 calc(50% - 10px);
+            min-width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .activity:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .price-tag {
+            display: inline-block;
+            background-color: var(--MysticLibrary-3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .comparison-table th {
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            font-family: 'Kaisei Decol', serif;
+        }
+
+        .rating {
+            color: var(--MysticLibrary-3);
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        /* アニメーション */
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.5s;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fa-beat {
+            animation: fa-beat 1s ease infinite;
+        }
+
+        .fa-bounce {
+            animation: fa-bounce 1s ease infinite;
+        }
+
+        .fa-shake {
+            animation: fa-shake 1s ease infinite;
+        }
+
+        @keyframes fa-shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .fa-fade {
+            animation: fa-fade 2s ease infinite;
+        }
+
+        @keyframes fa-fade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .fa-flip {
+            animation: fa-flip 2s ease infinite;
+        }
+
+        @keyframes fa-flip {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        .fa-spin {
+            animation: fa-spin 4s linear infinite;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .column {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .column {
+                width: 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+            .vs-container {
+                flex-direction: column;
+            }
+            .vs-left, .vs-right {
+                margin: 15px 0;
+            }
+            .vs-middle {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-headphones-simple fa-3x fa-shake" style="color: var(--MysticLibrary-1);"></i>
+                <div>
+                    <h1 class="title">Kindle本を「Audible化」する方法</h1>
+                    <p class="subtitle"><i class="fas fa-mobile-screen-button fa-beat"></i>iPhoneの読み上げ機能で本を耳で楽しむ</p>
+                </div>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月21日</span>
+                <span><i class="fas fa-lightbulb"></i> スキマ時間活用術</span>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column animated delay-1">
+                <div class="card">
+                    <i class="fas fa-question-circle card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-lightbulb fa-2x fa-bounce"></i>こんな悩みありませんか？</h2>
+                    <div class="card-content">
+                        <div class="bubble">
+                            <p><i class="fas fa-book fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            「読みたい本があるけど、<span class="keyword">時間がない</span><i class="fas fa-hourglass-empty"></i>…」</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-headphones fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            「<span class="keyword">Audibleで聴きたい</span><i class="fas fa-volume-high"></i>けど、まだ音声化されていない…」</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-lightbulb fa-beat"></i></div>
+                            <p><span class="keyword">朗報</span><i class="fas fa-newspaper"></i>です！iPhoneの<span class="keyword">Kindleアプリ</span><i class="fas fa-tablet-screen-button"></i>には「読み上げ機能」があり、どんなKindle本でも<span class="keyword">「疑似Audible化」</span><i class="fas fa-wand-magic-sparkles"></i>して楽しむことができます。</p>
+                        </div>
+                        
+                        <i class="fas fa-arrow-down-wide-short icon-center fa-bounce"></i>
+                        
+                        <div class="note">
+                            <i class="fas fa-money-bill-wave fa-fade"></i> 
+                            Kindle本はAudibleよりも安価で購入できることが多いので、<span class="keyword">コスパ抜群</span><i class="fas fa-piggy-bank"></i>です！
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-trophy card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-award fa-2x fa-flip"></i>Kindle読み上げのメリット</h2>
+                    <div class="card-content">
+                        <div class="vs-container">
+                            <div class="vs-left">
+                                <div class="vs-icon"><i class="fas fa-headphones"></i></div>
+                                <h3>Audibleの課題</h3>
+                                <p><i class="fas fa-x fa-beat"></i> 全ての本が<span class="keyword">音声化されていない</span><i class="fas fa-ban"></i></p>
+                                <p><i class="fas fa-x fa-beat"></i> <span class="keyword">価格が高め</span><i class="fas fa-dollar-sign"></i>（月額1,500円〜）</p>
+                                <p><i class="fas fa-x fa-beat"></i> 日本語書籍は<span class="keyword">選択肢が少ない</span><i class="fas fa-thumbs-down"></i></p>
+                            </div>
+                            
+                            <div class="vs-middle">VS</div>
+                            
+                            <div class="vs-right">
+                                <div class="vs-icon"><i class="fas fa-book-reader"></i></div>
+                                <h3>Kindle読み上げ</h3>
+                                <p><i class="fas fa-check fa-beat"></i> <span class="keyword">どんな本でも</span><i class="fas fa-infinity"></i>読み上げ可能</p>
+                                <p><i class="fas fa-check fa-beat"></i> <span class="keyword">コスパ良好</span><i class="fas fa-sack-dollar"></i>（セールで数百円も）</p>
+                                <p><i class="fas fa-check fa-beat"></i> <span class="keyword">スキマ時間活用</span><i class="fas fa-hourglass-half"></i>に最適</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-list-check card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-clipboard-list fa-2x fa-bounce"></i>準備するもの</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-mobile-screen-button fa-shake"></i>
+                            <p><span class="keyword">iPhone</span><i class="fas fa-apple"></i>（iOS 14以上推奨）</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-tablet-screen-button fa-beat"></i>
+                            <p><span class="keyword">Kindleアプリ</span><i class="fas fa-download"></i>（最新版）</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-book fa-bounce"></i>
+                            <p><span class="keyword">読みたいKindle本</span><i class="fas fa-cart-shopping"></i></p>
+                        </div>
+                        
+                        <i class="fas fa-check-double icon-center fa-flip"></i>
+                        
+                        <div class="note">
+                            <i class="fas fa-circle-info fa-fade"></i> 
+                            お気に入りのイヤホンがあると、より快適に楽しめます！
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column animated delay-2">
+                <div class="card">
+                    <i class="fas fa-gear card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-sliders fa-2x fa-shake"></i>基本的な設定手順</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><span class="keyword">読み上げ機能を有効にする</span><i class="fas fa-toggle-on"></i></p>
+                                <ul>
+                                    <li>「設定」アプリを開く</li>
+                                    <li>「アクセシビリティ」→「スポークンコンテンツ」を選択</li>
+                                    <li>「画面の読み上げ」をオンにする</li>
+                                    <li>「声」で好みの音声を選択（「京子」がおすすめ）</li>
+                                    <li>「話速」でお好みの速度に調整</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><span class="keyword">Kindleアプリで本を開く</span><i class="fas fa-book-open"></i></p>
+                                <ul>
+                                    <li>Kindleアプリを起動</li>
+                                    <li>読みたい本を開く</li>
+                                    <li>読み始めたいページに移動</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><span class="keyword">読み上げを開始する</span><i class="fas fa-play"></i></p>
+                                <ul>
+                                    <li>画面を二本指で上から下にスワイプ</li>
+                                    <li>読み上げが開始されます</li>
+                                    <li>コントロールパネルで一時停止や速度調整が可能</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-magic fa-beat"></i></div>
+                            <p>これだけで、お気に入りのKindle本があなたの<span class="keyword">「オーディオブック」</span><i class="fas fa-volume-high"></i>になります！</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-wand-magic-sparkles card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-star fa-2x fa-bounce"></i>上級者向けテクニック</h2>
+                    <div class="card-content">
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><i class="fas fa-keyboard fa-lg"></i> <strong>ショートカットを活用する</strong></p>
+                            <ol>
+                                <li>「設定」アプリを開く</li>
+                                <li>「アクセシビリティ」を選択</li>
+                                <li>下にスクロールして「ショートカット」を選択</li>
+                                <li>「画面の読み上げ」を選択</li>
+                            </ol>
+                            <div class="note">
+                                <i class="fas fa-lightbulb fa-fade"></i> 
+                                サイドボタンの<span class="keyword">トリプルタップ</span><i class="fas fa-hand-point-up"></i>で読み上げの開始/停止ができるようになり、非常に便利です！
+                            </div>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-bolt fa-shake"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-battery-half"></i>
+                            <p><span class="keyword">バッテリー消費対策</span><i class="fas fa-plug"></i></p>
+                            <ul>
+                                <li>iPhoneを充電しながら使用する</li>
+                                <li>画面の明るさを下げる</li>
+                                <li>「低電力モード」をオンにする</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-dollar-sign fa-2x fa-flip"></i>コスパ比較</h2>
+                    <div class="card-content">
+                        <table class="comparison-table">
+                            <tr>
+                                <th>サービス</th>
+                                <th>月額</th>
+                                <th>年間コスト</th>
+                                <th>特徴</th>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-headphones fa-lg"></i><br>Audible</td>
+                                <td class="price-tag">1,500円</td>
+                                <td>約18,000円<br>(12冊)</td>
+                                <td>プロナレーション<br><span class="rating">★★★★☆</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-tablet-screen-button fa-lg"></i><br>Kindle読み上げ</td>
+                                <td class="price-tag">500〜1,000円</td>
+                                <td>約12,000円<br>(24冊)</td>
+                                <td>永久所有可能<br><span class="rating">★★★☆☆</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-infinity fa-lg"></i><br>Kindle<br>Unlimited</td>
+                                <td class="price-tag">980円</td>
+                                <td>約11,760円<br>(読み放題)</td>
+                                <td>読み放題+読み上げ<br><span class="rating">★★★★★</span></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="note">
+                            <i class="fas fa-crown fa-fade"></i> 
+                            <span class="keyword">Kindle Unlimited + 読み上げ機能</span><i class="fas fa-plus"></i>の組み合わせは、「聴く読書」を楽しみたい方にとって<span class="keyword">最強</span><i class="fas fa-fire"></i>の選択肢です！
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column animated delay-3">
+                <div class="card">
+                    <i class="fas fa-location-dot card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-map-location-dot fa-2x fa-bounce"></i>おすすめの活用シーン</h2>
+                    <div class="card-content">
+                        <div class="activities">
+                            <div class="activity">
+                                <i class="fas fa-broom fa-shake"></i>
+                                <p><span class="keyword">家事</span><i class="fas fa-house"></i>のお供に</p>
+                            </div>
+                            <div class="activity">
+                                <i class="fas fa-train fa-beat"></i>
+                                <p><span class="keyword">通勤</span><i class="fas fa-route"></i>時間に</p>
+                            </div>
+                            <div class="activity">
+                                <i class="fas fa-bed fa-bounce"></i>
+                                <p><span class="keyword">就寝前</span><i class="fas fa-moon"></i>のリラックスに</p>
+                            </div>
+                            <div class="activity">
+                                <i class="fas fa-eye fa-flip"></i>
+                                <p><span class="keyword">目の疲れ</span><i class="fas fa-battery-empty"></i>を感じる時に</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            単調な家事も、<span class="keyword">好きな本を「聴きながら」</span><i class="fas fa-heart-pulse"></i>行うことで、充実した時間に変わります！</p>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-plus fa-spin"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-car"></i>
+                            <p><span class="keyword">運転中</span><i class="fas fa-road"></i>も安全に「読書」を楽しめます</p>
+                            <p class="note" style="margin-top: 5px;"><i class="fas fa-triangle-exclamation fa-fade"></i> 操作は必ず停車中に行いましょう</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-circle-exclamation card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-triangle-exclamation fa-2x fa-shake"></i>読み上げ機能の限界と対処法</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-microphone-lines"></i>
+                            <p><span class="keyword">認識精度</span><i class="fas fa-percent"></i>について</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-microscope fa-beat"></i></div>
+                            <p>読み上げ機能は約<span class="keyword">80%の精度</span><i class="fas fa-chart-pie"></i>と言われています。主な課題：</p>
+                            <ul>
+                                <li><i class="fas fa-language"></i> <span class="keyword">固有名詞の読み間違え</span><i class="fas fa-person-circle-question"></i>（「金持ち」→「きんもち」）</li>
+                                <li><i class="fas fa-globe"></i> <span class="keyword">英単語の発音</span><i class="fas fa-volume-xmark"></i>（カタカナ読み）</li>
+                                <li><i class="fas fa-paragraph"></i> <span class="keyword">句読点の認識</span><i class="fas fa-question"></i>（文の区切りが不自然に）</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-face-smile-wink fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            読み間違いは「<span class="keyword">御愛嬌</span><i class="fas fa-face-laugh"></i>」と考え、面白いアクセントとして楽しむのもありです！</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb fa-fade"></i> 
+                            慣れると脳が自動的に<span class="keyword">読み間違いを修正</span><i class="fas fa-wand-magic-sparkles"></i>して理解するようになります。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-thumbs-up card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-book-open-reader fa-2x fa-bounce"></i>おすすめのジャンル</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-thumbs-up fa-bounce"></i>
+                            <p><span class="keyword">読み上げに向いているジャンル</span><i class="fas fa-check-double"></i></p>
+                            <ul>
+                                <li><i class="fas fa-book fa-lg"></i> <span class="keyword">小説</span><i class="fas fa-feather"></i>：ストーリー中心で理解しやすい</li>
+                                <li><i class="fas fa-briefcase fa-lg"></i> <span class="keyword">ビジネス書</span><i class="fas fa-chart-line"></i>：概念的な内容が多い</li>
+                                <li><i class="fas fa-seedling fa-lg"></i> <span class="keyword">自己啓発書</span><i class="fas fa-brain"></i>：繰り返し聴くと効果的</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-arrows-left-right fa-shake"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-thumbs-down fa-bounce"></i>
+                            <p><span class="keyword">あまり向いていないジャンル</span><i class="fas fa-ban"></i></p>
+                            <ul>
+                                <li><i class="fas fa-table fa-lg"></i> <span class="keyword">図表が多い参考書</span><i class="fas fa-chart-column"></i></li>
+                                <li><i class="fas fa-code fa-lg"></i> <span class="keyword">プログラミング書</span><i class="fas fa-bug"></i></li>
+                                <li><i class="fas fa-image fa-lg"></i> <span class="keyword">写真集や図鑑</span><i class="fas fa-camera"></i></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-card pulse">
+                            <p style="text-align: center;"><i class="fas fa-quote-right fa-lg"></i> 「<span class="keyword">読む時間がない</span><i class="fas fa-clock"></i>」は、<br>もう言い訳になりません！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <i class="fas fa-book-reader"></i>
+            「Kindle読み上げ機能で、スキマ時間を知識と物語で満たそう」
+            <i class="fas fa-headphones"></i>
+        </footer>
+    </div>
+
+    <script>
+        // スクロールに連動したアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .hand-drawn-box, .glass-card, .highlight, .bubble, .activity');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // 要素が画面内に入ったらアニメーション
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'slideIn 0.5s';
+                            
+                            // アニメーション終了後に削除
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 500);
+                        }
+                    }
+                });
+            };
+            
+            // 初期ロード時とスクロール時に実行
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // アイコンのホバーエフェクト
+            const icons = document.querySelectorAll('.fas:not(.fa-beat):not(.fa-bounce):not(.fa-fade):not(.fa-spin):not(.fa-shake):not(.fa-flip)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    this.classList.add('fa-beat');
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    this.classList.remove('fa-beat');
+                });
+            });
+            
+            // カードのクリックエフェクト
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.add('pulse');
+                    
+                    setTimeout(() => {
+                        this.classList.remove('pulse');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
