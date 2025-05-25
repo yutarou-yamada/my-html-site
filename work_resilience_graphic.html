@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仕事が嫌いなまま、楽になった話 - グラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M184 88c0 30.9-25.1 56-56 56s-56-25.1-56-56s25.1-56 56-56s56 25.1 56 56zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 363.4 0 312.7 0 256C0 175.5 64.9 112 144 112h48c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H144c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16h64c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H64c-8.8 0-16 7.2-16 16s7.2 16 16 16z"/></svg>');
+            animation: gradientChange 20s ease infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: #475569;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .subtitle i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.5;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .content-item i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 3px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .journey-timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            border-left: 3px solid var(--MysticLibrary-3);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 2;
+        }
+
+        .comparison-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .before-after {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            border: 2px solid;
+            text-align: center;
+            position: relative;
+        }
+
+        .before {
+            border-color: var(--MysticLibrary-4);
+            margin-right: 20px;
+        }
+
+        .after {
+            border-color: var(--MysticLibrary-1);
+            margin-left: 20px;
+        }
+
+        .vs-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--MysticLibrary-3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            border-left: 3px solid var(--MysticLibrary-3);
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            z-index: 1;
+        }
+
+        .emotion-scale {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .scale-marker {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 0 5px;
+            transition: transform 0.3s;
+        }
+
+        .scale-marker:hover {
+            transform: scale(1.1);
+        }
+
+        .scale-high {
+            background-color: rgba(89, 42, 42, 0.2);
+            color: var(--MysticLibrary-4);
+        }
+
+        .scale-medium {
+            background-color: rgba(191, 128, 122, 0.2);
+            color: var(--MysticLibrary-3);
+        }
+
+        .scale-low {
+            background-color: rgba(46, 87, 140, 0.2);
+            color: var(--MysticLibrary-1);
+        }
+
+        .note {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .icon-lg {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-xl {
+            font-size: 32px;
+            margin-right: 15px;
+            color: var(--MysticLibrary-1);
+            vertical-align: middle;
+        }
+
+        .icon-center {
+            display: block;
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+            color: var(--MysticLibrary-1);
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(242, 242, 242, 0.9));
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .quote-box {
+            border-left: 5px solid var(--MysticLibrary-3);
+            background-color: rgba(191, 128, 122, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 60px;
+            color: var(--MysticLibrary-3);
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        /* アニメーション */
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientChange {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.5s;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+            .comparison-box {
+                flex-direction: column;
+            }
+            .before, .after {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-heart-crack fa-3x fa-beat" style="color: var(--MysticLibrary-4);"></i>
+                <div>
+                    <h1 class="title">仕事が嫌いなまま、楽になった話</h1>
+                    <p class="subtitle"><i class="fas fa-seedling fa-bounce"></i>時間が癒してくれた心の変化</p>
+                </div>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月25日</span>
+                <span><i class="fas fa-user-edit"></i> 個人の体験談</span>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column animated delay-1">
+                <div class="card">
+                    <i class="fas fa-traffic-light card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-walking fa-2x fa-bounce"></i>朝の横断歩道で見た、昔の自分</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-eye"></i>
+                            <p>今朝、横断歩道で信号待ちをしていた時、向こうから歩いてくる<span class="keyword">疲れ切った若い女性<i class="fas fa-face-tired"></i></span>を見かけました。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-user-injured fa-beat"></i></div>
+                            <ul>
+                                <li><i class="fas fa-arrow-down fa-lg"></i> <span class="keyword">重い足取り<i class="fas fa-shoe-prints"></i></span></li>
+                                <li><i class="fas fa-arrow-down fa-lg"></i> <span class="keyword">下がった肩<i class="fas fa-person-falling"></i></span></li>
+                                <li><i class="fas fa-face-frown fa-lg"></i> <span class="keyword">諦めたような表情<i class="fas fa-face-sad-tear"></i></span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-mirror fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            その姿を見た瞬間、<span class="keyword">若い頃の自分<i class="fas fa-rewind"></i></span>を思い出しました。全く同じでした。</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-quote-left"></i>
+                            <p>心の中で<span class="keyword">「お疲れ様」<i class="fas fa-handshake-simple"></i></span>とつぶやきました。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-fire card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-calendar-times fa-2x fa-shake"></i>20代後半の私は、毎日が地獄でした</h2>
+                    <div class="card-content">
+                        <i class="fas fa-skull icon-center fa-bounce" style="color: var(--MysticLibrary-4);"></i>
+                        
+                        <div class="emotion-scale">
+                            <div class="scale-marker scale-high">
+                                <i class="fas fa-face-angry fa-2x"></i>
+                                <p>日曜夜</p>
+                                <small>憂鬱MAX</small>
+                            </div>
+                            <div class="scale-marker scale-high">
+                                <i class="fas fa-bed fa-2x"></i>
+                                <p>月曜朝</p>
+                                <small>起きれない</small>
+                            </div>
+                            <div class="scale-marker scale-medium">
+                                <i class="fas fa-train fa-2x"></i>
+                                <p>通勤中</p>
+                                <small>耐える準備</small>
+                            </div>
+                            <div class="scale-marker scale-high">
+                                <i class="fas fa-building fa-2x"></i>
+                                <p>職場</p>
+                                <small>地獄開始</small>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-user-tie"></i>
+                            <p><span class="keyword">理不尽な上司<i class="fas fa-angry"></i></span>、<span class="keyword">終わりの見えない業務<i class="fas fa-infinity"></i></span>、<span class="keyword">面倒な人間関係<i class="fas fa-users-slash"></i></span></p>
+                        </div>
+                        
+                        <div class="quote-box">
+                            <p>「なんで自分はこんなことをしているんだろう」<br>
+                            「この生活がいつまで続くんだろう」<br>
+                            「もっと楽しい人生があるはずなのに」</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-clock fa-fade"></i> 
+                            時計ばかり見て「まだこんな時間か」とため息をつく毎日でした。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column animated delay-2">
+                <div class="card">
+                    <i class="fas fa-balance-scale card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-heart-crack fa-2x fa-flip"></i>今も仕事は嫌いですが</h2>
+                    <div class="card-content">
+                        <div class="comparison-box">
+                            <div class="before">
+                                <i class="fas fa-bomb fa-2x" style="color: var(--MysticLibrary-4);"></i>
+                                <h3>あの頃</h3>
+                                <p><span class="keyword">激しい拒絶感<i class="fas fa-ban"></i></span></p>
+                                <p>朝起きるのも苦痛</p>
+                            </div>
+                            
+                            <div class="vs-icon">→</div>
+                            
+                            <div class="after">
+                                <i class="fas fa-shield-heart fa-2x" style="color: var(--MysticLibrary-1);"></i>
+                                <h3>今</h3>
+                                <p><span class="keyword">耐性ができた<i class="fas fa-shield"></i></span></p>
+                                <p>目の前のことに集中</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><i class="fas fa-dna fa-lg fa-spin"></i> <strong>体が毒に慣れるように</strong></p>
+                            <p style="text-align: center;"><span class="keyword">心が仕事の負荷に慣れた<i class="fas fa-heart-pulse"></i></span></p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-lightbulb fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            <span class="keyword">嫌いは嫌いのまま<i class="fas fa-thumbs-down"></i></span>。でも、以前ほど辛くはありません。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-puzzle-piece card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-question-circle fa-2x fa-bounce"></i>なぜ楽になったのでしょうか</h2>
+                    <div class="card-content">
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-repeat fa-lg"></i> <span class="keyword">慣れ<i class="fas fa-clock-rotate-left"></i></span></p>
+                                <p>同じような問題への対処法がわかってきた</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-level-down-alt fa-lg"></i> <span class="keyword">期待値の調整<i class="fas fa-arrows-down-to-line"></i></span></p>
+                                <p>仕事に期待しすぎるのをやめた</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-eye fa-lg"></i> <span class="keyword">視野の拡大<i class="fas fa-expand"></i></span></p>
+                                <p>仕事は人生の一部でしかないと理解</p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <p><i class="fas fa-trophy fa-lg"></i> <span class="keyword">小さな成功体験<i class="fas fa-star"></i></span></p>
+                                <p>できることが増えて自信につながった</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-thinking-head card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-scale-unbalanced fa-2x fa-shake"></i>でも、これって本当に良いことなのでしょうか？</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-check-circle"></i>
+                            <p><span class="keyword">楽になりました<i class="fas fa-face-smile"></i></span>。ストレスは減りました。毎日を平穏に過ごせるようになりました。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-exclamation-triangle fa-beat"></i></div>
+                            <p>でも、若い頃の<span class="keyword">激しい怒りや不満<i class="fas fa-fire"></i></span>は、確かに辛いものでしたが、あれはあれで<span class="keyword">大切なもの<i class="fas fa-gem"></i></span>だったのではないでしょうか。</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>現状に疑問を持ち、より良い働き方を求める気持ち。それは<span class="keyword">社会を変える原動力<i class="fas fa-rocket"></i></span>でもあったはずです。</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-heart-crack fa-fade"></i> 
+                            楽になったけれど、同時に<span class="keyword">何かを諦めてしまった<i class="fas fa-flag-checkered"></i></span>ような気もします。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column animated delay-3">
+                <div class="card">
+                    <i class="fas fa-seedling card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-question fa-2x fa-bounce"></i>苦労に意味はあったのでしょうか</h2>
+                    <div class="card-content">
+                        <div class="quote-box">
+                            「苦労した甲斐があったのか？」
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-circle-question"></i>
+                            <p>この問いに<span class="keyword">明確な答えは出せません<i class="fas fa-question-circle"></i></span>。でも、一つだけ確実に言えることがあります。</p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><i class="fas fa-arrow-right fa-lg"></i></p>
+                            <p style="text-align: center;"><span class="keyword">あの苦しい時期がなければ<br>今の自分はなかった<i class="fas fa-person-arrow-up-from-line"></i></span></p>
+                        </div>
+                        
+                        <div class="journey-timeline">
+                            <div class="timeline-line"></div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-heart-crack"></i>
+                                </div>
+                                <p><span class="keyword">仕事の辛さを知った<i class="fas fa-face-sad-tear"></i></span>からこそ、小さな幸せに気づけるように</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <p><span class="keyword">挫折を経験した<i class="fas fa-person-falling"></i></span>からこそ、他人の痛みがわかるように</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <p>若い頃の理想は砕かれましたが、<span class="keyword">現実との向き合い方<i class="fas fa-handshake"></i></span>を学びました</p>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-seedling fa-fade"></i> 
+                            それが成長と呼べるのかはわかりません。でも、<span class="keyword">確実に何かが変わった<i class="fas fa-arrow-right-arrow-left"></i></span>のは間違いありません。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-heart card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-message fa-2x fa-flip"></i>結局、何が言いたいのでしょうか</h2>
+                    <div class="card-content">
+                        <i class="fas fa-lightbulb icon-center fa-beat" style="color: var(--MysticLibrary-1);"></i>
+                        
+                        <div class="message-box pulse">
+                            <h3><i class="fas fa-heart fa-lg"></i> 私が言いたいのは、とてもシンプルなことです</h3>
+                            <p style="font-size: 20px; font-weight: bold; color: var(--MysticLibrary-1);">
+                                <span class="keyword">仕事が嫌いでも、時間が経てば楽になります<i class="fas fa-clock"></i></span>
+                            </p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-ban"></i>
+                            <p><span class="keyword">魔法のような解決策<i class="fas fa-magic-wand-sparkles"></i></span>はありません。</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-ban"></i>
+                            <p><span class="keyword">突然仕事が好きになる<i class="fas fa-heart-pulse"></i></span>こともありません。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-check fa-beat"></i></div>
+                            <p>でも、<span class="keyword">確実に楽にはなります<i class="fas fa-arrow-trend-up"></i></span>。体と心が慣れてくれます。対処法がわかってきます。</p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p><i class="fas fa-quote-left fa-lg" style="color: var(--MysticLibrary-4);"></i> 
+                            あの朝の横断歩道で見た女性に、もし声をかけられるなら、こう言いたいです。</p>
+                        </div>
+                        
+                        <div class="quote-box">
+                            「今の辛さは永遠に続きません。嫌いは嫌いのままでもいいです。でも、必ず楽になる日が来ます」
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-users card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-youth fa-2x fa-bounce"></i>若い人たちへのメッセージ</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-heart"></i>
+                            <p>仕事で苦しんでいる<span class="keyword">若い人たち<i class="fas fa-user-graduate"></i></span>に伝えたいことがあります。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-exclamation fa-beat"></i></div>
+                            <p>今の辛さを軽く見るつもりはありません。「みんな通る道だから」なんて<span class="keyword">無責任なこと<i class="fas fa-ban"></i></span>も言いません。</p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-gem"></i>
+                            <p><span class="keyword">あなたの苦しみは本物<i class="fas fa-heart-crack"></i></span>ですし、その感情は大切にしてほしいです。</p>
+                        </div>
+                        
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-clock fa-lg"></i> <span class="keyword">時間は確実にあなたを変えてくれます<i class="fas fa-seedling"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-sun fa-lg"></i> <span class="keyword">今ほど辛くなくなる日が必ず来ます<i class="fas fa-rainbow"></i></span></p>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-shield fa-lg"></i> <span class="keyword">自分を責めないでください<i class="fas fa-heart"></i></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="message-box">
+                            <p><i class="fas fa-star fa-lg"></i> <span class="keyword">あなたは十分頑張っています<i class="fas fa-trophy"></i></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-user-tie card-icon"></i>
+                    <h2 class="card-title"><i class="fas fa-users-gear fa-2x fa-shake"></i>私たち中堅世代への問いかけ</h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-question-circle"></i>
+                            <p>私と同じような<span class="keyword">中堅世代<i class="fas fa-user-friends"></i></span>にも問いかけたいことがあります。</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-thinking-head fa-beat"></i></div>
+                            <p>確かに楽になりました。でも、それで<span class="keyword">満足していいのでしょうか<i class="fas fa-question"></i></span>？</p>
+                        </div>
+                        
+                        <div class="comparison-box">
+                            <div class="before">
+                                <i class="fas fa-handshake fa-2x" style="color: var(--MysticLibrary-1);"></i>
+                                <h3>慣れ</h3>
+                                <p>現実を受け入れる</p>
+                            </div>
+                            
+                            <div class="vs-icon">VS</div>
+                            
+                            <div class="after">
+                                <i class="fas fa-flag-checkered fa-2x" style="color: var(--MysticLibrary-4);"></i>
+                                <h3>諦め</h3>
+                                <p>現状に甘んじる</p>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>私たちにできることは、<span class="keyword">若い人たちの声に耳を傾け<i class="fas fa-ear-listen"></i></span>、一緒により良い働き方を模索することではないでしょうか。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 最終メッセージ -->
+        <div class="message-box animated delay-3" style="margin: 40px 0;">
+            <i class="fas fa-heart-pulse icon-center fa-beat"></i>
+            <h2 style="color: var(--MysticLibrary-1); margin-bottom: 20px;"><i class="fas fa-star"></i> 最後に <i class="fas fa-star"></i></h2>
+            
+            <div style="display: flex; justify-content: space-around; margin: 30px 0;">
+                <div style="text-align: center;">
+                    <i class="fas fa-ban fa-2x" style="color: var(--MysticLibrary-4);"></i>
+                    <p><span class="keyword">正解はありません<i class="fas fa-question"></i></span></p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-heart fa-2x" style="color: var(--MysticLibrary-3);"></i>
+                    <p><span class="keyword">嫌いでもいいです<i class="fas fa-thumbs-up"></i></span></p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-seedling fa-2x" style="color: var(--MysticLibrary-1);"></i>
+                    <p><span class="keyword">少しずつ前進<i class="fas fa-arrow-right"></i></span></p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                私は今でも仕事が嫌いです。でも、昔ほど辛くはありません。これが私なりの「成長」なのかもしれません。
+            </div>
+            
+            <p style="font-size: 18px; font-weight: bold; color: var(--MysticLibrary-1);">
+                <i class="fas fa-compass"></i> あなたにもきっと、あなたなりの<span class="keyword">「楽になる方法」<i class="fas fa-key"></i></span>が見つかるはずです。
+            </p>
+            
+            <div class="hand-drawn-box">
+                <p style="text-align: center;"><i class="fas fa-walking fa-lg"></i> <span class="keyword">焦らず、自分のペースで歩んでいけばいいのです<i class="fas fa-route"></i></span></p>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background-color: rgba(46, 87, 140, 0.1); border-radius: 12px;">
+                <p style="text-align: center;"><i class="fas fa-traffic-light fa-lg"></i></p>
+                <p style="text-align: center; font-style: italic;">そして時々、朝の横断歩道で疲れた背中を見かけたら、<br>心の中で<span class="keyword">「お疲れ様」<i class="fas fa-handshake-simple"></i></span>とつぶやいてください。</p>
+                <p style="text-align: center; font-weight: bold;">それだけで、きっと何かが少し軽くなるからです。</p>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <i class="fas fa-heart"></i>
+            「時間が教えてくれた、仕事との新しい付き合い方」
+            <i class="fas fa-seedling"></i>
+        </footer>
+    </div>
+
+    <script>
+        // スクロールに連動したアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card, .hand-drawn-box, .message-box, .highlight, .bubble, .timeline-item, .step');
+                
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // 要素が画面内に入ったらアニメーション
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        if(!element.classList.contains('animated-in')) {
+                            element.classList.add('animated-in');
+                            element.style.animation = 'slideIn 0.5s';
+                            
+                            // アニメーション終了後に削除
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 500);
+                        }
+                    }
+                });
+            };
+            
+            // 初期ロード時とスクロール時に実行
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // アイコンのホバーエフェクト
+            const icons = document.querySelectorAll('.fas:not(.fa-beat):not(.fa-bounce):not(.fa-fade):not(.fa-spin):not(.fa-shake):not(.fa-flip)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if(!this.classList.contains('fa-beat')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    if(!this.classList.contains('fa-beat-fade')) {
+                        this.classList.remove('fa-beat');
+                    }
+                });
+            });
+            
+            // カードのクリックエフェクト
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.add('pulse');
+                    
+                    setTimeout(() => {
+                        this.classList.remove('pulse');
+                    }, 2000);
+                });
+            });
+            
+            // スケールマーカーのインタラクション
+            const scaleMarkers = document.querySelectorAll('.scale-marker');
+            scaleMarkers.forEach(marker => {
+                marker.addEventListener('click', function() {
+                    // 一時的にサイズを変更
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+            
