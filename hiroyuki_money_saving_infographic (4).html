@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ひろゆき氏に学ぶお金を使わない生き方</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --MysticLibrary-1: #2E578C;
+            --MysticLibrary-2: #182D40;
+            --MysticLibrary-3: #BF807A;
+            --MysticLibrary-4: #592A2A;
+            --MysticLibrary-5: #F2F2F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: var(--MysticLibrary-5);
+            color: var(--MysticLibrary-2);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="%232E578C" d="M96 96c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128C0 92.7 28.7 64 64 64H96z"/></svg>');
+            animation: gradientShift 20s ease infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed var(--MysticLibrary-3);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, var(--MysticLibrary-1), var(--MysticLibrary-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            margin-left: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: #475569;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .subtitle i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .date-source {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--MysticLibrary-1);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            opacity: 0.5;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 22px;
+            color: var(--MysticLibrary-1);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted var(--MysticLibrary-3);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            color: var(--MysticLibrary-1);
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: var(--MysticLibrary-2);
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .content-item i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .keyword {
+            font-weight: bold;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: var(--MysticLibrary-4);
+            padding: 0 3px;
+        }
+
+        .keyword::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(191, 128, 122, 0.3);
+            z-index: -1;
+        }
+
+        .keyword i {
+            margin-left: 5px;
+            font-size: 14px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .highlight {
+            background-color: rgba(191, 128, 122, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--MysticLibrary-3);
+            position: relative;
+        }
+
+        .highlight-icon {
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .bubble {
+            background-color: white;
+            border: 2px solid var(--MysticLibrary-3);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .bubble:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--MysticLibrary-3) transparent;
+        }
+
+        .bubble:after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: -7px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+
+        .vs-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .vs-item {
+            flex: 1;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            border: 2px solid;
+            position: relative;
+            text-align: center;
+        }
+
+        .vs-left {
+            border-color: var(--MysticLibrary-1);
+            margin-right: 20px;
+        }
+
+        .vs-right {
+            border-color: var(--MysticLibrary-3);
+            margin-left: 20px;
+        }
+
+        .vs-icon {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .vs-left .vs-icon {
+            color: var(--MysticLibrary-1);
+            border: 2px solid var(--MysticLibrary-1);
+        }
+
+        .vs-right .vs-icon {
+            color: var(--MysticLibrary-3);
+            border: 2px solid var(--MysticLibrary-3);
+        }
+
+        .vs-middle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--MysticLibrary-4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .steps-container {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+            border-left: 3px solid var(--MysticLibrary-3);
+        }
+
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Kaisei Decol', serif;
+            z-index: 2;
+        }
+
+        .steps-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--MysticLibrary-1);
+            z-index: 1;
+        }
+
+        .connection {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-line {
+            position: relative;
+            height: 2px;
+            background-color: var(--MysticLibrary-1);
+            flex-grow: 1;
+        }
+
+        .connection-icon {
+            background-color: white;
+            color: var(--MysticLibrary-1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            border: 2px solid var(--MysticLibrary-1);
+            font-size: 18px;
+        }
+
+        .note {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: var(--MysticLibrary-4);
+            background-color: rgba(242, 242, 242, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--MysticLibrary-3);
+        }
+
+        .note i {
+            margin-right: 8px;
+            color: var(--MysticLibrary-3);
+        }
+
+        .icon-center {
+            display: block;
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+            color: var(--MysticLibrary-1);
+        }
+
+        .hand-drawn-box {
+            border: 3px solid var(--MysticLibrary-4);
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formula-box {
+            background-color: var(--MysticLibrary-1);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 20px 0;
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .money-amount {
+            font-size: 24px;
+            color: var(--MysticLibrary-1);
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 3px dashed var(--MysticLibrary-3);
+            text-align: center;
+            font-size: 14px;
+            color: var(--MysticLibrary-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: var(--MysticLibrary-3);
+        }
+
+        /* アニメーション */
+        @keyframes fa-bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @keyframes fa-spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(46, 87, 140, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(46, 87, 140, 0.5);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 0.03;
+            }
+            50% {
+                opacity: 0.06;
+            }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 900px) {
+            .column {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .column {
+                flex: 0 0 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date-source {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+            .vs-container {
+                flex-direction: column;
+            }
+            .vs-left, .vs-right {
+                margin: 20px 0;
+            }
+            .vs-middle {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-piggy-bank fa-3x fa-shake" style="color: var(--MysticLibrary-1);"></i>
+                <div>
+                    <h1 class="title">ひろゆき氏に学ぶお金を使わない生き方</h1>
+                    <p class="subtitle"><i class="fas fa-lightbulb fa-beat"></i>一万円稼ぐより一万円節約する方が簡単な理由</p>
+                </div>
+            </div>
+            <div class="date-source">
+                <span><i class="fas fa-calendar-alt"></i> 2025年5月30日</span>
+                <span><i class="fas fa-user-tie"></i> ひろゆき氏の知恵</span>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 第1カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-question-circle card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-lightbulb fa-2x fa-bounce"></i>
+                        根本的な問いかけ
+                    </h2>
+                    <div class="card-content">
+                        <div class="bubble">
+                            <p style="font-size: 18px; text-align: center;">
+                                <i class="fas fa-quote-left fa-lg" style="color: var(--MysticLibrary-4);"></i>
+                                「<span class="money-amount">一万円</span>稼ぐのと<span class="money-amount">一万円</span>節約する、どちらが簡単？」
+                            </p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-brain"></i>
+                            <p>ひろゆき氏の明確な答え：<span class="keyword">節約の方が簡単<i class="fas fa-check-circle"></i></span></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-eye"></i>
+                            <p>現代人が見落としがちな<span class="keyword">本質的な知恵<i class="fas fa-gem"></i></span></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-building"></i>
+                            <p>2ちゃんねる創設者、現在は<span class="keyword">フランス在住<i class="fas fa-globe-europe"></i></span></p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle fa-fade"></i>
+                            これは単なる節約術ではなく、<span class="keyword">価値観の転換<i class="fas fa-recycle"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-weight-hanging card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-simple fa-2x fa-shake"></i>
+                        稼ぐことのコスト
+                    </h2>
+                    <div class="card-content">
+                        <i class="fas fa-clock icon-center fa-spin"></i>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-exclamation fa-beat"></i></div>
+                            <p><strong>一万円稼ぐために必要なコスト</strong></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-hourglass-half"></i>
+                            <p><span class="keyword">時間的コスト<i class="fas fa-clock"></i></span></p>
+                            <small>労働時間、学習時間、交渉時間</small>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-brain"></i>
+                            <p><span class="keyword">精神的コスト<i class="fas fa-face-stressed"></i></span></p>
+                            <small>ストレス、プレッシャー、人間関係</small>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-dumbbell"></i>
+                            <p><span class="keyword">物理的コスト<i class="fas fa-running"></i></span></p>
+                            <small>交通費、設備投資、健康負荷</small>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-arrow-down fa-beat"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <p style="text-align: center;">
+                                <i class="fas fa-hand fa-lg"></i> 
+                                一方、節約は<span class="keyword">「しない」選択<i class="fas fa-ban"></i></span>をするだけ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第2カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-equals card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-calculator fa-2x fa-flip"></i>
+                        節約＝収入増の発想転換
+                    </h2>
+                    <div class="card-content">
+                        <div class="vs-container">
+                            <div class="vs-item vs-left">
+                                <div class="vs-icon"><i class="fas fa-arrow-down"></i></div>
+                                <h3>従来の考え方</h3>
+                                <p>収入 - 支出 = 残高</p>
+                                <small>収入を上げるしかない</small>
+                            </div>
+                            
+                            <div class="vs-middle">VS</div>
+                            
+                            <div class="vs-item vs-right">
+                                <div class="vs-icon"><i class="fas fa-lightbulb"></i></div>
+                                <h3>ひろゆき式</h3>
+                                <p>節約 = 実質的な収入増</p>
+                                <small>支出を減らす = 収入を増やす</small>
+                            </div>
+                        </div>
+                        
+                        <div class="formula-box">
+                            <i class="fas fa-calculator fa-lg"></i>
+                            <p>月5万円節約 = 実質月収35万円の価値</p>
+                            <small>しかも税金なし！</small>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-exclamation-triangle fa-fade"></i>
+                            5万円の節約は、10万円近い昇給と同等の効果！
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-yin-yang card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-balance-scale fa-2x fa-bounce"></i>
+                        「足るを知る」現代版
+                    </h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-scroll"></i>
+                            <p>老子の教え：<span class="keyword">「足るを知る者は富む」<i class="fas fa-crown"></i></span></p>
+                        </div>
+                        
+                        <i class="fas fa-infinity icon-center fa-spin"></i>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><strong>物質的満足の限界</strong></p>
+                            <p>より良い車 → より大きな家 → より高性能なスマホ</p>
+                            <p style="text-align: center; margin-top: 15px;">
+                                <span class="keyword">「ヘドニック・トレッドミル」<i class="fas fa-running"></i></span>
+                            </p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-compass fa-beat"></i></div>
+                            <p><strong>現代における「足る」の見つけ方</strong></p>
+                            <ul>
+                                <li><i class="fas fa-utensils"></i> 健康を維持できる食事</li>
+                                <li><i class="fas fa-house"></i> 安全で清潔な住環境</li>
+                                <li><i class="fas fa-gamepad"></i> 基本的な娯楽</li>
+                                <li><i class="fas fa-handshake"></i> 最低限の社交費</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第3カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-stopwatch card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-calendar-week fa-2x fa-shake"></i>
+                        一週間ルール
+                    </h2>
+                    <div class="card-content">
+                        <div class="bubble">
+                            <p style="text-align: center;">
+                                <i class="fas fa-magic-wand-sparkles fa-lg" style="color: var(--MysticLibrary-4);"></i>
+                                「欲しいものがあっても<span class="keyword">一週間考える<i class="fas fa-thinking"></i></span>」
+                            </p>
+                        </div>
+                        
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <p><i class="fas fa-pen fa-lg"></i> 欲しいものを<span class="keyword">メモする<i class="fas fa-clipboard"></i></span></p>
+                                <small>商品名、価格、理由を記録</small>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <p><i class="fas fa-search fa-lg"></i> <span class="keyword">代替手段を考える<i class="fas fa-lightbulb"></i></span></p>
+                                <small>既存品での代用、レンタル検討</small>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <p><i class="fas fa-calendar-check fa-lg"></i> <span class="keyword">一週間後の再評価<i class="fas fa-magnifying-glass"></i></span></p>
+                                <small>冷静に必要性を判断</small>
+                            </div>
+                        </div>
+                        
+                        <div class="formula-box">
+                            <i class="fas fa-chart-pie fa-lg"></i>
+                            <p>驚きの結果：<span class="keyword">約7割<i class="fas fa-percent"></i></span>が「別に要らない」に変化！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-scale-balanced card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-arrows-left-right fa-2x fa-flip"></i>
+                        お金＝嫌な仕事の等価交換
+                    </h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-calculator"></i>
+                            <p>ひろゆき氏の洞察：<span class="keyword">「お金を使う＝その分嫌な仕事をする」<i class="fas fa-equals"></i></span></p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <p style="text-align: center;"><strong>時給換算思考の威力</strong></p>
+                            <div style="border: 2px dashed var(--MysticLibrary-3); padding: 15px; margin: 10px 0;">
+                                <p>手取り月収24万円、月22日労働の場合</p>
+                                <p>→ 時給約<span class="money-amount">1,364円</span></p>
+                                <p>5万円のバッグ = <span class="keyword">37時間労働<i class="fas fa-hourglass"></i></span></p>
+                                <p style="text-align: center; font-weight: bold; color: var(--MysticLibrary-4);">
+                                    = 約4.6日分の苦痛な仕事
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-question fa-beat"></i></div>
+                            <p>「このバッグのために<span class="keyword">4.6日間働く価値<i class="fas fa-scales"></i></span>があるか？」</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb fa-fade"></i>
+                            無駄な消費を減らすことは、<span class="keyword">人生の質を向上<i class="fas fa-arrow-up"></i></span>させる直接的な手段
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 追加セクション -->
+        <div class="main-content">
+            <!-- 第4カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-shield-halved card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-laptop fa-2x fa-bounce"></i>
+                        現代社会の「使わない技術」
+                    </h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-info-circle"></i>
+                            <p>情報過多時代の<span class="keyword">選択術<i class="fas fa-filter"></i></span></p>
+                        </div>
+                        
+                        <i class="fas fa-trash-can icon-center fa-shake"></i>
+                        
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-scissors fa-beat"></i></div>
+                            <p><strong>情報の断捨離</strong></p>
+                            <ul>
+                                <li><i class="fas fa-envelope-open-text"></i> 不要な広告メールの配信停止</li>
+                                <li><i class="fas fa-mobile-alt"></i> ショッピングアプリの削除</li>
+                                <li><i class="fas fa-users-slash"></i> 衝動購買を誘うSNSのフォロー解除</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-wifi"></i>
+                            <p><span class="keyword">サブスクリプションの見直し<i class="fas fa-credit-card"></i></span></p>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <h4><i class="fas fa-gift"></i> 無料代替サービスの活用</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li><i class="fas fa-code"></i> 有料ソフト → オープンソース無料版</li>
+                                <li><i class="fas fa-book"></i> 書籍購入 → 図書館活用</li>
+                                <li><i class="fas fa-dumbbell"></i> ジム代 → 公共施設利用</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-seedling card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-magic fa-2x fa-spin"></i>
+                        節約の意外な副次効果
+                    </h2>
+                    <div class="card-content">
+                        <div class="content-item">
+                            <i class="fas fa-palette"></i>
+                            <p><span class="keyword">創造性の向上<i class="fas fa-brain"></i></span></p>
+                        </div>
+                        
+                        <div class="connection">
+                            <div class="connection-line"></div>
+                            <div class="connection-icon">
+                                <i class="fas fa-arrow-right fa-beat"></i>
+                            </div>
+                            <div class="connection-line"></div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-utensils"></i>
+                            <p>例：外食を控える → <span class="keyword">料理スキル向上<i class="fas fa-chef-hat"></i></span></p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-heart"></i>
+                            <p><span class="keyword">人間関係の質的向上<i class="fas fa-users"></i></span></p>
+                        </div>
+                        
+                        <div class="bubble">
+                            <p style="text-align: center;">
+                                高級レストラン < <span class="keyword">手作りホームパーティー<i class="fas fa-home"></i></span>
+                            </p>
+                        </div>
+                        
+                        <div class="content-item">
+                            <i class="fas fa-peace"></i>
+                            <p><span class="keyword">精神的な安定<i class="fas fa-mind"></i></span></p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-shield"></i>
+                            お金への不安が減り、日々のストレス耐性向上
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6カラム -->
+            <div class="column">
+                <div class="card">
+                    <i class="fas fa-rocket card-icon"></i>
+                    <h2 class="card-title">
+                        <i class="fas fa-map-location-dot fa-2x fa-shake"></i>
+                        実践スタートガイド
+                    </h2>
+                    <div class="card-content">
+                        <i class="fas fa-flag-checkered icon-center fa-wave"></i>
+                        
+                        <div class="steps-container">
+                            <div class="steps-line"></div>
+                            
+                            <div class="step">
+                                <div class="step-number">Week1</div>
+                                <p><i class="fas fa-search fa-lg"></i> <span class="keyword">現状把握<i class="fas fa-magnifying-glass-chart"></i></span></p>
+                                <small>家計簿で支出の「見える化」</small>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">Week2</div>
+                                <p><i class="fas fa-scissors fa-lg"></i> <span class="keyword">固定費見直し<i class="fas fa-chart-pie"></i></span></p>
+                                <small>保険、通信費、サブスク整理</small>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">Week3</div>
+                                <p><i class="fas fa-hand fa-lg"></i> <span class="keyword">変動費コントロール<i class="fas fa-sliders"></i></span></p>
+                                <small>一週間ルール導入</small>
+                            </div>
+                            
+                            <div class="step">
+                                <div class="step-number">Week4</div>
+                                <p><i class="fas fa-lightbulb fa-lg"></i> <span class="keyword">新価値観構築<i class="fas fa-building"></i></span></p>
+                                <small>時給換算思考、「足るを知る」基準設定</small>
+                            </div>
+                        </div>
+                        
+                        <div class="formula-box">
+                            <i class="fas fa-trophy fa-lg"></i>
+                            <p>真の豊かさ = 精神的充実</p>
+                            <small>決して貧しい生活ではない</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- まとめセクション -->
+        <div class="card" style="background: linear-gradient(135deg, var(--MysticLibrary-1), var(--MysticLibrary-3)); color: white; margin-top: 30px;">
+            <i class="fas fa-crown card-icon" style="color: rgba(255,255,255,0.7);"></i>
+            <h2 class="card-title" style="color: white; border-bottom-color: rgba(255,255,255,0.3);">
+                <i class="fas fa-gem fa-2x" style="color: white;"></i>
+                まとめ：お金を使わない生き方が教えてくれること
+            </h2>
+            <div class="card-content" style="color: white;">
+                <div class="content-item" style="padding-left: 0;">
+                    <p style="font-size: 18px; margin-bottom: 20px;">
+                        ひろゆき氏の「お金を使わない生き方」は、単なるケチや節約術ではない
+                    </p>
+                </div>
+                
+                <div style="display: flex; justify-content: space-around; margin: 30px 0; flex-wrap: wrap;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 10px; flex: 1; min-width: 200px;">
+                        <h4><i class="fas fa-lightbulb"></i> 価値観への問いかけ</h4>
+                        <p>現代社会の消費主義的価値観に対する根本的な問いかけ</p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 10px; flex: 1; min-width: 200px;">
+                        <h4><i class="fas fa-route"></i> 充実した人生への道筋</h4>
+                        <p>より本質的で充実した人生への道筋を示している</p>
+                    </div>
+                </div>
+                
+                <div class="highlight" style="background: rgba(255,255,255,0.1); border-left-color: white;">
+                    <div class="highlight-icon" style="background: rgba(255,255,255,0.9); color: var(--MysticLibrary-1);"><i class="fas fa-key"></i></div>
+                    <ul>
+                        <li><strong>一万円稼ぐより一万円節約する方が簡単</strong> → 「稼ぐことが正義」という価値観への疑問</li>
+                        <li><strong>一週間悩んで欲しくなくなったもの</strong> → 最初から本当は必要なかった</li>
+                        <li><strong>お金を使う＝嫌な仕事をする</strong> → 労働と消費の関係を根本から見直すきっかけ</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 20px;">
+                        <h3><i class="fas fa-heart"></i> より自由で、より充実した人生</h3>
+                        <p style="font-size: 18px;">決して貧しい生活ではなく、むしろ<span style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 8px; font-weight: bold;">精神的に豊かな生活</span></p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
+                    <p style="font-size: 20px; font-weight: bold;">
+                        <i class="fas fa-scroll"></i> 「足るを知る者は富む」
+                    </p>
+                    <p style="margin-top: 10px;">古い知恵を現代的に解釈し実践することで、私たちは真の豊かさを手に入れることができる</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer class="footer">
+            <i class="fas fa-book-open"></i>
+            出典：ひろゆき氏の思想とライフスタイルから学ぶ現代的節約術
+            <i class="fas fa-lightbulb"></i>
+            より豊かな人生への知恵
+            <i class="fas fa-heart"></i>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // アイコンのホバーエフェクト
+            const icons = document.querySelectorAll('.fas:not(.fa-beat):not(.fa-bounce):not(.fa-fade):not(.fa-spin):not(.fa-shake):not(.fa-flip):not(.fa-wave)');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseover', function() {
+                    if (!this.classList.contains('fa-beat')) {
+                        this.classList.add('fa-beat');
+                    }
+                });
+                
+                icon.addEventListener('mouseout', function() {
+                    this.classList.remove('fa-beat');
+                });
+            });
+            
+            // カードのクリックエフェクト
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.3s ease';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 300);
+                });
+            });
+
+            // 金額要素のホバーエフェクト
+            const moneyAmounts = document.querySelectorAll('.money-amount');
+            moneyAmounts.forEach(amount => {
+                amount.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                amount.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
